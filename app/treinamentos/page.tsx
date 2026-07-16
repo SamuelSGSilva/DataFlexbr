@@ -1,16 +1,15 @@
 import { getModules } from "@/lib/trainings";
-import { getUser, isSupabaseConfigured } from "@/lib/supabase/server";
-import { signOut } from "@/lib/auth-actions";
+import { getLeadSession, signOutGate } from "@/lib/gate-actions";
 
 export const metadata = {
   title: "Treinamentos — DataFlex",
-  description: "Portal de treinamentos exclusivo para clientes DataFlex.",
+  description: "Portal de treinamentos exclusivo para cadastrados DataFlex.",
 };
 
 export default async function TreinamentosPage() {
-  const user = await getUser();
+  const leadId = await getLeadSession();
   const modules = await getModules();
-  const configured = isSupabaseConfigured();
+  const gateConfigured = Boolean(process.env.ACCESS_TOKEN_SECRET);
 
   return (
     <main className="mx-auto w-full max-w-5xl px-6 py-16">
@@ -18,11 +17,11 @@ export default async function TreinamentosPage() {
         <div>
           <h1 className="text-3xl font-bold">Portal de treinamentos</h1>
           <p className="mt-1 text-sm text-neutral-400">
-            {user ? `Logado como ${user.email}` : "Conteúdo exclusivo para clientes"}
+            Conteúdo exclusivo para cadastrados
           </p>
         </div>
-        {user && (
-          <form action={signOut}>
+        {leadId && (
+          <form action={signOutGate}>
             <button className="rounded-lg border border-neutral-700 px-4 py-2 text-sm hover:border-neutral-500">
               Sair
             </button>
@@ -30,11 +29,10 @@ export default async function TreinamentosPage() {
         )}
       </div>
 
-      {!configured && (
+      {!gateConfigured && (
         <p className="mt-6 rounded-lg border border-amber-900 bg-amber-950 px-4 py-3 text-sm text-amber-300">
-          Modo de desenvolvimento: o Supabase ainda não foi configurado, então o
-          portal está aberto e usando o conteúdo do arquivo local. Com o
-          .env.local preenchido, esta página passa a exigir login.
+          Modo de desenvolvimento: defina ACCESS_TOKEN_SECRET no .env.local
+          para o portal passar a exigir cadastro.
         </p>
       )}
 

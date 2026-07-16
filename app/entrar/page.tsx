@@ -1,9 +1,10 @@
 import { Suspense } from "react";
-import { LoginForm } from "./login-form";
+import { GateForm } from "./gate-form";
 
 export const metadata = {
-  title: "Entrar — DataFlex",
-  description: "Acesso exclusivo para clientes DataFlex.",
+  title: "Acesso exclusivo — DataFlex",
+  description:
+    "Cadastre-se gratuitamente para acessar a tabela de compatibilidade e os treinamentos DataFlex.",
 };
 
 export default async function EntrarPage(props: PageProps<"/entrar">) {
@@ -15,11 +16,16 @@ export default async function EntrarPage(props: PageProps<"/entrar">) {
     <main className="mx-auto flex min-h-[70vh] w-full max-w-md flex-col justify-center px-6 py-16">
       <h1 className="text-2xl font-bold">Acesso exclusivo DataFlex</h1>
       <p className="mt-2 text-sm text-neutral-400">
-        Entre com o email e a senha fornecidos na compra do seu equipamento.
+        Preencha os dados abaixo para liberar o acesso gratuito à tabela de
+        compatibilidade e aos treinamentos.
       </p>
       <Suspense>
-        <LoginForm voltar={voltar} />
+        <GateForm voltar={voltar} />
       </Suspense>
+      <p className="mt-6 text-xs text-neutral-500">
+        100% gratuito. Seus dados são usados apenas para liberar o acesso e
+        contato comercial.
+      </p>
     </main>
   );
 }
