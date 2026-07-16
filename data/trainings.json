@@ -1,0 +1,143 @@
+{
+  "modules": [
+    {
+      "slug": "atualizacoes-2026",
+      "title": "Atualizações 2026",
+      "order": 1
+    },
+    {
+      "slug": "funcoes-datacenter",
+      "title": "Funções DataCenter",
+      "order": 2
+    },
+    {
+      "slug": "leitura-e-gravacao",
+      "title": "Leitura e Gravação",
+      "order": 3
+    },
+    {
+      "slug": "informacoes-basicas",
+      "title": "Informações Básicas",
+      "order": 4
+    },
+    {
+      "slug": "outras-informacoes",
+      "title": "Outras Informações",
+      "order": 5
+    }
+  ],
+  "lessons": [
+    {
+      "slug": "2026-compromisso-de-atualizacao",
+      "title": "2026 - Compromisso de Atualização",
+      "moduleSlug": "atualizacoes-2026",
+      "youtubeId": "oXqJQFEBLyo",
+      "order": 1
+    },
+    {
+      "slug": "o-que-acontece-quando-a-ecu-nao-comunica-sera-que-esta-queimada",
+      "title": "O que acontece quando a ECU não comunica, será que esta queimada?",
+      "moduleSlug": "atualizacoes-2026",
+      "youtubeId": "J3H8nv4iN8M",
+      "order": 2
+    },
+    {
+      "slug": "vw-cambio-dq200",
+      "title": "VW Cambio DQ200",
+      "moduleSlug": "leitura-e-gravacao",
+      "youtubeId": "HEqL-4B1kUI",
+      "order": 3
+    },
+    {
+      "slug": "ac-delco-e37-com-dataflex",
+      "title": "Ac Delco E37 com DataFlex",
+      "moduleSlug": "leitura-e-gravacao",
+      "youtubeId": "IBcAm6EPTbs",
+      "order": 4
+    },
+    {
+      "slug": "ac-delco-e38-com-dataflex",
+      "title": "Ac Delco E38 com DataFlex",
+      "moduleSlug": "leitura-e-gravacao",
+      "youtubeId": "grbnLv0m9CQ",
+      "order": 5
+    },
+    {
+      "slug": "ac-delco-e39-immo-off-com-dataflex",
+      "title": "Ac Delco E39 - Immo Off com DataFlex",
+      "moduleSlug": "leitura-e-gravacao",
+      "youtubeId": "elbhdXedpGg",
+      "order": 6
+    },
+    {
+      "slug": "ac-delco-e83-com-dataflex",
+      "title": "Ac Delco e83 com DataFlex",
+      "moduleSlug": "leitura-e-gravacao",
+      "youtubeId": "8BM55ZV7IwQ",
+      "order": 7
+    },
+    {
+      "slug": "ac-delco-e84-desbloqueando-com-dataflex",
+      "title": "Ac Delco E84, desbloqueando com DataFlex",
+      "moduleSlug": "leitura-e-gravacao",
+      "youtubeId": "s-bJ5-m_AIc",
+      "order": 8
+    },
+    {
+      "slug": "bosch-landrover-med17-com-dataflex",
+      "title": "Bosch LandRover MED17 com Dataflex",
+      "moduleSlug": "leitura-e-gravacao",
+      "youtubeId": "ayGhfRYjjRY",
+      "order": 9
+    },
+    {
+      "slug": "bosch-mercedes-med17-com-dataflex",
+      "title": "Bosch Mercedes MED17 com Dataflex",
+      "moduleSlug": "leitura-e-gravacao",
+      "youtubeId": "Kuoek53E--A",
+      "order": 10
+    },
+    {
+      "slug": "bosch-volks-med17-com-dataflex",
+      "title": "Bosch VOLKS MED17 com Dataflex",
+      "moduleSlug": "leitura-e-gravacao",
+      "youtubeId": "pMT529ZWU2I",
+      "order": 11
+    },
+    {
+      "slug": "bosch-ford-medg17-com-dataflex",
+      "title": "Bosch Ford MEDG17 com Dataflex",
+      "moduleSlug": "leitura-e-gravacao",
+      "youtubeId": "YwpwS-JR-2I",
+      "order": 12
+    },
+    {
+      "slug": "bosch-bme-mev17-com-dataflex",
+      "title": "Bosch BMW MEV17 com Dataflex",
+      "moduleSlug": "leitura-e-gravacao",
+      "youtubeId": "WnAiNamNbTI",
+      "order": 13
+    },
+    {
+      "slug": "dataflex-campanha-inicial-03",
+      "title": "DataFlex - Campanha Inicial 03",
+      "moduleSlug": "outras-informacoes",
+      "youtubeId": "1Vuc1no-esY",
+      "order": 14
+    },
+    {
+      "slug": "dataflex-campanha-inicial-01",
+      "title": "DataFlex - Campanha Inicial 01",
+      "moduleSlug": "outras-informacoes",
+      "youtubeId": "wZhh8OtkE3c",
+      "order": 15
+    },
+    {
+      "slug": "dataflex-campanha-inicial-02",
+      "title": "DataFlex - Campanha Inicial 02",
+      "moduleSlug": "outras-informacoes",
+      "youtubeId": "KoMiW8kvIXE",
+      "order": 16
+    }
+  ]
+}
