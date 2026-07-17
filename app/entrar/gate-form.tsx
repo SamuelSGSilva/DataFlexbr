@@ -4,7 +4,7 @@ import { useActionState, useState } from "react";
 import { registerLead, loginLead, type GateResult } from "@/lib/gate-actions";
 
 const inputClass =
-  "rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-3 text-base outline-none focus:border-red-500";
+  "rounded-df border border-df-line bg-df-panel px-4 py-3 text-base outline-none focus:border-df-red";
 
 export function GateForm({ voltar }: { voltar: string }) {
   const [mode, setMode] = useState<"cadastro" | "login">("cadastro");
@@ -18,10 +18,10 @@ export function GateForm({ voltar }: { voltar: string }) {
   >(loginLead, undefined);
 
   const tabClass = (active: boolean) =>
-    `flex-1 rounded-lg px-4 py-2 text-sm font-semibold transition ${
+    `flex-1 rounded-df px-4 py-2 text-sm font-semibold transition ${
       active
-        ? "bg-red-600 text-white"
-        : "border border-neutral-700 text-neutral-300 hover:border-neutral-500"
+        ? "bg-df-red text-white"
+        : "border border-df-line text-df-muted hover:border-white/40"
     }`;
 
   return (
@@ -75,7 +75,7 @@ export function GateForm({ voltar }: { voltar: string }) {
               className={inputClass}
             />
           </label>
-          <label className="flex items-start gap-2 text-xs text-neutral-400">
+          <label className="flex items-start gap-2 text-xs text-df-muted">
             <input type="checkbox" name="privacy" required className="mt-0.5" />
             <span>
               Li e aceito a política de privacidade e o recebimento de
@@ -83,14 +83,14 @@ export function GateForm({ voltar }: { voltar: string }) {
             </span>
           </label>
           {regState?.error && (
-            <p className="rounded-lg border border-red-900 bg-red-950 px-4 py-3 text-sm text-red-300">
+            <p className="rounded-df border border-df-red/50 bg-df-red/10 px-4 py-3 text-sm text-red-300">
               {regState.error}
             </p>
           )}
           <button
             type="submit"
             disabled={regPending}
-            className="mt-1 rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700 disabled:opacity-60"
+            className="mt-1 rounded-df bg-df-red px-4 py-3 font-semibold text-white hover:bg-df-red-hover disabled:opacity-60"
           >
             {regPending ? "Liberando acesso…" : "Liberar meu acesso"}
           </button>
@@ -109,14 +109,14 @@ export function GateForm({ voltar }: { voltar: string }) {
             />
           </label>
           {logState?.error && (
-            <p className="rounded-lg border border-red-900 bg-red-950 px-4 py-3 text-sm text-red-300">
+            <p className="rounded-df border border-df-red/50 bg-df-red/10 px-4 py-3 text-sm text-red-300">
               {logState.error}
             </p>
           )}
           <button
             type="submit"
             disabled={logPending}
-            className="mt-1 rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700 disabled:opacity-60"
+            className="mt-1 rounded-df bg-df-red px-4 py-3 font-semibold text-white hover:bg-df-red-hover disabled:opacity-60"
           >
             {logPending ? "Entrando…" : "Entrar"}
           </button>

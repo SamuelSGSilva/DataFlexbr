@@ -17,14 +17,16 @@ export default async function TreinamentosPage() {
     <main className="mx-auto w-full max-w-5xl px-6 py-16">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Portal de treinamentos</h1>
-          <p className="mt-1 text-sm text-neutral-400">
+          <h1 className="font-heading text-3xl uppercase tracking-tight">
+            Portal de treinamentos
+          </h1>
+          <p className="mt-1 text-sm text-df-muted">
             Conteúdo exclusivo para cadastrados
           </p>
         </div>
         {leadId && (
           <form action={signOutGate}>
-            <button className="rounded-lg border border-neutral-700 px-4 py-2 text-sm hover:border-neutral-500">
+            <button className="rounded-df border border-df-line px-4 py-2 text-sm hover:border-white/40">
               Sair
             </button>
           </form>
@@ -32,7 +34,7 @@ export default async function TreinamentosPage() {
       </div>
 
       {!gateConfigured && (
-        <p className="mt-6 rounded-lg border border-amber-900 bg-amber-950 px-4 py-3 text-sm text-amber-300">
+        <p className="mt-6 rounded-df border border-amber-900 bg-amber-950 px-4 py-3 text-sm text-amber-300">
           Modo de desenvolvimento: defina ACCESS_TOKEN_SECRET no .env.local
           para o portal passar a exigir cadastro.
         </p>
@@ -45,14 +47,16 @@ export default async function TreinamentosPage() {
             <section key={mod.slug}>
               {heroLesson && (
                 <div
-                  className="relative mb-4 overflow-hidden rounded-xl border border-neutral-800 bg-cover bg-center"
+                  className="relative mb-4 overflow-hidden rounded-df border border-df-line bg-cover bg-center"
                   style={{
                     backgroundImage: `url(${youtubeThumbnail(heroLesson.youtubeId)})`,
                   }}
                 >
-                  <div className="bg-gradient-to-t from-neutral-950 via-neutral-950/70 to-neutral-950/10 px-6 py-10">
-                    <h2 className="text-xl font-semibold">{mod.title}</h2>
-                    <p className="mt-1 text-sm text-neutral-300">
+                  <div className="bg-gradient-to-t from-df-dark via-df-dark/70 to-df-dark/10 px-6 py-10">
+                    <h2 className="font-heading text-xl uppercase tracking-tight">
+                      {mod.title}
+                    </h2>
+                    <p className="mt-1 text-sm text-df-muted">
                       {mod.lessons.length}{" "}
                       {mod.lessons.length === 1 ? "aula" : "aulas"}
                     </p>

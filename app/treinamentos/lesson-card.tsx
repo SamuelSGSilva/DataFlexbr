@@ -15,7 +15,7 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
   if (playing) {
     return (
       <article>
-        <div className="aspect-video overflow-hidden rounded-lg border border-neutral-800">
+        <div className="aspect-video overflow-hidden rounded-df border border-df-line">
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${lesson.youtubeId}?rel=0&modestbranding=1&autoplay=1`}
             title={lesson.title}
@@ -35,7 +35,7 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
         type="button"
         onClick={() => setPlaying(true)}
         aria-label={`Assistir: ${lesson.title}`}
-        className="group relative block aspect-video w-full overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900"
+        className="group relative block aspect-video w-full overflow-hidden rounded-df border border-df-line bg-df-panel"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -45,7 +45,7 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
           className="h-full w-full object-cover transition group-hover:opacity-80"
         />
         <span className="absolute inset-0 flex items-center justify-center">
-          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-red-600 text-white shadow-lg transition group-hover:scale-110">
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-df-red text-white shadow-lg transition group-hover:scale-110">
             <svg viewBox="0 0 24 24" className="ml-0.5 h-5 w-5" fill="currentColor">
               <path d="M8 5v14l11-7z" />
             </svg>
