@@ -57,3 +57,39 @@ h3,
 .df-scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--df-red-hover);
 }
+
+/* Revelação ao rolar: o elemento sobe com um leve "bounce" (sobe e assenta) */
+.df-reveal {
+  opacity: 0;
+}
+
+.df-reveal.is-visible {
+  animation: df-bounce-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes df-bounce-up {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-12px);
+  }
+  80% {
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .df-reveal {
+    opacity: 1;
+  }
+  .df-reveal.is-visible {
+    animation: none;
+  }
+}

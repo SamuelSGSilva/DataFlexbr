@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AddToCartButton } from "@/components/add-to-cart-button";
 import { FEATURE_ICONS, type FeatureIconName } from "@/components/feature-icons";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { PRODUCTS, formatPrice } from "@/lib/products";
 
 export const metadata = {
@@ -192,7 +193,7 @@ export default function Home() {
 
       {/* Features */}
       <section className="border-t border-df-line px-6 py-20 md:px-10">
-        <div className="mx-auto w-full max-w-6xl">
+        <ScrollReveal className="mx-auto w-full max-w-6xl">
           <p className="text-xs font-medium uppercase tracking-wide text-df-red">
             O equipamento
           </p>
@@ -221,7 +222,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* OBD + Bench + Boot */}
