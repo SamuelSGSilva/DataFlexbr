@@ -185,7 +185,7 @@ export default function Home() {
             fill
             priority
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover"
+            className="object-cover object-top"
           />
         </div>
       </section>
