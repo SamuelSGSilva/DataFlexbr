@@ -23,7 +23,7 @@ export function SiteHeader() {
             priority
           />
         </Link>
-        <nav className="hidden gap-7 text-sm text-df-muted md:flex">
+        <nav className="hidden gap-6 text-xs font-medium uppercase tracking-wide text-df-muted md:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
