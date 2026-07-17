@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AddToCartButton } from "@/components/add-to-cart-button";
+import { FEATURE_ICONS, type FeatureIconName } from "@/components/feature-icons";
 import { PRODUCTS, formatPrice } from "@/lib/products";
 
 export const metadata = {
@@ -9,54 +10,66 @@ export const metadata = {
     "Programação profissional de ECU e TCM em OBD, Bench e Boot, com arquivo aberto e feita para a frota brasileira. Conheça o DataFlex Master.",
 };
 
-const FEATURES = [
+const FEATURES: { title: string; text: string; icon: FeatureIconName }[] = [
   {
     title: "Plataforma Master",
     text: "Programação completa de ECU e TCM com velocidade e precisão, seja na flash ou na eeprom.",
+    icon: "cpu",
   },
   {
     title: "Leitura e gravação",
     text: "Leitura de eeprom e flash completa, com correção de checksum e parâmetros para clonagem.",
+    icon: "save",
   },
   {
     title: "Modos OBD · Bench · Boot",
     text: "Os três modos de comunicação cobertos numa única plataforma, sem cabos ou caixinhas extras.",
+    icon: "plug",
   },
   {
     title: "Checksum",
     text: "Verificação na leitura e correção de checksum na gravação, garantindo integridade dos arquivos.",
+    icon: "shieldCheck",
   },
   {
     title: "Calculadora integrada",
     text: "Execute funções técnicas diretamente no software, como edição ou desabilitações.",
+    icon: "calculator",
   },
   {
     title: "DataCenter online",
     text: "Processamento online de funções avançadas e serviços em tempo real para DTC ou outras desabilitações.",
+    icon: "cloud",
   },
   {
     title: "Ampla cobertura de ECUs",
     text: "Bosch, Marelli, Continental, Denso, Delphi e AC Delco, incluindo variações regionais do Brasil e Argentina.",
+    icon: "layers",
   },
   {
     title: "Compatível com softwares profissionais",
     text: "Arquivos abertos para WinOLS, Bit Edit, Race, ECM Titanium, Editec e outros.",
+    icon: "puzzle",
   },
   {
     title: "Atualizações constantes",
     text: "Novos protocolos e melhorias sendo adicionados regularmente. Truck, agro, camionetes, SUV, comerciais, moto e náutica.",
+    icon: "refresh",
   },
   {
     title: "Foco no Brasil e Mercosul",
     text: "Suporte específico para protocolos e sistemas de injeção presentes no Brasil e no Mercosul.",
+    icon: "mapPin",
   },
   {
     title: "Interface intuitiva",
     text: "Software com operação simplificada e fácil busca por sistema ou veículo, com boots e ligações no próprio software.",
+    icon: "cursorClick",
   },
   {
     title: "Suporte especializado",
     text: "Treinamento EAD, entrega técnica durante a primeira instalação e suporte especializado.",
+    icon: "headset",
   },
 ];
 
@@ -195,9 +208,12 @@ export default function Home() {
             {FEATURES.map((f) => (
               <div
                 key={f.title}
-                className="rounded-df border border-df-line bg-df-panel p-5"
+                className="rounded-df border border-df-line bg-df-panel p-5 transition hover:border-white/20"
               >
-                <h3 className="text-sm font-semibold">{f.title}</h3>
+                <span className="flex h-9 w-9 items-center justify-center rounded-df bg-df-red/15 text-df-red">
+                  {FEATURE_ICONS[f.icon]}
+                </span>
+                <h3 className="mt-3 text-sm font-semibold">{f.title}</h3>
                 <p className="mt-2 text-sm text-df-muted">{f.text}</p>
               </div>
             ))}
@@ -328,6 +344,41 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Galeria */}
+      <section className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto w-full max-w-6xl">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+            Galeria
+          </p>
+          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+            O equipamento de perto
+          </h2>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <Image
+              src="/img/equipamento.webp"
+              alt="Equipamento DataFlex — vista de conectores"
+              width={1024}
+              height={1260}
+              className="h-auto w-full rounded-df border border-df-line lg:col-span-2 lg:row-span-2"
+            />
+            <Image
+              src="/img/produto-vertical.webp"
+              alt="Equipamento DataFlex — vista vertical"
+              width={1000}
+              height={1500}
+              className="h-auto w-full rounded-df border border-df-line"
+            />
+            <Image
+              src="/img/maleta.webp"
+              alt="Maleta DataFlex"
+              width={1000}
+              height={1500}
+              className="h-auto w-full rounded-df border border-df-line"
+            />
           </div>
         </div>
       </section>
