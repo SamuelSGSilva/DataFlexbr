@@ -194,19 +194,21 @@ export default function Home() {
       {/* Features */}
       <section className="border-t border-df-line px-6 py-20 md:px-10">
         <ScrollReveal className="mx-auto w-full max-w-6xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
-            O equipamento
-          </p>
-          <h2 className="mt-2 max-w-2xl font-heading text-2xl uppercase md:text-3xl">
-            Tudo que um programador profissional de ECU e TCM precisa
-          </h2>
-          <p className="mt-4 max-w-2xl text-df-muted">
-            Nosso equipamento é 100% Master — porque acreditamos que quem
-            investe merece autonomia total, sem dependências e sem
-            limitações. Hardware dedicado de alta performance combinado com
-            software profissional, pensado para a realidade do mercado
-            brasileiro.
-          </p>
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+              O equipamento
+            </p>
+            <h2 className="mt-2 font-heading text-3xl uppercase md:text-4xl lg:text-5xl">
+              Tudo que um programador profissional de ECU e TCM precisa
+            </h2>
+            <p className="mt-4 text-df-muted">
+              Nosso equipamento é 100% Master — porque acreditamos que quem
+              investe merece autonomia total, sem dependências e sem
+              limitações. Hardware dedicado de alta performance combinado com
+              software profissional, pensado para a realidade do mercado
+              brasileiro.
+            </p>
+          </div>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((f) => (
