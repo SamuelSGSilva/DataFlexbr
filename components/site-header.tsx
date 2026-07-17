@@ -12,7 +12,7 @@ const NAV_LINKS = [
 export function SiteHeader() {
   return (
     <header className="border-b border-df-line bg-df-dark/95 backdrop-blur sticky top-0 z-40">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <div className="flex h-16 w-full items-center justify-between px-6 md:px-10">
         <Link href="/" className="shrink-0">
           <Image
             src="/img/logo-white.png"
