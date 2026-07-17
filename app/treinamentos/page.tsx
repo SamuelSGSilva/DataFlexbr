@@ -1,5 +1,7 @@
 import { getModules } from "@/lib/trainings";
 import { getLeadSession, signOutGate } from "@/lib/gate-actions";
+import { youtubeThumbnail } from "@/lib/youtube";
+import { LessonCard } from "./lesson-card";
 
 export const metadata = {
   title: "Treinamentos — DataFlex",
@@ -36,29 +38,35 @@ export default async function TreinamentosPage() {
         </p>
       )}
 
-      <div className="mt-10 flex flex-col gap-12">
-        {modules.map((mod) => (
-          <section key={mod.slug}>
-            <h2 className="text-xl font-semibold">{mod.title}</h2>
-            <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {mod.lessons.map((lesson) => (
-                <article key={lesson.slug}>
-                  <div className="aspect-video overflow-hidden rounded-lg border border-neutral-800">
-                    <iframe
-                      src={`https://www.youtube-nocookie.com/embed/${lesson.youtubeId}?rel=0&modestbranding=1`}
-                      title={lesson.title}
-                      allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-                      allowFullScreen
-                      loading="lazy"
-                      className="h-full w-full"
-                    />
+      <div className="mt-10 flex flex-col gap-14">
+        {modules.map((mod) => {
+          const heroLesson = mod.lessons[0];
+          return (
+            <section key={mod.slug}>
+              {heroLesson && (
+                <div
+                  className="relative mb-4 overflow-hidden rounded-xl border border-neutral-800 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url(${youtubeThumbnail(heroLesson.youtubeId)})`,
+                  }}
+                >
+                  <div className="bg-gradient-to-t from-neutral-950 via-neutral-950/70 to-neutral-950/10 px-6 py-10">
+                    <h2 className="text-xl font-semibold">{mod.title}</h2>
+                    <p className="mt-1 text-sm text-neutral-300">
+                      {mod.lessons.length}{" "}
+                      {mod.lessons.length === 1 ? "aula" : "aulas"}
+                    </p>
                   </div>
-                  <h3 className="mt-2 text-sm font-medium">{lesson.title}</h3>
-                </article>
-              ))}
-            </div>
-          </section>
-        ))}
+                </div>
+              )}
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {mod.lessons.map((lesson) => (
+                  <LessonCard key={lesson.slug} lesson={lesson} />
+                ))}
+              </div>
+            </section>
+          );
+        })}
       </div>
     </main>
   );
