@@ -1,6 +1,5 @@
 import { getModules } from "@/lib/trainings";
 import { getLeadSession, signOutGate } from "@/lib/gate-actions";
-import { youtubeThumbnail } from "@/lib/youtube";
 import { LessonCard } from "./lesson-card";
 import { LessonCarousel } from "./lesson-carousel";
 import { TrainingHero } from "./training-hero";
@@ -48,36 +47,27 @@ export default async function TreinamentosPage() {
         )}
 
         <div className="mt-10 flex flex-col gap-14">
-          {modules.map((mod) => {
-            const heroLesson = mod.lessons[0];
-            return (
-              <section key={mod.slug} id={mod.slug} className="scroll-mt-20">
-                {heroLesson && (
-                  <div
-                    className="relative mb-4 overflow-hidden rounded-df border border-df-line bg-cover bg-center"
-                    style={{
-                      backgroundImage: `url(${youtubeThumbnail(heroLesson.youtubeId)})`,
-                    }}
-                  >
-                    <div className="bg-gradient-to-t from-df-dark via-df-dark/70 to-df-dark/10 px-6 py-10">
-                      <h2 className="font-heading text-xl uppercase tracking-tight">
-                        {mod.title}
-                      </h2>
-                      <p className="mt-1 text-sm text-df-muted">
-                        {mod.lessons.length}{" "}
-                        {mod.lessons.length === 1 ? "aula" : "aulas"}
-                      </p>
-                    </div>
-                  </div>
-                )}
-                <LessonCarousel>
-                  {mod.lessons.map((lesson) => (
-                    <LessonCard key={lesson.slug} lesson={lesson} />
-                  ))}
-                </LessonCarousel>
-              </section>
-            );
-          })}
+          {modules.map((mod) => (
+            <section key={mod.slug} id={mod.slug} className="scroll-mt-20">
+              <div className="mb-4 rounded-df border border-df-line bg-df-panel px-6 py-6">
+                <span className="inline-block rounded-df bg-df-red px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-white">
+                  Módulo
+                </span>
+                <h2 className="mt-3 font-heading text-xl uppercase tracking-tight">
+                  {mod.title}
+                </h2>
+                <p className="mt-1 text-sm text-df-muted">
+                  {mod.lessons.length}{" "}
+                  {mod.lessons.length === 1 ? "aula" : "aulas"}
+                </p>
+              </div>
+              <LessonCarousel>
+                {mod.lessons.map((lesson) => (
+                  <LessonCard key={lesson.slug} lesson={lesson} />
+                ))}
+              </LessonCarousel>
+            </section>
+          ))}
         </div>
       </main>
     </>
