@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { youtubeThumbnail } from "@/lib/youtube";
+import { isVideoUnavailable, youtubeThumbnail } from "@/lib/youtube";
 import type { Lesson } from "@/lib/trainings";
 
 /**
@@ -11,6 +11,7 @@ import type { Lesson } from "@/lib/trainings";
  */
 export function LessonCard({ lesson }: { lesson: Lesson }) {
   const [playing, setPlaying] = useState(false);
+  const unavailable = isVideoUnavailable(lesson.youtubeId);
 
   if (playing) {
     return (
@@ -25,6 +26,36 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
           />
         </div>
         <h3 className="mt-3 text-sm font-medium leading-snug">{lesson.title}</h3>
+      </article>
+    );
+  }
+
+  if (unavailable) {
+    return (
+      <article className="w-72 shrink-0 snap-start sm:w-80">
+        <div
+          className="relative block aspect-video w-full overflow-hidden rounded-df border border-df-line bg-df-panel"
+          title="Este vídeo está temporariamente indisponível"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={youtubeThumbnail(lesson.youtubeId)}
+            alt=""
+            loading="lazy"
+            className="h-full w-full object-cover opacity-30 grayscale"
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-df-dark/60 text-center">
+            <svg viewBox="0 0 24 24" className="h-7 w-7 text-df-muted" fill="currentColor">
+              <path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm0 2a3 3 0 0 1 3 3v3H9V6a3 3 0 0 1 3-3Z" />
+            </svg>
+            <span className="rounded-df bg-df-dark/80 px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-df-muted">
+              Indisponível
+            </span>
+          </div>
+        </div>
+        <h3 className="mt-3 text-sm font-medium leading-snug text-df-muted line-clamp-2">
+          {lesson.title}
+        </h3>
       </article>
     );
   }
