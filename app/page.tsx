@@ -144,46 +144,49 @@ export default function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="px-6 py-20 md:px-10 md:py-28">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
-          <div>
-            <p className="text-xs font-medium uppercase tracking-wide text-df-red">
-              Tael DataFlex
-            </p>
-            <h1 className="mt-3 font-heading text-4xl uppercase leading-tight md:text-5xl">
-              Bem-vindo ao mundo Master do chiptuning
-            </h1>
-            <p className="mt-5 max-w-lg text-df-muted">
-              Slave é limitação. É Master. É original. É liberdade. Você
-              escolhe: desplugue-se da era Slave e venha ser Master. A
-              solução definitiva em reprogramação automotiva de alta
-              performance.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="#precos"
-                className="rounded-df bg-df-red px-6 py-3 text-sm font-medium text-white transition hover:bg-df-red-hover"
-              >
-                Quero ser Master
-              </Link>
-              <Link
-                href="/compatibilidade"
-                className="rounded-df border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:border-white/60"
-              >
-                Ver aplicação
-              </Link>
-            </div>
+      <section className="grid lg:grid-cols-2">
+        <div className="flex flex-col justify-center bg-df-panel px-6 py-20 md:px-10 md:py-28 lg:py-32">
+          <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
+          <h1 className="mt-6 font-heading text-4xl uppercase leading-tight md:text-5xl">
+            Tael DataFlex
+          </h1>
+          <p className="mt-2 font-heading text-lg uppercase text-df-muted md:text-xl">
+            Bem-vindo ao mundo Master do chiptuning.
+          </p>
+          <p className="mt-6 max-w-md text-df-muted">
+            Slave é limitação. É Master. É original. É liberdade.
+            <br />
+            Você escolhe!
+            <br />
+            Se desplugue da era Slave e venha ser Master.
+            <br />
+            A solução definitiva em reprogramação automotiva de alta
+            performance.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="#precos"
+              className="rounded-df bg-df-red px-6 py-3 text-sm font-medium uppercase tracking-wide text-white transition hover:bg-df-red-hover"
+            >
+              Quero ser Master
+            </Link>
+            <Link
+              href="/compatibilidade"
+              className="rounded-df border border-white/30 px-6 py-3 text-sm font-medium uppercase tracking-wide text-white transition hover:border-white/60"
+            >
+              Aplicação
+            </Link>
           </div>
-          <div className="relative">
-            <Image
-              src="/img/produto-hero.webp"
-              alt="Equipamento DataFlex by Tael"
-              width={1400}
-              height={933}
-              className="h-auto w-full rounded-df border border-df-line"
-              priority
-            />
-          </div>
+        </div>
+        <div className="relative min-h-[420px] h-full">
+          <Image
+            src="/img/maleta-hero.webp"
+            alt="Maleta DataFlex by Tael"
+            fill
+            priority
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+          />
         </div>
       </section>
 

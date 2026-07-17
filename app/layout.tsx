@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Barlow, Barlow_Condensed } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { CartProvider } from "@/lib/cart-context";
 import "./globals.css";
 
@@ -38,6 +39,7 @@ export default function RootLayout({
           <SiteHeader />
           <div className="flex-1">{children}</div>
           <SiteFooter />
+          <WhatsAppFloat />
         </CartProvider>
       </body>
     </html>
