@@ -14,7 +14,7 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
 
   if (playing) {
     return (
-      <article>
+      <article className="w-72 shrink-0 snap-start sm:w-80">
         <div className="aspect-video overflow-hidden rounded-df border border-df-line">
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${lesson.youtubeId}?rel=0&modestbranding=1&autoplay=1`}
@@ -30,7 +30,7 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
   }
 
   return (
-    <article>
+    <article className="w-72 shrink-0 snap-start sm:w-80">
       <button
         type="button"
         onClick={() => setPlaying(true)}

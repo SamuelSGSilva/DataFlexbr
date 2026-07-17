@@ -33,3 +33,27 @@ h3,
   font-family: var(--font-barlow-condensed), Arial, Helvetica, sans-serif;
   font-weight: 700;
 }
+
+/* Barra de scroll fina e na cor da marca, para os carrosséis de aulas */
+.df-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--df-red) var(--df-panel);
+}
+
+.df-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.df-scrollbar::-webkit-scrollbar-track {
+  background: var(--df-panel);
+  border-radius: 999px;
+}
+
+.df-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--df-red);
+  border-radius: 999px;
+}
+
+.df-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--df-red-hover);
+}

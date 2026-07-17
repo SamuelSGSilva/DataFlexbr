@@ -2,6 +2,7 @@ import { getModules } from "@/lib/trainings";
 import { getLeadSession, signOutGate } from "@/lib/gate-actions";
 import { youtubeThumbnail } from "@/lib/youtube";
 import { LessonCard } from "./lesson-card";
+import { LessonCarousel } from "./lesson-carousel";
 
 export const metadata = {
   title: "Treinamentos — DataFlex",
@@ -63,11 +64,11 @@ export default async function TreinamentosPage() {
                   </div>
                 </div>
               )}
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <LessonCarousel>
                 {mod.lessons.map((lesson) => (
                   <LessonCard key={lesson.slug} lesson={lesson} />
                 ))}
-              </div>
+              </LessonCarousel>
             </section>
           );
         })}
