@@ -167,7 +167,7 @@ export default function Home() {
               alt="Equipamento DataFlex by Tael"
               width={1400}
               height={933}
-              className="w-full rounded-df border border-df-line"
+              className="h-auto w-full rounded-df border border-df-line"
               priority
             />
           </div>
@@ -291,8 +291,8 @@ export default function Home() {
             src="/img/software.webp"
             alt="Tela do software DataFlex"
             width={1600}
-            height={1067}
-            className="w-full rounded-df border border-df-line"
+            height={750}
+            className="h-auto w-full rounded-df border border-df-line"
           />
         </div>
       </section>
@@ -304,8 +304,8 @@ export default function Home() {
             src="/img/maleta.webp"
             alt="Maleta de transporte DataFlex"
             width={1000}
-            height={1000}
-            className="w-full rounded-df border border-df-line lg:order-2"
+            height={1500}
+            className="h-auto w-full rounded-df border border-df-line lg:order-2"
           />
           <div className="lg:order-1">
             <p className="text-xs font-medium uppercase tracking-wide text-df-red">
@@ -347,15 +347,30 @@ export default function Home() {
                 key={t.author}
                 className="flex flex-col rounded-df border border-df-line bg-df-panel p-6"
               >
-                <blockquote className="flex-1 text-sm leading-relaxed text-df-muted">
-                  &ldquo;{t.quote}&rdquo;
+                <svg
+                  viewBox="0 0 32 24"
+                  className="h-6 w-8 text-df-red/40"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M0 24V14.4C0 6.4 4.8 1.2 12.8 0l1.6 4c-4.8 1.6-7.2 4.4-7.2 8.4h6.4V24H0Zm17.6 0V14.4c0-8 4.8-13.2 12.8-14.4L32 4c-4.8 1.6-7.2 4.4-7.2 8.4H32V24H17.6Z" />
+                </svg>
+                <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-df-muted">
+                  {t.quote}
                 </blockquote>
-                <figcaption className="mt-4 border-t border-df-line pt-4 text-xs">
-                  <span className="font-semibold uppercase tracking-wide">
-                    {t.author}
+                <figcaption className="mt-4 flex items-center gap-3 border-t border-df-line pt-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-df-red/15 text-xs font-semibold text-df-red">
+                    {t.author
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
                   </span>
-                  <br />
-                  <span className="text-df-muted">{t.role}</span>
+                  <span className="text-xs">
+                    <span className="block font-semibold uppercase tracking-wide">
+                      {t.author}
+                    </span>
+                    <span className="text-df-muted">{t.role}</span>
+                  </span>
                 </figcaption>
               </figure>
             ))}
