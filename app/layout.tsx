@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Barlow, Barlow_Condensed } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
+import { CartProvider } from "@/lib/cart-context";
 import "./globals.css";
 
 const barlow = Barlow({
@@ -32,8 +33,10 @@ export default function RootLayout({
       className={`${barlow.variable} ${barlowCondensed.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-df-dark text-white">
-        <SiteHeader />
-        <div className="flex-1">{children}</div>
+        <CartProvider>
+          <SiteHeader />
+          <div className="flex-1">{children}</div>
+        </CartProvider>
       </body>
     </html>
   );

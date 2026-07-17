@@ -1,65 +1,503 @@
 import Image from "next/image";
+import Link from "next/link";
+import { AddToCartButton } from "@/components/add-to-cart-button";
+import { PRODUCTS, formatPrice } from "@/lib/products";
+
+export const metadata = {
+  title: "DataFlex by Tael — Reprogramação de ECU e TCM",
+  description:
+    "Programação profissional de ECU e TCM em OBD, Bench e Boot, com arquivo aberto e feita para a frota brasileira. Conheça o DataFlex Master.",
+};
+
+const FEATURES = [
+  {
+    title: "Plataforma Master",
+    text: "Programação completa de ECU e TCM com velocidade e precisão, seja na flash ou na eeprom.",
+  },
+  {
+    title: "Leitura e gravação",
+    text: "Leitura de eeprom e flash completa, com correção de checksum e parâmetros para clonagem.",
+  },
+  {
+    title: "Modos OBD · Bench · Boot",
+    text: "Os três modos de comunicação cobertos numa única plataforma, sem cabos ou caixinhas extras.",
+  },
+  {
+    title: "Checksum",
+    text: "Verificação na leitura e correção de checksum na gravação, garantindo integridade dos arquivos.",
+  },
+  {
+    title: "Calculadora integrada",
+    text: "Execute funções técnicas diretamente no software, como edição ou desabilitações.",
+  },
+  {
+    title: "DataCenter online",
+    text: "Processamento online de funções avançadas e serviços em tempo real para DTC ou outras desabilitações.",
+  },
+  {
+    title: "Ampla cobertura de ECUs",
+    text: "Bosch, Marelli, Continental, Denso, Delphi e AC Delco, incluindo variações regionais do Brasil e Argentina.",
+  },
+  {
+    title: "Compatível com softwares profissionais",
+    text: "Arquivos abertos para WinOLS, Bit Edit, Race, ECM Titanium, Editec e outros.",
+  },
+  {
+    title: "Atualizações constantes",
+    text: "Novos protocolos e melhorias sendo adicionados regularmente. Truck, agro, camionetes, SUV, comerciais, moto e náutica.",
+  },
+  {
+    title: "Foco no Brasil e Mercosul",
+    text: "Suporte específico para protocolos e sistemas de injeção presentes no Brasil e no Mercosul.",
+  },
+  {
+    title: "Interface intuitiva",
+    text: "Software com operação simplificada e fácil busca por sistema ou veículo, com boots e ligações no próprio software.",
+  },
+  {
+    title: "Suporte especializado",
+    text: "Treinamento EAD, entrega técnica durante a primeira instalação e suporte especializado.",
+  },
+];
+
+const FUNCTIONS = [
+  "Immo off",
+  "DTC off",
+  "DPF off",
+  "EGR off",
+  "Lambda off",
+  "Alteração de VIN",
+  "Ajuste marcha lenta",
+  "Lista de aplicação",
+];
+
+const INCLUDED = [
+  "Equipamento DataFlex — hardware dedicado para OBD, Bench e Boot",
+  "Maleta de transporte profissional",
+  "1 ano de atualizações, com novos protocolos e funções",
+  "Acesso ao DataCenter para funções avançadas online",
+  "Treinamento EAD, entrega técnica e suporte especializado",
+  "Compromisso público de atualização — se não entregar, você não paga",
+];
+
+const TESTIMONIALS = [
+  {
+    quote:
+      "Fui slave por anos sem saber o que estava perdendo. Quando migrei pro Master entendi: eu tava pagando pra trabalhar preso. Com o Dataflex o arquivo é meu, uso no WinOLS e no Editec — trabalho do meu jeito, com minha metodologia. Isso é liberdade de verdade.",
+    author: "Ricardo Mendes",
+    role: "Mecatrônica e tuning, São Paulo/SP",
+  },
+  {
+    quote:
+      "Cheguei a gastar R$ 28 mil numa ferramenta slave, e todo o carro eu gastava com meu master para fazer o arquivo de EGR e DPF. Com o Dataflex investi bem menos, cubro Bench, Boot e OBD, e ainda tenho DataCenter. Foi o melhor negócio que eu fiz para minha oficina.",
+    author: "Thiago Carvalho",
+    role: "Programador autônomo, Curitiba/PR",
+  },
+  {
+    quote:
+      "Aqui no Amazonas a frota é diferente, tem muita variação regional que ferramenta gringa ignora. O Dataflex é a única que trata o mercado brasileiro com seriedade. Suporte responde, atualização chega, e o equipamento funciona.",
+    author: "Marcos Oliveira",
+    role: "Eletricista automotivo, Manaus/AM",
+  },
+];
+
+const FAQS = [
+  {
+    q: "O Tael DataFlex é uma cópia de outro programador?",
+    a: "Não. É um projeto próprio, com hardware dedicado e software desenvolvido para a realidade do mercado brasileiro e do Mercosul.",
+  },
+  {
+    q: "Preciso adquirir outras calculadoras, como o Editec?",
+    a: "Não para as funções integradas: Immo, DTC, DPF, EGR e Lambda saem direto pelo software ou pelo DataCenter, conforme o sistema. Calculadoras de terceiros continuam compatíveis se você já usa.",
+  },
+  {
+    q: "Qual é a política de atualização? Tem taxa anual obrigatória?",
+    a: "O primeiro ano de atualizações está incluso no equipamento. Depois, a assinatura anual custa R$ 2.250 — com compromisso público: se os sistemas prometidos não forem entregues, você não paga a atualização.",
+  },
+  {
+    q: "É indicado para iniciantes?",
+    a: "Sim. O kit acompanha entrega técnica na primeira instalação, portal EAD com aulas em vídeo e suporte especializado.",
+  },
+  {
+    q: "Funciona com qualquer software de remapeamento?",
+    a: "Os arquivos são abertos e compatíveis com WinOLS, Bit Edit, Race, ECM Titanium, Editec e outros — você trabalha com a sua metodologia.",
+  },
+];
 
 export default function Home() {
+  const master = PRODUCTS.find((p) => p.id === "master")!;
+  const atualizacao = PRODUCTS.find((p) => p.id === "atualizacao-anual")!;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main>
+      {/* Hero */}
+      <section className="px-6 py-20 md:px-10 md:py-28">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+              Tael DataFlex
+            </p>
+            <h1 className="mt-3 font-heading text-4xl uppercase leading-tight md:text-5xl">
+              Bem-vindo ao mundo Master do chiptuning
+            </h1>
+            <p className="mt-5 max-w-lg text-df-muted">
+              Slave é limitação. É Master. É original. É liberdade. Você
+              escolhe: desplugue-se da era Slave e venha ser Master. A
+              solução definitiva em reprogramação automotiva de alta
+              performance.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="#precos"
+                className="rounded-df bg-df-red px-6 py-3 text-sm font-medium text-white transition hover:bg-df-red-hover"
+              >
+                Quero ser Master
+              </Link>
+              <Link
+                href="/compatibilidade"
+                className="rounded-df border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:border-white/60"
+              >
+                Ver aplicação
+              </Link>
+            </div>
+          </div>
+          <div className="relative">
+            <Image
+              src="/img/produto-hero.webp"
+              alt="Equipamento DataFlex by Tael"
+              width={1400}
+              height={933}
+              className="w-full rounded-df border border-df-line"
+              priority
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto w-full max-w-6xl">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+            O equipamento
+          </p>
+          <h2 className="mt-2 max-w-2xl font-heading text-2xl uppercase md:text-3xl">
+            Tudo que um programador profissional de ECU e TCM precisa
+          </h2>
+          <p className="mt-4 max-w-2xl text-df-muted">
+            Nosso equipamento é 100% Master — porque acreditamos que quem
+            investe merece autonomia total, sem dependências e sem
+            limitações. Hardware dedicado de alta performance combinado com
+            software profissional, pensado para a realidade do mercado
+            brasileiro.
+          </p>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES.map((f) => (
+              <div
+                key={f.title}
+                className="rounded-df border border-df-line bg-df-panel p-5"
+              >
+                <h3 className="text-sm font-semibold">{f.title}</h3>
+                <p className="mt-2 text-sm text-df-muted">{f.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* OBD + Bench + Boot */}
+      <section className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto w-full max-w-6xl">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+            Uma ferramenta, três caminhos
+          </p>
+          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+            OBD + Bench + Boot
+          </h2>
+          <p className="mt-4 max-w-2xl text-df-muted">
+            DataFlex combina três modos de operação de ECU e TCM em uma única
+            ferramenta.
+          </p>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            <div className="rounded-df border border-df-line bg-df-panel p-6">
+              <span className="text-xs font-medium uppercase tracking-wide text-df-red">
+                OBD
+              </span>
+              <h3 className="mt-2 font-heading text-lg uppercase">
+                Pela porta de diagnóstico
+              </h3>
+              <p className="mt-2 text-sm text-df-muted">
+                Comunicação direta via porta de diagnóstico do veículo. Ideal
+                para protocolos onde a leitura/gravação é permitida pelo
+                barramento. Cobertura em expansão constante.
+              </p>
+            </div>
+            <div className="rounded-df border border-df-line bg-df-panel p-6">
+              <span className="text-xs font-medium uppercase tracking-wide text-df-red">
+                Bench
+              </span>
+              <h3 className="mt-2 font-heading text-lg uppercase">
+                Na bancada
+              </h3>
+              <p className="mt-2 text-sm text-df-muted">
+                Comunicação na bancada com a ECU removida do veículo. Forte
+                cobertura para sistemas Bosch, Marelli, Continental e mais.
+              </p>
+            </div>
+            <div className="rounded-df border border-df-line bg-df-panel p-6">
+              <span className="text-xs font-medium uppercase tracking-wide text-df-red">
+                Boot
+              </span>
+              <h3 className="mt-2 font-heading text-lg uppercase">
+                Direto no microcontrolador
+              </h3>
+              <p className="mt-2 text-sm text-df-muted">
+                Acesso direto ao microcontrolador da ECU via modo de boot.
+                Para sistemas onde a leitura por OBD ou Bench não é possível.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Funções avançadas */}
+      <section className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+              Funções avançadas integradas
+            </p>
+            <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+              Direto pelo software. Rápido e seguro.
+            </h2>
+            <p className="mt-4 text-df-muted">
+              Dependendo do sistema, o DataFlex executa desabilitações
+              nativamente, sem plugins e sem extras. Correção de checksum
+              automática na gravação e DataCenter online para funções em
+              tempo real.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {FUNCTIONS.map((f) => (
+                <span
+                  key={f}
+                  className="rounded-df border border-df-line bg-df-panel px-3 py-1.5 text-xs font-medium text-df-muted"
+                >
+                  {f}
+                </span>
+              ))}
+            </div>
+          </div>
+          <Image
+            src="/img/software.webp"
+            alt="Tela do software DataFlex"
+            width={1600}
+            height={1067}
+            className="w-full rounded-df border border-df-line"
+          />
+        </div>
+      </section>
+
+      {/* Kit incluído */}
+      <section className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
+          <Image
+            src="/img/maleta.webp"
+            alt="Maleta de transporte DataFlex"
+            width={1000}
+            height={1000}
+            className="w-full rounded-df border border-df-line lg:order-2"
+          />
+          <div className="lg:order-1">
+            <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+              O que está incluído
+            </p>
+            <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+              Pronto para trabalhar de imediato
+            </h2>
+            <ul className="mt-6 flex flex-col gap-3">
+              {INCLUDED.map((item) => (
+                <li key={item} className="flex gap-3 text-sm text-df-muted">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="mt-0.5 h-4 w-4 shrink-0 text-df-red"
+                    fill="currentColor"
+                  >
+                    <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Depoimentos */}
+      <section className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto w-full max-w-6xl">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+            Quem já é Master
+          </p>
+          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+            Feito por quem trabalha com isso todo dia
+          </h2>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {TESTIMONIALS.map((t) => (
+              <figure
+                key={t.author}
+                className="flex flex-col rounded-df border border-df-line bg-df-panel p-6"
+              >
+                <blockquote className="flex-1 text-sm leading-relaxed text-df-muted">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-4 border-t border-df-line pt-4 text-xs">
+                  <span className="font-semibold uppercase tracking-wide">
+                    {t.author}
+                  </span>
+                  <br />
+                  <span className="text-df-muted">{t.role}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CEO */}
+      <section className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto w-full max-w-3xl text-center">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+            Apresentação DataFlex by Tael
+          </p>
+          <blockquote className="mt-4 font-heading text-xl uppercase leading-snug md:text-2xl">
+            45 anos de mercado têm um peso que não se negocia. O DataFlex
+            carrega esse peso — e junto com ele, um compromisso público: 17
+            sistemas implementados para o mercado brasileiro nos próximos 12
+            meses. Se não entregarmos, você não paga atualização.
+          </blockquote>
+          <p className="mt-6 text-sm text-df-muted">
+            — Fernando Possamai, CEO do Grupo AutoLuiz
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Preços */}
+      <section id="precos" className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto w-full max-w-6xl">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+            Investimento
+          </p>
+          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+            Configure seu equipamento
+          </h2>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <div className="relative rounded-df border-2 border-df-red bg-df-panel p-8">
+              <span className="absolute -top-3 left-8 rounded-df bg-df-red px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white">
+                Equipamento completo
+              </span>
+              <h3 className="mt-2 font-heading text-lg uppercase">
+                {master.name}
+              </h3>
+              <p className="mt-2 text-3xl font-semibold">
+                {formatPrice(master.price)}
+              </p>
+              <p className="mt-1 text-xs text-df-muted">
+                pagamento combinado com o consultor
+              </p>
+              <p className="mt-4 text-sm text-df-muted">{master.description}</p>
+              <AddToCartButton
+                productId={master.id}
+                className="mt-6 w-full"
+              />
+            </div>
+
+            <div className="rounded-df border border-df-line bg-df-panel p-8">
+              <h3 className="font-heading text-lg uppercase">
+                {atualizacao.name}
+              </h3>
+              <p className="mt-2 text-3xl font-semibold">
+                {formatPrice(atualizacao.price)}
+              </p>
+              <p className="mt-1 text-xs text-df-muted">
+                por ano, a partir do segundo ano
+              </p>
+              <p className="mt-4 text-sm text-df-muted">
+                {atualizacao.description}
+              </p>
+              <AddToCartButton
+                productId={atualizacao.id}
+                variant="outline"
+                className="mt-6 w-full"
+              />
+            </div>
+          </div>
+
+          <p className="mt-6 text-xs text-df-muted">
+            O carrinho monta o pedido e envia o resumo direto para o
+            WhatsApp da DataFlex — a venda fecha na conversa.
+          </p>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto w-full max-w-3xl">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+            Perguntas frequentes
+          </p>
+          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+            O que você quer saber antes de ser Master
+          </h2>
+          <div className="mt-8 flex flex-col gap-3">
+            {FAQS.map((faq) => (
+              <details
+                key={faq.q}
+                className="group rounded-df border border-df-line bg-df-panel px-5 py-4"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-medium">
+                  {faq.q}
+                  <span className="shrink-0 text-df-red transition group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-sm text-df-muted">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA final */}
+      <section className="border-t border-df-line px-6 py-20 text-center md:px-10">
+        <div className="mx-auto w-full max-w-2xl">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+            Hora de evoluir
+          </p>
+          <h2 className="mt-2 font-heading text-3xl uppercase md:text-4xl">
+            Eleve o nível da sua oficina. Seja Master.
+          </h2>
+          <p className="mt-4 text-df-muted">
+            Garanta o seu DataFlex by Tael e entre para o mercado de
+            programação de ECU com a ferramenta certa, suporte profissional e
+            atualizações constantes.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link
+              href="#precos"
+              className="rounded-df bg-df-red px-6 py-3 text-sm font-medium text-white transition hover:bg-df-red-hover"
+            >
+              Comprar agora
+            </Link>
+            <Link
+              href="https://wa.me/554599016090"
+              className="rounded-df border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:border-white/60"
+            >
+              Falar no WhatsApp
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

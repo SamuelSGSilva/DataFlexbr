@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CartButton } from "@/components/cart-button";
 
 const NAV_LINKS = [
   { href: "/", label: "Início" },
@@ -23,17 +24,20 @@ export function SiteHeader() {
             priority
           />
         </Link>
-        <nav className="hidden gap-6 text-xs font-medium uppercase tracking-wide text-df-muted md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="transition hover:text-white"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="flex items-center gap-6">
+          <nav className="hidden gap-6 text-xs font-medium uppercase tracking-wide text-df-muted md:flex">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="transition hover:text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <CartButton />
+        </div>
       </div>
     </header>
   );
