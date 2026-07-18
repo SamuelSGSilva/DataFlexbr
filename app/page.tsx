@@ -341,47 +341,56 @@ export default function Home() {
       </section>
 
       {/* Kit incluído */}
-      <section className="grid border-t border-df-line lg:grid-cols-2">
-        <div className="relative min-h-[420px] h-full">
-          <Image
-            src="/img/maleta.webp"
-            alt="Maleta de transporte DataFlex"
-            fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover"
-          />
-        </div>
-        <div className="flex flex-col items-center justify-center bg-df-panel px-6 py-20 md:px-10 md:py-24">
-          <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
-          <p className="mt-6 text-xs font-medium uppercase tracking-wide text-df-red">
-            O que está incluído
-          </p>
-          <h2 className="mt-2 text-center font-heading text-4xl uppercase leading-tight md:text-5xl lg:text-6xl">
-            Pronto para trabalhar<br />de imediato.
-          </h2>
-          <p className="mt-4 max-w-lg text-center text-sm leading-relaxed text-df-muted">
-            Tudo que você precisa para começar a programar com segurança e profissionalismo.
-          </p>
+      <section className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto w-full max-w-6xl">
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+              O que está incluído
+            </p>
+            <h2 className="mt-4 font-heading text-4xl uppercase leading-tight md:text-5xl lg:text-6xl">
+              Pronto para trabalhar de imediato
+            </h2>
+            <p className="mt-4 text-df-muted">
+              Tudo que você precisa para começar a programar com segurança e profissionalismo.
+            </p>
+          </div>
 
-          <div className="mt-10 w-full max-w-lg space-y-3">
-            {INCLUDED.map((item) => (
-              <div
-                key={item}
-                className="group relative rounded-df border border-df-line bg-gradient-to-br from-df-dark to-df-panel px-5 py-4 transition duration-300 hover:border-df-red/50 hover:shadow-lg hover:shadow-df-red/10"
-              >
-                <div className="absolute inset-0 rounded-df bg-df-red/0 transition group-hover:bg-df-red/5" />
-                <div className="relative flex items-center gap-4">
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-df-red/20 text-df-red transition group-hover:bg-df-red/30">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
-                      <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
-                    </svg>
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
+            <div className="relative aspect-[1.97/1] w-full overflow-hidden rounded-df border border-df-line shadow-2xl shadow-df-red/20">
+              <Image
+                src="/img/maleta.webp"
+                alt="Maleta de transporte DataFlex"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            </div>
+            
+            <div className="grid gap-4 sm:grid-cols-2">
+              {INCLUDED.map((item) => (
+                <div
+                  key={item}
+                  className="group relative rounded-df border border-df-line bg-gradient-to-br from-df-panel to-df-dark p-5 transition duration-300 hover:border-df-red/50 hover:shadow-lg hover:shadow-df-red/10"
+                >
+                  <div className="absolute inset-0 rounded-df bg-df-red/0 transition group-hover:bg-df-red/5" />
+                  <div className="relative flex items-center gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-df bg-df-red/15 text-df-red transition group-hover:bg-df-red/25">
+                      <svg
+                        viewBox="0 0 24 24"
+                        className="h-5 w-5"
+                        fill="currentColor"
+                      >
+                        <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                      </svg>
+                    </div>
+                    <p className="text-sm font-medium leading-relaxed text-df-muted group-hover:text-white transition">
+                      {item}
+                    </p>
                   </div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-df-muted group-hover:text-white transition">
-                    {item}
-                  </span>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
