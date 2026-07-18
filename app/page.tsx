@@ -82,7 +82,6 @@ const FUNCTIONS = [
   "Lambda off",
   "Alteração de VIN",
   "Ajuste marcha lenta",
-  "Lista de aplicação",
 ];
 
 const INCLUDED = [
@@ -283,40 +282,54 @@ export default function Home() {
       </section>
 
       {/* Funções avançadas */}
-      <section className="border-t border-df-line px-6 py-20 md:px-10">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
-          <div>
-            <p className="text-xs font-medium uppercase tracking-wide text-df-red">
-              // Funções avançadas integradas
-            </p>
-            <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
-              Direto pelo software. Rápido e seguro.
-            </h2>
-            <p className="mt-4 text-df-muted">
-              Dependendo do sistema, o DataFlex executa desabilitações
-              nativamente, sem plugins e sem extras. Correção de checksum
-              automática na gravação e DataCenter online para funções em
-              tempo real.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {FUNCTIONS.map((f) => (
-                <span
-                  key={f}
-                  className="group flex items-center gap-2 rounded-df bg-df-dark px-4 py-2 text-xs font-bold uppercase tracking-wide text-white shadow-sm ring-1 ring-white/10 transition hover:-translate-y-0.5 hover:bg-black hover:ring-df-red/50"
-                >
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-df-red transition group-hover:scale-125" />
-                  {f}
-                </span>
-              ))}
-            </div>
-          </div>
+      <section className="grid border-t border-df-line lg:grid-cols-2">
+        <div className="relative min-h-[320px] h-full">
           <Image
-            src="/img/software.webp"
-            alt="Tela do software DataFlex"
-            width={1600}
-            height={750}
-            className="h-auto w-full rounded-df border border-df-line"
+            src="/img/produto-hero.webp"
+            alt="Conector do equipamento DataFlex by Tael"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
           />
+        </div>
+        <div className="bg-df-panel px-6 py-20 md:px-10 md:py-24">
+          <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
+          <p className="mt-6 text-xs font-medium uppercase tracking-wide text-df-red">
+            // Funções avançadas integradas
+          </p>
+          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+            Direto pelo software. Rápido e seguro.
+          </h2>
+          <p className="mt-4 max-w-lg text-df-muted">
+            Dependendo do sistema, o DataFlex executa desabilitações
+            nativamente, sem plugins e sem extras. Correção de checksum
+            automática na gravação e DataCenter online para funções em
+            tempo real.
+          </p>
+
+          <div className="mt-6 grid max-w-lg grid-cols-2 gap-2.5">
+            {FUNCTIONS.map((f) => (
+              <span
+                key={f}
+                className="group flex items-center gap-2 rounded-df bg-df-dark px-4 py-3 text-xs font-bold uppercase tracking-wide text-white shadow-sm ring-1 ring-white/10 transition hover:-translate-y-0.5 hover:bg-black hover:ring-df-red/50"
+              >
+                <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-df-red text-[10px] leading-none text-white">
+                  +
+                </span>
+                {f}
+              </span>
+            ))}
+          </div>
+
+          <Link
+            href="/compatibilidade"
+            className="mt-3 flex max-w-lg items-center justify-center gap-2 rounded-df bg-df-red px-4 py-3 text-xs font-bold uppercase tracking-wide text-white shadow-sm transition hover:bg-df-red-hover"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 6h16M4 12h16M4 18h7" strokeLinecap="round" />
+            </svg>
+            Lista de aplicação
+          </Link>
         </div>
       </section>
 
