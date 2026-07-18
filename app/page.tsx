@@ -295,20 +295,20 @@ export default function Home() {
             className="object-cover"
           />
         </div>
-        <div className="bg-df-panel px-6 py-20 md:px-10 md:py-24">
+        <div className="flex flex-col items-center justify-center bg-df-panel px-6 py-20 md:px-10 md:py-24">
           <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
           <p className="mt-6 text-xs font-medium uppercase tracking-wide text-df-red">
-            // Funções avançadas integradas
+            Funções avançadas integradas
           </p>
-          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
-            Direto pelo software. Rápido e seguro.
+          <h2 className="mt-2 text-center font-heading text-3xl uppercase md:text-4xl lg:text-5xl">
+            Direto pelo software.<br />Rápido e seguro.
           </h2>
-          <p className="mt-4 max-w-lg text-sm leading-relaxed text-df-muted">
+          <p className="mt-4 max-w-lg text-center text-sm leading-relaxed text-df-muted">
             Dependendo do sistema, o DataFlex executa desabilitações nativamente, sem plugins e sem extras. Correção de checksum automática na gravação e DataCenter online para funções em tempo real.
           </p>
 
-          <div className="mt-8 space-y-5">
-            <div className="grid grid-cols-2 gap-3">
+          <div className="mt-8 w-full space-y-5">
+            <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto">
               {FUNCTIONS.map((f) => (
                 <div
                   key={f}
@@ -329,7 +329,7 @@ export default function Home() {
 
             <Link
               href="/compatibilidade"
-              className="mt-6 flex w-full items-center justify-center gap-2 rounded-df bg-gradient-to-r from-df-red to-df-red px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-df-red/30 transition hover:shadow-xl hover:shadow-df-red/40 hover:from-df-red-hover hover:to-df-red-hover"
+              className="mt-6 flex max-w-lg w-full items-center justify-center gap-2 rounded-df bg-gradient-to-r from-df-red to-df-red px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-df-red/30 transition hover:shadow-xl hover:shadow-df-red/40 hover:from-df-red-hover hover:to-df-red-hover mx-auto"
             >
               <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M4 6h16M4 12h16M4 18h7" strokeLinecap="round" strokeLinejoin="round" />
