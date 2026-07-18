@@ -302,8 +302,9 @@ export default function Home() {
               {FUNCTIONS.map((f) => (
                 <span
                   key={f}
-                  className="rounded-df bg-df-dark px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm ring-1 ring-white/10 transition hover:bg-black"
+                  className="group flex items-center gap-2 rounded-df bg-df-dark px-4 py-2 text-xs font-bold uppercase tracking-wide text-white shadow-sm ring-1 ring-white/10 transition hover:-translate-y-0.5 hover:bg-black hover:ring-df-red/50"
                 >
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-df-red transition group-hover:scale-125" />
                   {f}
                 </span>
               ))}
