@@ -287,7 +287,7 @@ export default function Home() {
         <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
           <div>
             <p className="text-xs font-medium uppercase tracking-wide text-df-red">
-              Funções avançadas integradas
+              // Funções avançadas integradas
             </p>
             <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
               Direto pelo software. Rápido e seguro.
@@ -302,7 +302,7 @@ export default function Home() {
               {FUNCTIONS.map((f) => (
                 <span
                   key={f}
-                  className="rounded-df border border-df-line bg-df-panel px-3 py-1.5 text-xs font-medium text-df-muted"
+                  className="rounded-df bg-df-dark px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm ring-1 ring-white/10 transition hover:bg-black"
                 >
                   {f}
                 </span>
