@@ -342,35 +342,42 @@ export default function Home() {
 
       {/* Kit incluído */}
       <section className="border-t border-df-line px-6 py-20 md:px-10">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
-          <Image
-            src="/img/maleta.webp"
-            alt="Maleta de transporte DataFlex"
-            width={1000}
-            height={1500}
-            className="h-auto w-full rounded-df border border-df-line lg:order-2"
-          />
-          <div className="lg:order-1">
+        <div className="mx-auto w-full max-w-6xl">
+          <div className="mx-auto max-w-3xl text-center mb-12">
             <p className="text-xs font-medium uppercase tracking-wide text-df-red">
               O que está incluído
             </p>
-            <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+            <h2 className="mt-4 font-heading text-4xl uppercase leading-tight md:text-5xl lg:text-6xl">
               Pronto para trabalhar de imediato
             </h2>
-            <ul className="mt-6 flex flex-col gap-3">
-              {INCLUDED.map((item) => (
-                <li key={item} className="flex gap-3 text-sm text-df-muted">
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="mt-0.5 h-4 w-4 shrink-0 text-df-red"
-                    fill="currentColor"
-                  >
-                    <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <p className="mt-4 text-df-muted">
+              Tudo que você precisa para começar a programar com segurança e profissionalismo.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {INCLUDED.map((item) => (
+              <div
+                key={item}
+                className="group relative rounded-df border border-df-line bg-gradient-to-br from-df-panel to-df-dark p-6 transition duration-300 hover:border-df-red/50 hover:shadow-lg hover:shadow-df-red/10"
+              >
+                <div className="absolute inset-0 rounded-df bg-df-red/0 transition group-hover:bg-df-red/5" />
+                <div className="relative">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-df bg-df-red/15 text-df-red transition group-hover:bg-df-red/25">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-6 w-6"
+                      fill="currentColor"
+                    >
+                      <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                    </svg>
+                  </div>
+                  <p className="mt-4 text-sm leading-relaxed text-df-muted group-hover:text-white transition">
+                    {item}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
