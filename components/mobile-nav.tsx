@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { WHATSAPP_NUMBER } from "@/lib/products";
 
 export function MobileNav({
   links,
@@ -44,6 +45,17 @@ export function MobileNav({
                 </Link>
               </li>
             ))}
+            <li>
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="block rounded-df px-3 py-3 text-sm font-medium uppercase tracking-wide text-df-red transition hover:bg-df-panel"
+              >
+                WhatsApp
+              </a>
+            </li>
           </ul>
         </nav>
       )}

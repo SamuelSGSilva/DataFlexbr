@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AddToCartButton } from "@/components/add-to-cart-button";
 import { FEATURE_ICONS, type FeatureIconName } from "@/components/feature-icons";
+import { WHATSAPP_NUMBER } from "@/lib/products";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { PRODUCTS, formatPrice } from "@/lib/products";
 
@@ -165,7 +166,9 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="#precos"
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-df bg-df-red px-6 py-3 text-sm font-medium uppercase tracking-wide text-white transition hover:bg-df-red-hover"
             >
               Quero ser Master
@@ -198,7 +201,7 @@ export default function Home() {
               O equipamento
             </p>
             <h2 className="mt-2 font-heading text-3xl uppercase md:text-4xl lg:text-5xl">
-              Tudo que um programador profissional de ECU e TCM precisa
+              Equipamento Profissional para ECU e TCM
             </h2>
             <p className="mt-4 text-df-muted">
               Nosso equipamento é 100% Master — porque acreditamos que quem
@@ -478,7 +481,7 @@ export default function Home() {
             Investimento
           </p>
           <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
-            Configure seu equipamento
+            Escolha sua Versão
           </h2>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -580,7 +583,9 @@ export default function Home() {
               Comprar agora
             </Link>
             <Link
-              href="https://wa.me/554599016090"
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-df border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:border-white/60"
             >
               Falar no WhatsApp

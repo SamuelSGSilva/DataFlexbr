@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { WHATSAPP_NUMBER } from "@/lib/products";
 
 const LINKS = [
   { href: "/compatibilidade", label: "Tabela de aplicação" },
@@ -60,7 +61,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/554599016090"
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition hover:text-white"

@@ -57,14 +57,13 @@ export default function QuemSomosPage() {
             Grupo AutoLuiz · Foz do Iguaçu, PR
           </p>
           <h1 className="mt-3 font-heading text-3xl uppercase leading-tight md:text-4xl">
-            45 anos de mercado por trás de cada equipamento
+            Tradição e Inovação em Programação Automotiva
           </h1>
           <p className="mt-5 text-df-muted">
-            O DataFlex by Tael nasce do Grupo AutoLuiz, empresa brasileira no
-            mercado automotivo desde 1982. Fernando Possamai, CEO do grupo,
-            assumiu um compromisso público: 17 sistemas novos implementados
-            para o mercado brasileiro a cada 12 meses — se não entregarmos,
-            você não paga atualização.
+            O DataFlex by Tael é a solução definitiva em reprogramação automotiva de alta performance, desenvolvida pelo Grupo AutoLuiz — uma referência brasileira no mercado desde 1982. Com sede em Foz do Iguaçu (PR), nossa missão é entregar autonomia total ao programador, eliminando as limitações do modelo slave e oferecendo ferramentas 100% Master.
+          </p>
+          <p className="mt-4 text-df-muted">
+            Sob a liderança de Fernando Possamai, CEO do grupo, assumimos um compromisso público inédito: a implementação de pelo menos 17 novos sistemas para o mercado brasileiro a cada 12 meses. É a garantia de que seu investimento acompanha a evolução da frota nacional e do Mercosul.
           </p>
         </div>
       </section>

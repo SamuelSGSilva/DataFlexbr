@@ -1,7 +1,9 @@
+import { WHATSAPP_NUMBER } from "@/lib/products";
+
 export function WhatsAppFloat() {
   return (
     <a
-      href="https://wa.me/554599016090"
+      href={`https://wa.me/${WHATSAPP_NUMBER}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"
