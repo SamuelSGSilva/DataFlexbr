@@ -303,36 +303,40 @@ export default function Home() {
           <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
             Direto pelo software. Rápido e seguro.
           </h2>
-          <p className="mt-4 max-w-lg text-df-muted">
-            Dependendo do sistema, o DataFlex executa desabilitações
-            nativamente, sem plugins e sem extras. Correção de checksum
-            automática na gravação e DataCenter online para funções em
-            tempo real.
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-df-muted">
+            Dependendo do sistema, o DataFlex executa desabilitações nativamente, sem plugins e sem extras. Correção de checksum automática na gravação e DataCenter online para funções em tempo real.
           </p>
 
-          <div className="mt-6 grid max-w-lg grid-cols-2 gap-2.5">
-            {FUNCTIONS.map((f) => (
-              <span
-                key={f}
-                className="group flex items-center gap-2 rounded-df bg-df-dark px-4 py-3 text-xs font-bold uppercase tracking-wide text-white shadow-sm ring-1 ring-white/10 transition hover:-translate-y-0.5 hover:bg-black hover:ring-df-red/50"
-              >
-                <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-df-red text-[10px] leading-none text-white">
-                  +
-                </span>
-                {f}
-              </span>
-            ))}
-          </div>
+          <div className="mt-8 space-y-5">
+            <div className="grid grid-cols-2 gap-3">
+              {FUNCTIONS.map((f) => (
+                <div
+                  key={f}
+                  className="group relative rounded-df border border-df-line bg-gradient-to-br from-df-dark to-df-panel px-4 py-3.5 transition hover:border-df-red/50 hover:shadow-lg hover:shadow-df-red/10"
+                >
+                  <div className="absolute inset-0 rounded-df bg-df-red/0 transition group-hover:bg-df-red/5" />
+                  <div className="relative flex items-center gap-2.5">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-df-red/20 text-df-red transition group-hover:bg-df-red/30">
+                      <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
+                      </svg>
+                    </span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-white">{f}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-          <Link
-            href="/compatibilidade"
-            className="mt-3 flex max-w-lg items-center justify-center gap-2 rounded-df bg-df-red px-4 py-3 text-xs font-bold uppercase tracking-wide text-white shadow-sm transition hover:bg-df-red-hover"
-          >
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M4 6h16M4 12h16M4 18h7" strokeLinecap="round" />
-            </svg>
-            Lista de aplicação
-          </Link>
+            <Link
+              href="/compatibilidade"
+              className="mt-6 flex w-full items-center justify-center gap-2 rounded-df bg-gradient-to-r from-df-red to-df-red px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-df-red/30 transition hover:shadow-xl hover:shadow-df-red/40 hover:from-df-red-hover hover:to-df-red-hover"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M4 6h16M4 12h16M4 18h7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Lista de Aplicação
+            </Link>
+          </div>
         </div>
       </section>
 
