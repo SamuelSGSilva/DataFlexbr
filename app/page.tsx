@@ -390,40 +390,44 @@ export default function Home() {
       </section>
 
       {/* Depoimentos */}
-      <section className="border-t border-df-line px-6 py-20 md:px-10">
+      <section className="bg-gradient-to-b from-[#cc0404] to-df-red px-6 py-20 md:px-10">
         <div className="mx-auto w-full max-w-6xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
-            Quem já é Master
-          </p>
-          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
-            Feito por quem trabalha com isso todo dia
-          </h2>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-wide text-white/80">
+              Quem já é Master
+            </p>
+            <h2 className="mt-2 font-heading text-3xl uppercase text-white md:text-4xl">
+              Feito por quem trabalha com isso todo dia
+            </h2>
+          </div>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
             {TESTIMONIALS.map((t) => (
               <figure
                 key={t.author}
-                className="flex flex-col rounded-df border border-df-line bg-df-panel p-6"
+                className="relative flex flex-col rounded-df bg-df-dark p-7 pt-9 shadow-xl shadow-black/30 transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/40"
               >
-                <svg
-                  viewBox="0 0 32 24"
-                  className="h-6 w-8 text-df-red/40"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M0 24V14.4C0 6.4 4.8 1.2 12.8 0l1.6 4c-4.8 1.6-7.2 4.4-7.2 8.4h6.4V24H0Zm17.6 0V14.4c0-8 4.8-13.2 12.8-14.4L32 4c-4.8 1.6-7.2 4.4-7.2 8.4H32V24H17.6Z" />
-                </svg>
-                <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-df-muted">
+                <span className="absolute -top-5 left-7 flex h-10 w-10 items-center justify-center rounded-full bg-df-red text-white shadow-lg">
+                  <svg
+                    viewBox="0 0 32 24"
+                    className="h-4 w-5"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M0 24V14.4C0 6.4 4.8 1.2 12.8 0l1.6 4c-4.8 1.6-7.2 4.4-7.2 8.4h6.4V24H0Zm17.6 0V14.4c0-8 4.8-13.2 12.8-14.4L32 4c-4.8 1.6-7.2 4.4-7.2 8.4H32V24H17.6Z" />
+                  </svg>
+                </span>
+                <blockquote className="flex-1 text-sm leading-relaxed text-neutral-300">
                   {t.quote}
                 </blockquote>
-                <figcaption className="mt-4 flex items-center gap-3 border-t border-df-line pt-4">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-df-red/15 text-xs font-semibold text-df-red">
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-df-line pt-5">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-df-red/15 text-xs font-bold text-df-red ring-2 ring-df-red/40">
                     {t.author
                       .split(" ")
                       .map((n) => n[0])
                       .join("")}
                   </span>
                   <span className="text-xs">
-                    <span className="block font-semibold uppercase tracking-wide">
+                    <span className="block text-sm font-semibold uppercase tracking-wide">
                       {t.author}
                     </span>
                     <span className="text-df-muted">{t.role}</span>
