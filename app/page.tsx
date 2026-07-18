@@ -343,7 +343,7 @@ export default function Home() {
       {/* Kit incluído */}
       <section className="border-t border-df-line px-6 py-20 md:px-10">
         <div className="mx-auto w-full max-w-6xl">
-          <div className="mx-auto max-w-3xl text-center mb-12">
+          <div className="mx-auto max-w-3xl text-center mb-16">
             <p className="text-xs font-medium uppercase tracking-wide text-df-red">
               O que está incluído
             </p>
@@ -355,29 +355,41 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {INCLUDED.map((item) => (
-              <div
-                key={item}
-                className="group relative rounded-df border border-df-line bg-gradient-to-br from-df-panel to-df-dark p-6 transition duration-300 hover:border-df-red/50 hover:shadow-lg hover:shadow-df-red/10"
-              >
-                <div className="absolute inset-0 rounded-df bg-df-red/0 transition group-hover:bg-df-red/5" />
-                <div className="relative">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-df bg-df-red/15 text-df-red transition group-hover:bg-df-red/25">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="h-6 w-6"
-                      fill="currentColor"
-                    >
-                      <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
-                    </svg>
+          <div className="grid gap-12 lg:grid-cols-2 items-start">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-df border border-df-line">
+              <Image
+                src="/img/maleta.webp"
+                alt="Maleta de transporte DataFlex"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+            </div>
+            
+            <div className="grid gap-4 sm:grid-cols-2">
+              {INCLUDED.map((item) => (
+                <div
+                  key={item}
+                  className="group relative rounded-df border border-df-line bg-gradient-to-br from-df-panel to-df-dark p-5 transition duration-300 hover:border-df-red/50 hover:shadow-lg hover:shadow-df-red/10"
+                >
+                  <div className="absolute inset-0 rounded-df bg-df-red/0 transition group-hover:bg-df-red/5" />
+                  <div className="relative">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-df bg-df-red/15 text-df-red transition group-hover:bg-df-red/25">
+                      <svg
+                        viewBox="0 0 24 24"
+                        className="h-5 w-5"
+                        fill="currentColor"
+                      >
+                        <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                      </svg>
+                    </div>
+                    <p className="mt-3 text-xs font-medium leading-relaxed text-df-muted group-hover:text-white transition">
+                      {item}
+                    </p>
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-df-muted group-hover:text-white transition">
-                    {item}
-                  </p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
