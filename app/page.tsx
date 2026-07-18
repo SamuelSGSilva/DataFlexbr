@@ -356,7 +356,7 @@ export default function Home() {
           </div>
 
           <div className="grid gap-12 lg:grid-cols-2 items-center">
-            <div className="relative aspect-square w-full overflow-hidden rounded-df border border-df-line">
+            <div className="relative aspect-video w-full overflow-hidden rounded-df border border-df-line shadow-2xl shadow-df-red/20">
               <Image
                 src="/img/maleta.webp"
                 alt="Maleta de transporte DataFlex"
@@ -364,9 +364,10 @@ export default function Home() {
                 className="object-cover"
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
             
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
               {INCLUDED.map((item) => (
                 <div
                   key={item}
