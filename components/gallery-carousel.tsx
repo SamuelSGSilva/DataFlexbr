@@ -1,7 +1,9 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import Navigation from "swiper/modules/navigation";
+import Pagination from "swiper/modules/pagination";
+import Autoplay from "swiper/modules/autoplay";
 import Image from "next/image";
 
 // Import Swiper styles
