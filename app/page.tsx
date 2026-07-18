@@ -355,8 +355,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-12 lg:grid-cols-2 items-start">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-df border border-df-line">
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
+            <div className="relative aspect-square w-full overflow-hidden rounded-df border border-df-line">
               <Image
                 src="/img/maleta.webp"
                 alt="Maleta de transporte DataFlex"
@@ -366,15 +366,15 @@ export default function Home() {
               />
             </div>
             
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="flex flex-col gap-4">
               {INCLUDED.map((item) => (
                 <div
                   key={item}
                   className="group relative rounded-df border border-df-line bg-gradient-to-br from-df-panel to-df-dark p-5 transition duration-300 hover:border-df-red/50 hover:shadow-lg hover:shadow-df-red/10"
                 >
                   <div className="absolute inset-0 rounded-df bg-df-red/0 transition group-hover:bg-df-red/5" />
-                  <div className="relative">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-df bg-df-red/15 text-df-red transition group-hover:bg-df-red/25">
+                  <div className="relative flex items-center gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-df bg-df-red/15 text-df-red transition group-hover:bg-df-red/25">
                       <svg
                         viewBox="0 0 24 24"
                         className="h-5 w-5"
@@ -383,7 +383,7 @@ export default function Home() {
                         <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
                       </svg>
                     </div>
-                    <p className="mt-3 text-xs font-medium leading-relaxed text-df-muted group-hover:text-white transition">
+                    <p className="text-sm font-medium leading-relaxed text-df-muted group-hover:text-white transition">
                       {item}
                     </p>
                   </div>
