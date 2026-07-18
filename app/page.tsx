@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AddToCartButton } from "@/components/add-to-cart-button";
+import { GalleryCarousel } from "@/components/gallery-carousel";
 import { FEATURE_ICONS, type FeatureIconName } from "@/components/feature-icons";
 import { WHATSAPP_NUMBER } from "@/lib/products";
 import { ScrollReveal } from "@/components/scroll-reveal";
@@ -404,29 +405,7 @@ export default function Home() {
           <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
             O equipamento de perto
           </h2>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Image
-              src="/img/equipamento.webp"
-              alt="Equipamento DataFlex — vista de conectores"
-              width={1024}
-              height={1260}
-              className="h-auto w-full rounded-df border border-df-line lg:col-span-2 lg:row-span-2"
-            />
-            <Image
-              src="/img/produto-vertical.webp"
-              alt="Equipamento DataFlex — vista vertical"
-              width={1000}
-              height={1500}
-              className="h-auto w-full rounded-df border border-df-line"
-            />
-            <Image
-              src="/img/maleta.webp"
-              alt="Maleta DataFlex"
-              width={1000}
-              height={1500}
-              className="h-auto w-full rounded-df border border-df-line"
-            />
-          </div>
+          <GalleryCarousel />
         </div>
       </section>
 
