@@ -335,75 +335,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Kit incluído */}
-      <section className="grid border-t border-df-line lg:grid-cols-2">
-        <div className="relative min-h-[480px] h-full">
-          <Image
-            src="/img/maleta.webp"
-            alt="Maleta de transporte DataFlex"
-            fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover"
-          />
-        </div>
-        <div className="flex flex-col justify-center bg-df-panel px-6 py-20 md:px-10 md:py-24">
-          <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
-          <p className="mt-6 text-xs font-medium uppercase tracking-wide text-df-muted">
-            O que está incluído
-          </p>
-          <h2 className="mt-2 font-heading text-3xl uppercase leading-tight md:text-4xl lg:text-5xl">
-            Pronto para trabalhar de imediato
-          </h2>
-          <p className="mt-4 max-w-md text-sm text-df-muted">
-            Tudo que você precisa para começar a programar com segurança e
-            profissionalismo.
-          </p>
-
-          <ul className="mt-8 flex max-w-md flex-col gap-4">
-            {INCLUDED.map((item) => {
-              const [title, description] = item.split(" — ");
-              return (
-                <li key={item} className="flex gap-3">
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="mt-0.5 h-5 w-5 shrink-0 text-df-red"
-                    fill="currentColor"
-                  >
-                    <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
-                  </svg>
-                  <p className="text-sm">
-                    <span className="font-semibold text-white">{title}</span>
-                    {description && (
-                      <span className="text-df-muted"> — {description}</span>
-                    )}
-                  </p>
-                </li>
-              );
-            })}
-          </ul>
-
-          <Link
-            href="#precos"
-            className="mt-8 flex w-full max-w-md items-center justify-center gap-2 rounded-df bg-df-red px-6 py-3.5 text-sm font-medium uppercase tracking-wide text-white transition hover:bg-df-red-hover"
-          >
-            Ver preços e comprar
-          </Link>
-        </div>
-      </section>
-
-      {/* Galeria */}
-      <section className="border-t border-df-line px-6 py-20 md:px-10">
-        <div className="mx-auto w-full max-w-6xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
-            Galeria
-          </p>
-          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
-            O equipamento de perto
-          </h2>
-          <GalleryCarousel />
-        </div>
-      </section>
-
       {/* CEO */}
       <section className="border-t border-df-line px-6 py-20 md:px-10">
         <div className="mx-auto w-full max-w-3xl text-center">
@@ -508,6 +439,75 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Kit incluído */}
+      <section className="grid border-t border-df-line lg:grid-cols-2">
+        <div className="relative min-h-[480px] h-full">
+          <Image
+            src="/img/maleta.webp"
+            alt="Maleta de transporte DataFlex"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+        <div className="flex flex-col justify-center bg-df-panel px-6 py-20 md:px-10 md:py-24">
+          <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
+          <p className="mt-6 text-xs font-medium uppercase tracking-wide text-df-muted">
+            O que está incluído
+          </p>
+          <h2 className="mt-2 font-heading text-3xl uppercase leading-tight md:text-4xl lg:text-5xl">
+            Pronto para trabalhar de imediato
+          </h2>
+          <p className="mt-4 max-w-md text-sm text-df-muted">
+            Tudo que você precisa para começar a programar com segurança e
+            profissionalismo.
+          </p>
+
+          <ul className="mt-8 flex max-w-md flex-col gap-4">
+            {INCLUDED.map((item) => {
+              const [title, description] = item.split(" — ");
+              return (
+                <li key={item} className="flex gap-3">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="mt-0.5 h-5 w-5 shrink-0 text-df-red"
+                    fill="currentColor"
+                  >
+                    <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                  </svg>
+                  <p className="text-sm">
+                    <span className="font-semibold text-white">{title}</span>
+                    {description && (
+                      <span className="text-df-muted"> — {description}</span>
+                    )}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+
+          <Link
+            href="#precos"
+            className="mt-8 flex w-full max-w-md items-center justify-center gap-2 rounded-df bg-df-red px-6 py-3.5 text-sm font-medium uppercase tracking-wide text-white transition hover:bg-df-red-hover"
+          >
+            Ver preços e comprar
+          </Link>
+        </div>
+      </section>
+
+      {/* Galeria */}
+      <section className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto w-full max-w-6xl">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
+            Galeria
+          </p>
+          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+            O equipamento de perto
+          </h2>
+          <GalleryCarousel />
         </div>
       </section>
 
