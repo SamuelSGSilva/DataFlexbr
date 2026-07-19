@@ -457,16 +457,18 @@ export default function Home() {
       {/* OBD + Bench + Boot */}
       <section className="border-t border-df-line px-6 py-20 md:px-10">
         <div className="mx-auto w-full max-w-6xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
-            Uma ferramenta, três caminhos
-          </p>
-          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
-            OBD + Bench + Boot
-          </h2>
-          <p className="mt-4 max-w-2xl text-df-muted">
-            DataFlex combina três modos de operação de ECU e TCM em uma única
-            ferramenta.
-          </p>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
+              Uma ferramenta, três caminhos
+            </p>
+            <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+              OBD + Bench + Boot
+            </h2>
+            <p className="mt-4 text-df-muted">
+              DataFlex combina três modos de operação de ECU e TCM em uma
+              única ferramenta.
+            </p>
+          </div>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             <div className="rounded-df border border-df-line bg-df-panel p-6">
               <span className="text-xs font-bold uppercase tracking-wide text-df-red">
