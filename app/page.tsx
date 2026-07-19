@@ -6,6 +6,7 @@ import { FEATURE_ICONS, type FeatureIconName } from "@/components/feature-icons"
 import { WHATSAPP_NUMBER } from "@/lib/products";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { PRODUCTS, formatPrice } from "@/lib/products";
+import { FaqSection } from "@/components/faq-section";
 
 export const metadata = {
   title: "DataFlex by Tael — Reprogramação de ECU e TCM",
@@ -769,29 +770,61 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-df-line px-6 py-20 md:px-10">
-        <div className="mx-auto w-full max-w-3xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
-            Perguntas frequentes
-          </p>
-          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
-            O que você quer saber antes de ser Master
-          </h2>
-          <div className="mt-8 flex flex-col gap-3">
-            {FAQS.map((faq) => (
-              <details
-                key={faq.q}
-                className="group rounded-df border border-df-line bg-df-panel px-5 py-4"
+      <section id="faq" className="relative overflow-hidden border-t border-df-line px-6 py-24 md:px-10">
+        {/* Background decoration */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -left-32 top-0 h-96 w-96 rounded-full bg-df-red/4 blur-[100px]" />
+          <div className="absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-df-red/3 blur-[100px]" />
+        </div>
+
+        <div className="relative mx-auto w-full max-w-6xl">
+          {/* Header row */}
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-20">
+            {/* Left — sticky heading */}
+            <div className="lg:w-80 lg:shrink-0 lg:sticky lg:top-24">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-df-red">
+                // Perguntas frequentes
+              </p>
+              <h2 className="mt-3 font-heading text-3xl uppercase leading-tight md:text-4xl">
+                Tire suas
+                <br />
+                <span className="text-df-red">dúvidas.</span>
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-df-muted">
+                Tudo que você precisa saber antes de se tornar independente e Master.
+              </p>
+
+              {/* Stats */}
+              <div className="mt-8 grid grid-cols-2 gap-3">
+                <div className="rounded-xl border border-df-line bg-df-panel px-4 py-3">
+                  <p className="text-2xl font-extrabold text-white tabular-nums">{FAQS.length}</p>
+                  <p className="mt-0.5 text-[11px] uppercase tracking-wide text-df-muted">Perguntas</p>
+                </div>
+                <div className="rounded-xl border border-df-line bg-df-panel px-4 py-3">
+                  <p className="text-2xl font-extrabold text-df-red">100%</p>
+                  <p className="mt-0.5 text-[11px] uppercase tracking-wide text-df-muted">Transparência</p>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <Link
+                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 flex items-center gap-2 rounded-xl border border-df-line bg-df-panel px-4 py-3 text-sm text-df-muted transition hover:border-white/20 hover:text-white"
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-medium">
-                  {faq.q}
-                  <span className="shrink-0 text-df-red transition group-open:rotate-45">
-                    +
-                  </span>
-                </summary>
-                <p className="mt-3 text-sm text-df-muted">{faq.a}</p>
-              </details>
-            ))}
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-emerald-500 shrink-0">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                  <path d="M12 0C5.373 0 0 5.373 0 12c0 2.106.546 4.086 1.502 5.808L.057 23.43a.5.5 0 00.609.61l5.753-1.406A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-4.92-1.322l-.353-.21-3.655.893.92-3.55-.23-.365A9.788 9.788 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182c5.421 0 9.818 4.396 9.818 9.818 0 5.421-4.397 9.818-9.818 9.818z"/>
+                </svg>
+                Tem outra dúvida? Fale no WhatsApp
+              </Link>
+            </div>
+
+            {/* Right — accordion list */}
+            <div className="flex-1 min-w-0">
+              <FaqSection faqs={FAQS} />
+            </div>
           </div>
         </div>
       </section>
