@@ -7,32 +7,26 @@ const GALLERY_IMAGES = [
   {
     src: "/img/maleta-hero.webp",
     alt: "Maleta DataFlex by Tael",
-    ratio: 1024 / 1228,
   },
   {
     src: "/img/software.webp",
     alt: "Tela do software DataFlex",
-    ratio: 1600 / 750,
   },
   {
     src: "/img/equipamento.webp",
     alt: "Equipamento DataFlex — vista de conectores",
-    ratio: 1024 / 1260,
   },
   {
     src: "/img/produto-hero.webp",
     alt: "Conector do equipamento DataFlex",
-    ratio: 1400 / 934,
   },
   {
     src: "/img/produto-vertical.webp",
     alt: "Equipamento DataFlex — vista vertical",
-    ratio: 1000 / 1500,
   },
   {
     src: "/img/maleta.webp",
     alt: "Maleta de transporte DataFlex",
-    ratio: 1000 / 1500,
   },
 ];
 
@@ -72,10 +66,7 @@ export function GalleryCarousel() {
   return (
     <div className="mt-10">
       {/* Imagem principal */}
-      <div
-        className="group relative w-full overflow-hidden rounded-df border border-df-line bg-df-dark shadow-2xl shadow-black/40 transition-[aspect-ratio] duration-700 ease-out"
-        style={{ aspectRatio: GALLERY_IMAGES[index].ratio }}
-      >
+      <div className="group relative aspect-[16/9] w-full overflow-hidden rounded-df border border-df-line bg-df-dark shadow-2xl shadow-black/40">
         {GALLERY_IMAGES.map((img, i) => (
           <div
             key={img.src}
@@ -88,7 +79,7 @@ export function GalleryCarousel() {
               alt={img.alt}
               fill
               sizes="(min-width: 1024px) 1152px, 100vw"
-              className="object-cover"
+              className="object-contain"
               priority={i === 0}
               quality={90}
             />
