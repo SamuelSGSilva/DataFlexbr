@@ -66,7 +66,7 @@ export function GalleryCarousel() {
   return (
     <div className="mt-10">
       {/* Imagem principal */}
-      <div className="group relative aspect-[16/10] w-full overflow-hidden rounded-df border border-df-line bg-df-panel shadow-2xl shadow-black/40">
+      <div className="group relative aspect-[16/10] w-full overflow-hidden rounded-df border border-df-line bg-df-dark shadow-2xl shadow-black/40">
         {GALLERY_IMAGES.map((img, i) => (
           <div
             key={img.src}
@@ -79,7 +79,7 @@ export function GalleryCarousel() {
               alt={img.alt}
               fill
               sizes="(min-width: 1024px) 1152px, 100vw"
-              className="object-cover"
+              className="object-contain"
               priority={i === 0}
               quality={90}
             />
