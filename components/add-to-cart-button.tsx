@@ -7,10 +7,12 @@ export function AddToCartButton({
   productId,
   variant = "solid",
   className = "",
+  children,
 }: {
   productId: string;
   variant?: "solid" | "outline";
   className?: string;
+  children?: React.ReactNode;
 }) {
   const { add } = useCart();
   const [added, setAdded] = useState(false);
@@ -40,14 +42,16 @@ export function AddToCartButton({
           Adicionado
         </>
       ) : (
-        <>
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="10" cy="21" r="1" />
-            <circle cx="18" cy="21" r="1" />
-          </svg>
-          Adicionar ao carrinho
-        </>
+        children || (
+          <>
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="10" cy="21" r="1" />
+              <circle cx="18" cy="21" r="1" />
+            </svg>
+            Adicionar ao carrinho
+          </>
+        )
       )}
     </button>
   );

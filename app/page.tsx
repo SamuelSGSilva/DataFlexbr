@@ -518,48 +518,135 @@ export default function Home() {
             Investimento
           </p>
           <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
-            Escolha sua Versão
+            Configure seu Equipamento:
           </h2>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <div className="relative rounded-df border-2 border-df-red bg-df-panel p-8">
+          <div className="mt-10 grid gap-6 grid-cols-1 md:grid-cols-3">
+            {/* Card 1: Slave */}
+            <div className="rounded-df border border-df-line bg-df-panel p-8 flex flex-col justify-between">
+              <div>
+                <p className="text-3xl font-semibold text-white font-heading">
+                  $0
+                </p>
+                <p className="mt-1 text-xs uppercase font-bold tracking-wider text-amber-500">
+                  Slave
+                </p>
+                
+                <ul className="mt-6 divide-y divide-df-line border-y border-df-line text-sm">
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>Depender de terceiros.</span>
+                  </li>
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>Limitado a leitura e gravação.</span>
+                  </li>
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>Seu Master ganha mais.</span>
+                  </li>
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>Seu lucro indo embora.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <button
+                type="button"
+                disabled
+                className="mt-6 w-full inline-flex items-center justify-center rounded-df bg-df-red/20 border border-df-red/30 text-df-muted/60 px-5 py-3 text-sm font-medium cursor-not-allowed uppercase tracking-wide transition"
+              >
+                Indisponível
+              </button>
+            </div>
+
+            {/* Card 2: Master */}
+            <div className="relative rounded-df border-2 border-df-red bg-df-panel p-8 flex flex-col justify-between">
               <span className="absolute -top-3 left-8 rounded-df bg-df-red px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white">
                 Equipamento completo
               </span>
-              <h3 className="mt-2 font-heading text-lg uppercase">
-                {master.name}
-              </h3>
-              <p className="mt-2 text-3xl font-semibold">
-                {formatPrice(master.price)}
-              </p>
-              <p className="mt-1 text-xs text-df-muted">
-                pagamento combinado com o consultor
-              </p>
-              <p className="mt-4 text-sm text-df-muted">{master.description}</p>
+              <div>
+                <p className="mt-2 text-3xl font-semibold text-white font-heading">
+                  {formatPrice(master.price)}
+                </p>
+                <p className="mt-1 text-xs uppercase font-bold tracking-wider text-amber-500">
+                  Master
+                </p>
+                
+                <ul className="mt-6 divide-y divide-df-line border-y border-df-line text-sm">
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>É master, é você no controle.</span>
+                  </li>
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>+ Lucro</span>
+                  </li>
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>Datacenter incluso.</span>
+                  </li>
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>Correção checksum.</span>
+                  </li>
+                  <li className="flex items-start gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none mt-0.5">&gt;</span>
+                    <span>Truck, agro, linha leve, flex e diesel, SUV, comerciais, moto e náutica.</span>
+                  </li>
+                </ul>
+              </div>
+
               <AddToCartButton
                 productId={master.id}
-                className="mt-6 w-full"
-              />
+                className="mt-6 w-full text-sm font-medium uppercase tracking-wide"
+              >
+                Falar com o Consultor
+              </AddToCartButton>
             </div>
 
-            <div className="rounded-df border border-df-line bg-df-panel p-8">
-              <h3 className="font-heading text-lg uppercase">
-                {atualizacao.name}
-              </h3>
-              <p className="mt-2 text-3xl font-semibold">
-                {formatPrice(atualizacao.price)}
-              </p>
-              <p className="mt-1 text-xs text-df-muted">
-                por ano, a partir do segundo ano
-              </p>
-              <p className="mt-4 text-sm text-df-muted">
-                {atualizacao.description}
-              </p>
+            {/* Card 3: Atualizações */}
+            <div className="rounded-df border border-df-line bg-df-panel p-8 flex flex-col justify-between">
+              <div>
+                <p className="text-3xl font-semibold text-white font-heading">
+                  {formatPrice(atualizacao.price)}
+                </p>
+                <p className="mt-1 text-xs uppercase font-bold tracking-wider text-amber-500">
+                  Atualizações Anuais
+                </p>
+                
+                <ul className="mt-6 divide-y divide-df-line border-y border-df-line text-sm">
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>Funções Immo, Sonda, EGR, DPF.</span>
+                  </li>
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>Acesso ao Datacenter.</span>
+                  </li>
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>Atualizações de sistemas.</span>
+                  </li>
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>Portal EAD de treinamento.</span>
+                  </li>
+                  <li className="flex items-center gap-3 py-3 text-df-muted">
+                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                    <span>Metade do valor do mercado.</span>
+                  </li>
+                </ul>
+              </div>
+
               <AddToCartButton
                 productId={atualizacao.id}
                 variant="outline"
-                className="mt-6 w-full"
-              />
+                className="mt-6 w-full text-sm font-medium uppercase tracking-wide"
+              >
+                Imbatível
+              </AddToCartButton>
             </div>
           </div>
 
