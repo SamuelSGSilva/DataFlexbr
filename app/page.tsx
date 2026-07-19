@@ -525,14 +525,16 @@ export default function Home() {
             {/* Card 1: Slave */}
             <div className="group relative rounded-df border border-df-line bg-gradient-to-b from-df-panel to-df-panel/85 p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:border-white/10 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
               <div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-xl font-semibold text-df-muted">$</span>
-                  <span className="text-5xl font-extrabold text-white tracking-tight">0</span>
-                </div>
-                <div className="mt-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 bg-zinc-800/40 px-2.5 py-0.5 rounded-md border border-zinc-700/30">
-                    Slave
-                  </span>
+                <div className="flex flex-col items-center justify-center text-center">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-2xl font-semibold text-df-muted">$</span>
+                    <span className="text-6xl font-extrabold text-white tracking-tight">0</span>
+                  </div>
+                  <div className="mt-2.5">
+                    <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 bg-zinc-800/50 px-3 py-1 rounded-md border border-zinc-700/50">
+                      Slave
+                    </span>
+                  </div>
                 </div>
                 
                 <ul className="mt-8 divide-y divide-df-line border-y border-df-line text-sm">
@@ -578,14 +580,16 @@ export default function Home() {
                 Equipamento completo
               </span>
               <div>
-                <div className="flex items-baseline gap-1 mt-2">
-                  <span className="text-xl font-semibold text-df-muted">R$</span>
-                  <span className="text-5xl font-extrabold text-white tracking-tight">18.400</span>
-                </div>
-                <div className="mt-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-df-red bg-df-red/10 px-2.5 py-0.5 rounded-md border border-df-red/20">
-                    Master
-                  </span>
+                <div className="flex flex-col items-center justify-center text-center mt-2">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-2xl font-semibold text-df-muted">R$</span>
+                    <span className="text-6xl font-extrabold text-white tracking-tight">18.400</span>
+                  </div>
+                  <div className="mt-2.5">
+                    <span className="text-xs font-bold uppercase tracking-widest text-df-red bg-df-red/10 px-3 py-1 rounded-md border border-df-red/20">
+                      Master
+                    </span>
+                  </div>
                 </div>
                 
                 <ul className="mt-8 divide-y divide-df-line border-y border-df-line text-sm">
@@ -635,14 +639,16 @@ export default function Home() {
             {/* Card 3: Atualizações */}
             <div className="group relative rounded-df border border-df-line bg-gradient-to-b from-df-panel to-df-panel/85 p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:border-white/10 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
               <div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-xl font-semibold text-df-muted">R$</span>
-                  <span className="text-5xl font-extrabold text-white tracking-tight">2.250</span>
-                </div>
-                <div className="mt-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500 bg-amber-500/10 px-2.5 py-0.5 rounded-md border border-amber-500/20">
-                    Atualizações Anuais
-                  </span>
+                <div className="flex flex-col items-center justify-center text-center">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-2xl font-semibold text-df-muted">R$</span>
+                    <span className="text-6xl font-extrabold text-white tracking-tight">2.250</span>
+                  </div>
+                  <div className="mt-2.5">
+                    <span className="text-xs font-bold uppercase tracking-widest text-amber-500 bg-amber-500/10 px-2.5 py-0.5 rounded-md border border-amber-500/20">
+                      Atualizações Anuais
+                    </span>
+                  </div>
                 </div>
                 
                 <ul className="mt-8 divide-y divide-df-line border-y border-df-line text-sm">
