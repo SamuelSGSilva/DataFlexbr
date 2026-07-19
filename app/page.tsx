@@ -13,6 +13,12 @@ export const metadata = {
     "Programação profissional de ECU e TCM em OBD, Bench e Boot, com arquivo aberto e feita para a frota brasileira. Conheça o DataFlex Master.",
 };
 
+const PRESENTATION_VIDEOS: { youtubeId: string; title: string }[] = [
+  { youtubeId: "wZhh8OtkE3c", title: "DataFlex — Campanha de lançamento" },
+  { youtubeId: "MW2ZP65VeXM", title: "DataFlex — Valor base" },
+  { youtubeId: "1Vuc1no-esY", title: "DataFlex — Equipamento completo" },
+];
+
 const FEATURES: { title: string; text: string; icon: FeatureIconName }[] = [
   {
     title: "Plataforma Master",
@@ -468,6 +474,38 @@ export default function Home() {
           <p className="mt-6 text-sm text-df-muted">
             — Fernando Possamai, CEO do Grupo AutoLuiz
           </p>
+        </div>
+
+        <div className="mx-auto mt-12 grid w-full max-w-5xl gap-5 sm:grid-cols-3">
+          {PRESENTATION_VIDEOS.map((video) => (
+            <a
+              key={video.youtubeId}
+              href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block aspect-video overflow-hidden rounded-df border border-df-line bg-df-panel"
+            >
+              <Image
+                src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`}
+                alt={video.title}
+                fill
+                sizes="(min-width: 640px) 33vw, 100vw"
+                className="object-cover transition duration-500 group-hover:scale-105"
+                unoptimized
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-df-red text-white shadow-lg transition group-hover:scale-110">
+                  <svg viewBox="0 0 24 24" className="ml-0.5 h-5 w-5" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </span>
+              <p className="absolute inset-x-0 bottom-0 p-3 text-left text-xs font-medium leading-snug text-white">
+                {video.title}
+              </p>
+            </a>
+          ))}
         </div>
       </section>
 
