@@ -236,61 +236,6 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
-      {/* OBD + Bench + Boot */}
-      <section className="border-t border-df-line px-6 py-20 md:px-10">
-        <div className="mx-auto w-full max-w-6xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
-            Uma ferramenta, três caminhos
-          </p>
-          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
-            OBD + Bench + Boot
-          </h2>
-          <p className="mt-4 max-w-2xl text-df-muted">
-            DataFlex combina três modos de operação de ECU e TCM em uma única
-            ferramenta.
-          </p>
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
-            <div className="rounded-df border border-df-line bg-df-panel p-6">
-              <span className="text-xs font-bold uppercase tracking-wide text-df-red">
-                OBD
-              </span>
-              <h3 className="mt-2 font-heading text-lg uppercase">
-                Pela porta de diagnóstico
-              </h3>
-              <p className="mt-2 text-sm text-df-muted">
-                Comunicação direta via porta de diagnóstico do veículo. Ideal
-                para protocolos onde a leitura/gravação é permitida pelo
-                barramento. Cobertura em expansão constante.
-              </p>
-            </div>
-            <div className="rounded-df border border-df-line bg-df-panel p-6">
-              <span className="text-xs font-bold uppercase tracking-wide text-df-red">
-                Bench
-              </span>
-              <h3 className="mt-2 font-heading text-lg uppercase">
-                Na bancada
-              </h3>
-              <p className="mt-2 text-sm text-df-muted">
-                Comunicação na bancada com a ECU removida do veículo. Forte
-                cobertura para sistemas Bosch, Marelli, Continental e mais.
-              </p>
-            </div>
-            <div className="rounded-df border border-df-line bg-df-panel p-6">
-              <span className="text-xs font-bold uppercase tracking-wide text-df-red">
-                Boot
-              </span>
-              <h3 className="mt-2 font-heading text-lg uppercase">
-                Direto no microcontrolador
-              </h3>
-              <p className="mt-2 text-sm text-df-muted">
-                Acesso direto ao microcontrolador da ECU via modo de boot.
-                Para sistemas onde a leitura por OBD ou Bench não é possível.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Funções avançadas */}
       <section className="grid border-t border-df-line lg:grid-cols-2">
         <div className="relative min-h-[320px] h-full">
@@ -506,6 +451,61 @@ export default function Home() {
               </p>
             </a>
           ))}
+        </div>
+      </section>
+
+      {/* OBD + Bench + Boot */}
+      <section className="border-t border-df-line px-6 py-20 md:px-10">
+        <div className="mx-auto w-full max-w-6xl">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
+            Uma ferramenta, três caminhos
+          </p>
+          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+            OBD + Bench + Boot
+          </h2>
+          <p className="mt-4 max-w-2xl text-df-muted">
+            DataFlex combina três modos de operação de ECU e TCM em uma única
+            ferramenta.
+          </p>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            <div className="rounded-df border border-df-line bg-df-panel p-6">
+              <span className="text-xs font-bold uppercase tracking-wide text-df-red">
+                OBD
+              </span>
+              <h3 className="mt-2 font-heading text-lg uppercase">
+                Pela porta de diagnóstico
+              </h3>
+              <p className="mt-2 text-sm text-df-muted">
+                Comunicação direta via porta de diagnóstico do veículo. Ideal
+                para protocolos onde a leitura/gravação é permitida pelo
+                barramento. Cobertura em expansão constante.
+              </p>
+            </div>
+            <div className="rounded-df border border-df-line bg-df-panel p-6">
+              <span className="text-xs font-bold uppercase tracking-wide text-df-red">
+                Bench
+              </span>
+              <h3 className="mt-2 font-heading text-lg uppercase">
+                Na bancada
+              </h3>
+              <p className="mt-2 text-sm text-df-muted">
+                Comunicação na bancada com a ECU removida do veículo. Forte
+                cobertura para sistemas Bosch, Marelli, Continental e mais.
+              </p>
+            </div>
+            <div className="rounded-df border border-df-line bg-df-panel p-6">
+              <span className="text-xs font-bold uppercase tracking-wide text-df-red">
+                Boot
+              </span>
+              <h3 className="mt-2 font-heading text-lg uppercase">
+                Direto no microcontrolador
+              </h3>
+              <p className="mt-2 text-sm text-df-muted">
+                Acesso direto ao microcontrolador da ECU via modo de boot.
+                Para sistemas onde a leitura por OBD ou Bench não é possível.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
