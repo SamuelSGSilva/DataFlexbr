@@ -1,11 +1,17 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/bundle";
+import SwiperCore from "swiper";
+import { Navigation, Pagination, Autoplay } from "swiper";
 import Image from "next/image";
 
 // Import Swiper styles
-import "swiper/swiper-bundle.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+// Install modules
+SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const GALLERY_IMAGES = [
   {
@@ -38,7 +44,6 @@ export function GalleryCarousel() {
   return (
     <div className="mt-10 overflow-hidden rounded-df border border-df-line bg-df-panel shadow-2xl">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={0}
         slidesPerView={1}
         navigation
