@@ -309,33 +309,26 @@ export default function Home() {
           </p>
 
           <div className="mt-8 w-full space-y-5">
-            <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto">
+            <div className="mx-auto grid max-w-lg grid-cols-2 gap-2.5">
               {FUNCTIONS.map((f) => (
-                <div
+                <span
                   key={f}
-                  className="group relative rounded-df border border-df-line bg-gradient-to-br from-df-dark to-df-panel px-4 py-3.5 transition hover:border-df-red/50 hover:shadow-lg hover:shadow-df-red/10"
+                  className="flex items-center gap-2 rounded-df bg-df-dark px-4 py-3 text-xs font-bold uppercase tracking-wide text-white ring-1 ring-white/10 transition hover:ring-df-red/50"
                 >
-                  <div className="absolute inset-0 rounded-df bg-df-red/0 transition group-hover:bg-df-red/5" />
-                  <div className="relative flex items-center gap-2.5">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-df-red/20 text-df-red transition group-hover:bg-df-red/30">
-                      <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
-                      </svg>
-                    </span>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-white">{f}</span>
-                  </div>
-                </div>
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-df-red" />
+                  {f}
+                </span>
               ))}
             </div>
 
             <Link
               href="/compatibilidade"
-              className="mt-6 flex max-w-lg w-full items-center justify-center gap-2 rounded-df bg-gradient-to-r from-df-red to-df-red px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-df-red/30 transition hover:shadow-xl hover:shadow-df-red/40 hover:from-df-red-hover hover:to-df-red-hover mx-auto"
+              className="mx-auto mt-6 flex w-full max-w-lg items-center justify-center gap-2 rounded-df bg-df-red px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-df-red-hover"
             >
               <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M4 6h16M4 12h16M4 18h7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              Lista de Aplicação
+              Ver lista de aplicação
             </Link>
           </div>
         </div>
@@ -352,46 +345,47 @@ export default function Home() {
             className="object-cover"
           />
         </div>
-        <div className="flex flex-col items-center justify-center bg-df-panel px-6 py-20 md:px-10 md:py-24">
+        <div className="flex flex-col justify-center bg-df-panel px-6 py-20 md:px-10 md:py-24">
           <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
-          <p className="mt-6 text-[10px] font-bold uppercase tracking-[0.2em] text-df-red">
+          <p className="mt-6 text-xs font-medium uppercase tracking-wide text-df-red">
             O que está incluído
           </p>
-          <h2 className="mt-4 text-center font-heading text-4xl uppercase leading-tight md:text-5xl lg:text-6xl">
-            Pronto para trabalhar<br />de imediato.
+          <h2 className="mt-2 font-heading text-3xl uppercase leading-tight md:text-4xl lg:text-5xl">
+            Pronto para trabalhar de imediato
           </h2>
-          <p className="mt-4 max-w-md text-center text-xs leading-relaxed text-df-muted/80">
-            Tudo que você precisa para começar a programar com segurança e profissionalismo.
+          <p className="mt-4 max-w-md text-sm text-df-muted">
+            Tudo que você precisa para começar a programar com segurança e
+            profissionalismo.
           </p>
 
-          <div className="mt-12 grid w-full max-w-xl grid-cols-2 gap-3">
-            {INCLUDED.map((item) => (
-              <div
-                key={item}
-                className="group relative rounded-df border border-df-line bg-df-dark/40 px-4 py-3.5 transition duration-300 hover:border-df-red/50 hover:bg-df-dark/60"
-              >
-                <div className="relative flex items-center gap-3">
-                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-df-red/20 text-df-red transition group-hover:bg-df-red/30">
-                    <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor">
-                      <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
-                    </svg>
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-white transition group-hover:text-white">
-                    {item.split(" — ")[0]}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ul className="mt-8 flex max-w-md flex-col gap-4">
+            {INCLUDED.map((item) => {
+              const [title, description] = item.split(" — ");
+              return (
+                <li key={item} className="flex gap-3">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="mt-0.5 h-5 w-5 shrink-0 text-df-red"
+                    fill="currentColor"
+                  >
+                    <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                  </svg>
+                  <p className="text-sm">
+                    <span className="font-semibold text-white">{title}</span>
+                    {description && (
+                      <span className="text-df-muted"> — {description}</span>
+                    )}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
 
           <Link
-            href="/compatibilidade"
-            className="mt-10 flex w-full max-w-xl items-center justify-center gap-2 rounded-df bg-df-red px-6 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white transition hover:bg-df-red-hover shadow-lg shadow-df-red/20"
+            href="#precos"
+            className="mt-8 flex w-full max-w-md items-center justify-center gap-2 rounded-df bg-df-red px-6 py-3.5 text-sm font-medium uppercase tracking-wide text-white transition hover:bg-df-red-hover"
           >
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M4 6h16M4 12h16M4 18h7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            Lista de Aplicação
+            Ver preços e comprar
           </Link>
         </div>
       </section>

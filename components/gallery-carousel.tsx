@@ -5,16 +5,16 @@ import Image from "next/image";
 
 const GALLERY_IMAGES = [
   {
-    src: "https://dataflexbr.com/wp-content/uploads/2026/05/dataflex-etiqueta-caixa-box12.3-x-12.3-cm-2048-x-1365-px.png",
-    alt: "DataFlex - Etiqueta Caixa",
+    src: "/img/produto-vertical.webp",
+    alt: "Equipamento DataFlex — vista vertical",
   },
   {
-    src: "https://dataflexbr.com/wp-content/uploads/2026/04/Maleta-1.png",
-    alt: "Maleta DataFlex",
+    src: "/img/equipamento.webp",
+    alt: "Equipamento DataFlex — vista de conectores",
   },
   {
-    src: "https://dataflexbr.com/wp-content/uploads/2026/04/Equipamento-DataFlex.png",
-    alt: "Equipamento DataFlex",
+    src: "/img/software.webp",
+    alt: "Tela do software DataFlex",
   },
 ];
 
