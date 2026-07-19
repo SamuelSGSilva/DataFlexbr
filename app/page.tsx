@@ -198,7 +198,7 @@ export default function Home() {
       <section className="border-t border-df-line px-6 py-20 md:px-10">
         <ScrollReveal className="mx-auto w-full max-w-6xl">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+            <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
               O equipamento
             </p>
             <h2 className="mt-2 font-heading text-3xl uppercase md:text-4xl lg:text-5xl">
@@ -233,7 +233,7 @@ export default function Home() {
       {/* OBD + Bench + Boot */}
       <section className="border-t border-df-line px-6 py-20 md:px-10">
         <div className="mx-auto w-full max-w-6xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
             Uma ferramenta, três caminhos
           </p>
           <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
@@ -245,7 +245,7 @@ export default function Home() {
           </p>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             <div className="rounded-df border border-df-line bg-df-panel p-6">
-              <span className="text-xs font-medium uppercase tracking-wide text-df-red">
+              <span className="text-xs font-bold uppercase tracking-wide text-df-red">
                 OBD
               </span>
               <h3 className="mt-2 font-heading text-lg uppercase">
@@ -258,7 +258,7 @@ export default function Home() {
               </p>
             </div>
             <div className="rounded-df border border-df-line bg-df-panel p-6">
-              <span className="text-xs font-medium uppercase tracking-wide text-df-red">
+              <span className="text-xs font-bold uppercase tracking-wide text-df-red">
                 Bench
               </span>
               <h3 className="mt-2 font-heading text-lg uppercase">
@@ -270,7 +270,7 @@ export default function Home() {
               </p>
             </div>
             <div className="rounded-df border border-df-line bg-df-panel p-6">
-              <span className="text-xs font-medium uppercase tracking-wide text-df-red">
+              <span className="text-xs font-bold uppercase tracking-wide text-df-red">
                 Boot
               </span>
               <h3 className="mt-2 font-heading text-lg uppercase">
@@ -298,7 +298,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col items-center justify-center bg-df-panel px-6 py-20 md:px-10 md:py-24">
           <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
-          <p className="mt-6 text-xs font-medium uppercase tracking-wide text-df-red">
+          <p className="mt-6 text-xs font-medium uppercase tracking-wide text-df-muted">
             Funções avançadas integradas
           </p>
           <h2 className="mt-2 text-center font-heading text-3xl uppercase md:text-4xl lg:text-5xl">
@@ -347,7 +347,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col justify-center bg-df-panel px-6 py-20 md:px-10 md:py-24">
           <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
-          <p className="mt-6 text-xs font-medium uppercase tracking-wide text-df-red">
+          <p className="mt-6 text-xs font-medium uppercase tracking-wide text-df-muted">
             O que está incluído
           </p>
           <h2 className="mt-2 font-heading text-3xl uppercase leading-tight md:text-4xl lg:text-5xl">
@@ -393,7 +393,7 @@ export default function Home() {
       {/* Galeria */}
       <section className="border-t border-df-line px-6 py-20 md:px-10">
         <div className="mx-auto w-full max-w-6xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
             Galeria
           </p>
           <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
@@ -456,7 +456,7 @@ export default function Home() {
       {/* CEO */}
       <section className="border-t border-df-line px-6 py-20 md:px-10">
         <div className="mx-auto w-full max-w-3xl text-center">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
             Apresentação DataFlex by Tael
           </p>
           <blockquote className="mt-4 font-heading text-xl uppercase leading-snug md:text-2xl">
@@ -474,7 +474,7 @@ export default function Home() {
       {/* Preços */}
       <section id="precos" className="border-t border-df-line px-6 py-20 md:px-10">
         <div className="mx-auto w-full max-w-6xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
             Investimento
           </p>
           <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
@@ -533,7 +533,7 @@ export default function Home() {
       {/* FAQ */}
       <section className="border-t border-df-line px-6 py-20 md:px-10">
         <div className="mx-auto w-full max-w-3xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
             Perguntas frequentes
           </p>
           <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
@@ -561,7 +561,7 @@ export default function Home() {
       {/* CTA final */}
       <section className="border-t border-df-line px-6 py-20 text-center md:px-10">
         <div className="mx-auto w-full max-w-2xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
             Hora de evoluir
           </p>
           <h2 className="mt-2 font-heading text-3xl uppercase md:text-4xl">
