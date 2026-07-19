@@ -275,6 +275,7 @@ export function VehicleSearch() {
               <th className="px-4 py-3 font-semibold">Modelo</th>
               <th className="px-4 py-3 font-semibold">Ano</th>
               <th className="px-4 py-3 font-semibold">ECU</th>
+              <th className="px-4 py-3 font-semibold">Chip</th>
               <th className="px-4 py-3 text-center font-semibold">OBD</th>
               <th className="px-4 py-3 text-center font-semibold">Bench</th>
               <th className="px-4 py-3 text-center font-semibold">Boot</th>
@@ -285,14 +286,14 @@ export function VehicleSearch() {
           <tbody>
             {vehicles === null && (
               <tr>
-                <td colSpan={9} className="px-4 py-10 text-center text-df-muted">
+                <td colSpan={10} className="px-4 py-10 text-center text-df-muted">
                   Carregando lista de veículos…
                 </td>
               </tr>
             )}
             {vehicles !== null && pageRows.length === 0 && (
               <tr>
-                <td colSpan={9} className="px-4 py-10 text-center text-df-muted">
+                <td colSpan={10} className="px-4 py-10 text-center text-df-muted">
                   Nenhum veículo encontrado. Ajuste a busca ou os filtros.
                 </td>
               </tr>
@@ -305,13 +306,9 @@ export function VehicleSearch() {
                 <td className="px-4 py-3 font-semibold text-white">{v.brand}</td>
                 <td className="px-4 py-3">{v.model}</td>
                 <td className="px-4 py-3 tabular-nums text-df-muted">{v.year}</td>
+                <td className="px-4 py-3 text-df-muted">{v.ecu}</td>
                 <td className="px-4 py-3 text-df-muted">
-                  {v.ecu}
-                  {v.chip && (
-                    <span className="ml-1.5 text-xs text-df-muted/60">
-                      · {v.chip}
-                    </span>
-                  )}
+                  {v.chip || <span className="text-df-muted/50">—</span>}
                 </td>
                 <td className="px-4 py-3 text-center">
                   <ProtocolCell active={v.obd} />
