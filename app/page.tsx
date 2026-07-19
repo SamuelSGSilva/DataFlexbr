@@ -514,12 +514,14 @@ export default function Home() {
       {/* Preços */}
       <section id="precos" className="border-t border-df-line px-6 py-20 md:px-10">
         <div className="mx-auto w-full max-w-6xl">
-          <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
-            Investimento
-          </p>
-          <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
-            Configure seu Equipamento:
-          </h2>
+          <div className="text-center flex flex-col items-center">
+            <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
+              Investimento
+            </p>
+            <h2 className="mt-2 font-heading text-3xl uppercase md:text-4xl lg:text-5xl text-white">
+              Configure seu Equipamento
+            </h2>
+          </div>
 
           <div className="mt-10 grid gap-8 grid-cols-1 md:grid-cols-3 items-stretch">
             {/* Card 1: Slave */}
