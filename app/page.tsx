@@ -124,24 +124,88 @@ const TESTIMONIALS = [
 
 const FAQS = [
   {
-    q: "O Tael DataFlex é uma cópia de outro programador?",
-    a: "Não. É um projeto próprio, com hardware dedicado e software desenvolvido para a realidade do mercado brasileiro e do Mercosul.",
+    q: "O Tael DataFlex é uma cópia do Magic Flex, Scanmatik, FoxFlasher ou de outro programador?",
+    a: "Não, de maneira alguma. O Tael DataFlex é um sistema profissional de programação de ECU desenvolvido com hardware e software próprios. Embora execute funções semelhantes às de ferramentas conhecidas do mercado — como leitura e gravação de ECU via OBD, Bench e Boot — ele é uma plataforma independente, criada e customizada para atender especialmente às necessidades do mercado do Brasil e Argentina. O sistema opera em arquitetura Master, garantindo ao usuário controle total sobre os arquivos da ECU, sem bloqueios ou dependência de terceiros. Foi desenvolvido respeitando a realidade das oficinas mecânicas e programadores da região, com custo de entrada e atualização bem mais acessível.",
   },
   {
-    q: "Preciso adquirir outras calculadoras, como o Editec?",
-    a: "Não para as funções integradas: Immo, DTC, DPF, EGR e Lambda saem direto pelo software ou pelo DataCenter, conforme o sistema. Calculadoras de terceiros continuam compatíveis se você já usa.",
+    q: "Comprando o Tael DataFlex eu preciso adquirir outras calculadoras, como o Editec da AutoLuiz.net?",
+    a: "Entenda que são ferramentas com propostas diferentes que se complementam. O DataFlex já possui calculadora integrada, permitindo executar funções diretamente durante leitura e gravação da ECU via DataCenter. Já o Editec foca em manipulação e edição avançada de arquivos, com recursos automatizados como Stage 1 e Stage 1 Plus para diversos sistemas, e variedade ampla de funções extras de desabilitação. Ambos irão desabilitar DTC, EGR, DPF, FAP, SONDA e IMMO — no entanto, o Editec pode fazer isso em qualquer sistema de injeção, já o DataFlex somente terá essas funções quando o padrão do mapa for o mesmo para todas as variações de ID de um mesmo sistema. O recomendável é utilizar as duas ferramentas, formando um conjunto mais completo para o profissional de chiptuning.",
   },
   {
-    q: "Qual é a política de atualização? Tem taxa anual obrigatória?",
-    a: "O primeiro ano de atualizações está incluso no equipamento. Depois, a assinatura anual custa R$ 2.250 — com compromisso público: se os sistemas prometidos não forem entregues, você não paga a atualização.",
+    q: "Qual é a política de atualização? Possui taxa anual de assinatura?",
+    a: "Sim. Ao adquirir o DataFlex você recebe 1 ano de atualizações incluídas, além de acesso ao DataCenter e suporte técnico. Após esse período, existe uma taxa anual de atualização que mantém: novos protocolos, melhorias do software, novas funções, acesso ao DataCenter e suporte técnico. Caso o usuário opte por não renovar, o equipamento continua funcionando normalmente, mantendo leitura, gravação e protocolos já existentes — porém calculadoras avançadas, suporte técnico e serviços via DataCenter ficam indisponíveis até a renovação. Inclusive seus desenvolvedores assumiram publicamente o compromisso de atualização de 17 sistemas específicos para o mercado brasileiro dentro dos 12 primeiros meses de implantação, e caso não atingirmos esse número ou as centrais propostas, iremos abrir mão da cobrança de atualizações até a inserção dos sistemas prometidos.",
   },
   {
     q: "É indicado para iniciantes?",
-    a: "Sim. O kit acompanha entrega técnica na primeira instalação, portal EAD com aulas em vídeo e suporte especializado.",
+    a: "Sim. O DataFlex foi desenvolvido para ser uma ferramenta profissional acessível, podendo ser utilizado tanto por técnicos iniciantes quanto por profissionais experientes. A interface foi projetada para ser simples e intuitiva. Importante lembrar que programação de ECU e chiptuning exigem conhecimento técnico, sendo recomendável que o usuário possua noções básicas de eletrônica automotiva e sistemas de injeção.",
+  },
+  {
+    q: "Acompanha treinamento?",
+    a: "Sim. Os usuários recebem acesso ao ecossistema de treinamento da TAEL / AutoLuiz, que inclui vídeos técnicos de utilização, conteúdos educacionais, orientações de uso da ferramenta e acesso à plataforma EAD. Além disso, a primeira instalação do sistema é realizada com acompanhamento técnico, garantindo o uso correto desde o início.",
+  },
+  {
+    q: "Quais tipos de ECU o DataFlex suporta?",
+    a: "Bosch, Marelli, Continental, Denso, Delphi, Kefico, Mitsubishi, Valeo, Sagem, AC Delco e outras. Além disso, o sistema possui suporte específico para variações regionais utilizadas no Brasil e na América Latina, que muitas vezes possuem diferenças em relação às versões globais.",
+  },
+  {
+    q: "Permite leitura completa da ECU?",
+    a: "Sim. Dependendo do sistema de injeção e do protocolo utilizado, o DataFlex permite leitura completa da ECU, incluindo memória de programa (Flash), dados de configuração e outras áreas disponíveis da central (eeprom). A possibilidade depende do tipo de ECU e do modo de comunicação (seja modo OBD, modo Bench ou modo Boot).",
+  },
+  {
+    q: "Possui proteção contra falhas durante gravação?",
+    a: "Sim. O sistema foi desenvolvido com diversos mecanismos de segurança: verificação de integridade do arquivo, correção automática de checksum, protocolos de comunicação validados e controle de gravação seguro — tornando o processo mais confiável.",
+  },
+  {
+    q: "O sistema identifica automaticamente a ECU?",
+    a: "Em muitos protocolos, sim. O DataFlex possui identificação automática da ECU, reconhecendo informações como fabricante, versão de software, ID da ECU e outras informações técnicas, facilitando a seleção do protocolo correto.",
+  },
+  {
+    q: "Para quem o DataFlex foi desenvolvido?",
+    a: "Para profissionais que trabalham com eletrônica automotiva e programação de ECU: oficinas mecânicas especializadas, programadores de ECU, centros de chiptuning, especialistas em diagnóstico avançado e profissionais de eletrônica automotiva — com foco no mercado da América Latina.",
   },
   {
     q: "Funciona com qualquer software de remapeamento?",
-    a: "Os arquivos são abertos e compatíveis com WinOLS, Bit Edit, Race, ECM Titanium, Editec e outros — você trabalha com a sua metodologia.",
+    a: "Sim. Como o DataFlex é uma ferramenta Master, os arquivos lidos da ECU pertencem ao usuário e podem ser utilizados em diversos softwares de edição de mapas, como WinOLS, ECM Titanium, Bit Edit, BFlash, Race e Editec. Cada técnico utiliza sua própria metodologia de desenvolvimento de arquivos.",
+  },
+  {
+    q: "O sistema recebe novos protocolos?",
+    a: "Sim. O DataFlex recebe atualizações constantes, com novos protocolos sendo adicionados regularmente. O desenvolvimento prioriza veículos do mercado da América Latina, novos sistemas de injeção, melhorias em protocolos já existentes e expansão da cobertura de ECUs. Inclusive seus desenvolvedores assumiram publicamente o compromisso de atualização de 17 sistemas específicos para o mercado brasileiro dentro dos 12 primeiros meses de implantação, e caso não atingirmos esse número ou as centrais propostas, iremos abrir mão da cobrança de atualizações até a inserção dos sistemas prometidos.",
+  },
+  {
+    q: "Posso trabalhar apenas com OBD? Ele baixa arquivos do servidor?",
+    a: "Depende da ECU. Alguns sistemas permitem leitura e gravação diretamente via OBD, outros exigem acesso em modo Bench ou Boot. O DataFlex suporta os três modos. Atualmente o sistema possui forte cobertura em Bench e Boot, enquanto os protocolos via OBD continuam sendo ampliados. Outro detalhe: trabalhamos com leitura REAL, não com banco de arquivos (outros programadores identificam o ID do soft e baixam de seus servidores um arquivo original).",
+  },
+  {
+    q: "Suporta veículos diesel e gasolina?",
+    a: "Sim. Suporta ECUs presentes em veículos a gasolina, flex e diesel. Além disso, a plataforma também está expandindo fortemente o suporte para aplicações agrícolas e veículos pesados, muito presentes no mercado latino-americano. Linha SUV, veículos leves, veículos comerciais diesel ou camionetas/vans, truck (caminhões e ônibus), além da linha moto e náutica.",
+  },
+  {
+    q: "É uma ferramenta de chiptuning?",
+    a: "É principalmente um programador de ECU, utilizado para realizar leitura e gravação dos arquivos da central eletrônica. Esses arquivos podem então ser modificados em softwares de edição de mapas para otimização de desempenho, correções técnicas, desabilitação de funções específicas e ajustes de calibração. Ao contrário de alguns programadores, o DataFlex corrige automaticamente o CheckSum na gravação e faz a leitura da área de ImmoData que muitos programadores ignoram.",
+  },
+  {
+    q: "O Dataflex corrige o checksum automaticamente?",
+    a: "Sim. O software realiza a correção automática de checksum durante a leitura e gravação da ECU, garantindo a integridade do arquivo em cada operação. Caso você esteja trabalhando com um sistema recém-lançado que ainda não possua a correção disponível, basta abrir um chamado com nosso suporte técnico solicitando a implementação — nossa equipe de engenharia analisa e prioriza conforme a demanda do mercado.",
+  },
+  {
+    q: "O Dataflex precisa de internet para funcionar?",
+    a: "Sim, para o funcionamento completo o sistema requer conexão com internet. Ela é necessária para validação de protocolos, comunicação com os servidores e execução das funções avançadas via DataCenter. Recomendamos uma conexão estável para garantir a melhor experiência durante o uso. Os requisitos mínimos recomendados são: Windows 10 ou Windows 11, mínimo de 8GB de RAM e conexão com internet estável.",
+  },
+  {
+    q: "Qual computador preciso para rodar o Dataflex?",
+    a: "O sistema foi desenvolvido para rodar em qualquer notebook ou desktop com Windows 10 ou Windows 11, mínimo de 8GB de RAM e conexão com internet estável. Não é necessário um computador de alta performance — o processamento pesado fica nos nossos servidores via DataCenter.",
+  },
+  {
+    q: "O Dataflex acompanha suporte técnico?",
+    a: "Sim. Ao adquirir o Dataflex você passa a ter acesso a um ecossistema completo de suporte, que inclui sistema interno de tickets técnicos, atendimento especializado e, quando necessário, encaminhamento direto para a equipe de engenharia. Não é um suporte genérico — é um time que conhece a ferramenta profundamente e entende a realidade do mercado brasileiro.",
+  },
+  {
+    q: "Qual é o compromisso de atualização do Dataflex? E se não for cumprido?",
+    a: "Ao adquirir o Dataflex, você recebe 1 ano de atualizações incluídas, com acesso ao DataCenter e suporte técnico. Após esse período, existe uma taxa anual que mantém tudo funcionando: novos protocolos, melhorias de software, novas funções, DataCenter e suporte. Caso opte por não renovar, o equipamento continua funcionando normalmente com leitura, gravação e todos os protocolos já existentes — apenas as calculadoras avançadas, DataCenter e suporte técnico ficam pausados até a renovação. Você nunca perde o que já tem. E tem mais: nossos desenvolvedores assumiram publicamente o compromisso de entregar 17 sistemas específicos para o mercado brasileiro dentro dos primeiros 12 meses. Caso esse número não seja atingido ou alguma das centrais prometidas não seja entregue no prazo, a cobrança de atualização fica suspensa até que todos os sistemas prometidos sejam implementados.",
+  },
+  {
+    q: "O Dataflex lê a área de IMMO DATA da ECU?",
+    a: "Sim. Dependendo do sistema de injeção e do protocolo utilizado, o Dataflex realiza leitura completa da ECU, incluindo memória de programa (Flash), dados de configuração e outras áreas disponíveis da central — incluindo a área de IMMO DATA em sistemas de linhas como BMW, Chevrolet, Audi e Volkswagen. Essa leitura permite não apenas visualizar, mas também editar os dados de imobilizador diretamente, abrindo possibilidade para serviços avançados de programação de chaves e desbloqueio de imobilizador. A disponibilidade depende do modelo específico da ECU e do modo de comunicação utilizado — OBD, Bench ou Boot.",
   },
 ];
 
