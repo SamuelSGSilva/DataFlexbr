@@ -64,9 +64,9 @@ export function GalleryCarousel() {
   }, []);
 
   return (
-    <div className="mt-10">
+    <div className="mx-auto mt-10 max-w-xl">
       {/* Imagem principal */}
-      <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-df border border-df-line bg-gradient-to-br from-df-panel via-df-dark to-df-panel shadow-2xl shadow-black/40 md:aspect-[16/10]">
+      <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-df border border-df-line bg-gradient-to-br from-df-panel via-df-dark to-df-panel shadow-2xl shadow-black/40">
         {GALLERY_IMAGES.map((img, i) => (
           <div
             key={img.src}
@@ -78,7 +78,7 @@ export function GalleryCarousel() {
               src={img.src}
               alt={img.alt}
               fill
-              sizes="(min-width: 1024px) 1152px, 100vw"
+              sizes="(min-width: 768px) 576px, 100vw"
               className="object-contain"
               priority={i === 0}
               quality={90}
