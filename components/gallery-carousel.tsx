@@ -66,11 +66,11 @@ export function GalleryCarousel() {
   return (
     <div className="mt-10">
       {/* Imagem principal */}
-      <div className="group relative aspect-[16/10] w-full overflow-hidden rounded-df border border-df-line bg-df-panel shadow-2xl shadow-black/40 md:aspect-[21/10]">
+      <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-df border border-df-line bg-gradient-to-br from-df-panel via-df-dark to-df-panel shadow-2xl shadow-black/40 md:aspect-[16/10]">
         {GALLERY_IMAGES.map((img, i) => (
           <div
             key={img.src}
-            className={`absolute inset-0 transition-opacity duration-700 ease-out ${
+            className={`absolute inset-0 flex items-center justify-center p-6 transition-opacity duration-700 ease-out md:p-10 ${
               i === index ? "opacity-100" : "pointer-events-none opacity-0"
             }`}
           >
@@ -79,13 +79,12 @@ export function GalleryCarousel() {
               alt={img.alt}
               fill
               sizes="(min-width: 1024px) 1152px, 100vw"
-              className="object-cover"
+              className="object-contain"
               priority={i === 0}
               quality={90}
             />
           </div>
         ))}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
         {/* Setas — aparecem no hover em telas grandes, sempre visíveis no mobile */}
         <button
