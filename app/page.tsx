@@ -521,32 +521,43 @@ export default function Home() {
             Configure seu Equipamento:
           </h2>
 
-          <div className="mt-10 grid gap-6 grid-cols-1 md:grid-cols-3">
+          <div className="mt-10 grid gap-8 grid-cols-1 md:grid-cols-3 items-stretch">
             {/* Card 1: Slave */}
-            <div className="rounded-df border border-df-line bg-df-panel p-8 flex flex-col justify-between">
+            <div className="group relative rounded-df border border-df-line bg-gradient-to-b from-df-panel to-df-panel/85 p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:border-white/10 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
               <div>
-                <p className="text-3xl font-semibold text-white font-heading">
-                  $0
-                </p>
-                <p className="mt-1 text-xs uppercase font-bold tracking-wider text-amber-500">
-                  Slave
-                </p>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-xl font-semibold text-df-muted">$</span>
+                  <span className="text-5xl font-extrabold text-white tracking-tight">0</span>
+                </div>
+                <div className="mt-2">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 bg-zinc-800/40 px-2.5 py-0.5 rounded-md border border-zinc-700/30">
+                    Slave
+                  </span>
+                </div>
                 
-                <ul className="mt-6 divide-y divide-df-line border-y border-df-line text-sm">
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                <ul className="mt-8 divide-y divide-df-line border-y border-df-line text-sm">
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-df-red shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                     <span>Depender de terceiros.</span>
                   </li>
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-df-red shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                     <span>Limitado a leitura e gravação.</span>
                   </li>
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-df-red shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                     <span>Seu Master ganha mais.</span>
                   </li>
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-df-red shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                     <span>Seu lucro indo embora.</span>
                   </li>
                 </ul>
@@ -555,86 +566,114 @@ export default function Home() {
               <button
                 type="button"
                 disabled
-                className="mt-6 w-full inline-flex items-center justify-center rounded-df bg-df-red/20 border border-df-red/30 text-df-muted/60 px-5 py-3 text-sm font-medium cursor-not-allowed uppercase tracking-wide transition"
+                className="mt-8 w-full py-3 px-5 rounded-df bg-white/5 border border-white/10 text-white/20 text-xs font-bold uppercase tracking-wider cursor-not-allowed select-none transition-all duration-300"
               >
                 Indisponível
               </button>
             </div>
 
             {/* Card 2: Master */}
-            <div className="relative rounded-df border-2 border-df-red bg-df-panel p-8 flex flex-col justify-between">
-              <span className="absolute -top-3 left-8 rounded-df bg-df-red px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white">
+            <div className="group relative rounded-df border-2 border-df-red bg-gradient-to-b from-df-panel to-df-panel/85 p-8 flex flex-col justify-between shadow-[0_4px_20px_rgba(178,0,0,0.08)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(178,0,0,0.2)] md:scale-[1.03] z-10">
+              <span className="absolute -top-3 left-6 rounded-df bg-gradient-to-r from-df-red to-[#d10000] px-3.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow-md">
                 Equipamento completo
               </span>
               <div>
-                <p className="mt-2 text-3xl font-semibold text-white font-heading">
-                  {formatPrice(master.price)}
-                </p>
-                <p className="mt-1 text-xs uppercase font-bold tracking-wider text-amber-500">
-                  Master
-                </p>
+                <div className="flex items-baseline gap-1 mt-2">
+                  <span className="text-xl font-semibold text-df-muted">R$</span>
+                  <span className="text-5xl font-extrabold text-white tracking-tight">18.400</span>
+                </div>
+                <div className="mt-2">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-df-red bg-df-red/10 px-2.5 py-0.5 rounded-md border border-df-red/20">
+                    Master
+                  </span>
+                </div>
                 
-                <ul className="mt-6 divide-y divide-df-line border-y border-df-line text-sm">
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
-                    <span>É master, é você no controle.</span>
+                <ul className="mt-8 divide-y divide-df-line border-y border-df-line text-sm">
+                  <li className="flex items-start gap-3 py-3.5 text-white/90">
+                    <svg className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="font-medium">É master, é você no controle.</span>
                   </li>
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
-                    <span>+ Lucro</span>
+                  <li className="flex items-start gap-3 py-3.5 text-white/90">
+                    <svg className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-emerald-400 font-bold tracking-wide">+ Lucro</span>
                   </li>
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                     <span>Datacenter incluso.</span>
                   </li>
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                     <span>Correção checksum.</span>
                   </li>
-                  <li className="flex items-start gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none mt-0.5">&gt;</span>
-                    <span>Truck, agro, linha leve, flex e diesel, SUV, comerciais, moto e náutica.</span>
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>
+                      <strong className="text-white/80">Truck, agro, linha leve, flex e diesel</strong>, SUV, comerciais, moto e náutica.
+                    </span>
                   </li>
                 </ul>
               </div>
 
               <AddToCartButton
                 productId={master.id}
-                className="mt-6 w-full text-sm font-medium uppercase tracking-wide"
+                className="mt-8 w-full py-3 px-5 text-xs font-bold uppercase tracking-wider shadow-lg shadow-df-red/20 transition-all duration-300 hover:shadow-df-red/40"
               >
                 Falar com o Consultor
               </AddToCartButton>
             </div>
 
             {/* Card 3: Atualizações */}
-            <div className="rounded-df border border-df-line bg-df-panel p-8 flex flex-col justify-between">
+            <div className="group relative rounded-df border border-df-line bg-gradient-to-b from-df-panel to-df-panel/85 p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:border-white/10 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
               <div>
-                <p className="text-3xl font-semibold text-white font-heading">
-                  {formatPrice(atualizacao.price)}
-                </p>
-                <p className="mt-1 text-xs uppercase font-bold tracking-wider text-amber-500">
-                  Atualizações Anuais
-                </p>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-xl font-semibold text-df-muted">R$</span>
+                  <span className="text-5xl font-extrabold text-white tracking-tight">2.250</span>
+                </div>
+                <div className="mt-2">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500 bg-amber-500/10 px-2.5 py-0.5 rounded-md border border-amber-500/20">
+                    Atualizações Anuais
+                  </span>
+                </div>
                 
-                <ul className="mt-6 divide-y divide-df-line border-y border-df-line text-sm">
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                <ul className="mt-8 divide-y divide-df-line border-y border-df-line text-sm">
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                     <span>Funções Immo, Sonda, EGR, DPF.</span>
                   </li>
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                     <span>Acesso ao Datacenter.</span>
                   </li>
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                     <span>Atualizações de sistemas.</span>
                   </li>
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                     <span>Portal EAD de treinamento.</span>
                   </li>
-                  <li className="flex items-center gap-3 py-3 text-df-muted">
-                    <span className="text-emerald-500 font-bold shrink-0 select-none">&gt;</span>
+                  <li className="flex items-start gap-3 py-3.5 text-df-muted">
+                    <svg className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                     <span>Metade do valor do mercado.</span>
                   </li>
                 </ul>
@@ -643,7 +682,7 @@ export default function Home() {
               <AddToCartButton
                 productId={atualizacao.id}
                 variant="outline"
-                className="mt-6 w-full text-sm font-medium uppercase tracking-wide"
+                className="mt-8 w-full py-3 px-5 text-xs font-bold uppercase tracking-wider transition-all duration-300"
               >
                 Imbatível
               </AddToCartButton>
