@@ -45,7 +45,7 @@ services:
       sh -c "envsubst < /home/kong/kong.template.yml > /home/kong/kong.yml &&
              /docker-entrypoint.sh kong docker-start"
     ports:
-      - "8000:8000"
+      - "8001:8000"
 
   studio:
     image: supabase/studio:latest
@@ -75,7 +75,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_SUPABASE_URL: http://localhost:8000
+        NEXT_PUBLIC_SUPABASE_URL: http://localhost:8001
         NEXT_PUBLIC_SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
     restart: unless-stopped
     depends_on:
