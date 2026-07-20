@@ -8,6 +8,7 @@ type ImageConfig = {
 type NextConfigWithImages = NextConfig & ImageConfig;
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   images: {
     remotePatterns: [
       {
