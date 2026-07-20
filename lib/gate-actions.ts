@@ -29,16 +29,46 @@ async function grantAccess(leadId: number, voltar: string): Promise<never> {
   redirect(voltar.startsWith("/") ? voltar : "/treinamentos");
 }
 
-/** Novo cadastro: salva o lead e libera o acesso na hora. */
+export type CodeResult =
+  | { error: string; codeToken?: undefined }
+  | { error?: undefined; codeToken: string; email: string }
+  | undefined;
+
+/** Gera o código, assina o token e envia por email. Comum às duas telas. */
+async function sendAccessCode(
+  leadId: number,
+  email: string
+): Promise<CodeResult> {
+  const code = generateCode();
+  const codeToken = await createCodeToken(leadId, code);
+  if (!codeToken) {
+    return {
+      error: "Login indisponível: ACCESS_TOKEN_SECRET não configurado.",
+    };
+  }
+
+  const { error: mailError } = await sendEmail(
+    email,
+    "Seu código de acesso DataFlex",
+    `<p>Seu código de acesso é:</p><p style="font-size:28px;font-weight:bold;letter-spacing:4px">${code}</p><p>Válido por 10 minutos.</p>`
+  );
+  if (mailError) return { error: mailError };
+
+  return { codeToken, email };
+}
+
+/**
+ * Novo cadastro, etapa 1: salva o lead e envia o código de confirmação
+ * por email. O acesso só é liberado depois que o código é confirmado.
+ */
 export async function registerLead(
-  _prev: GateResult,
+  _prev: CodeResult,
   formData: FormData
-): Promise<GateResult> {
+): Promise<CodeResult> {
   const name = String(formData.get("name") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const accepted = formData.get("privacy") === "on";
-  const voltar = String(formData.get("voltar") ?? "") || "/treinamentos";
 
   if (name.length < 2) return { error: "Informe seu nome completo." };
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
@@ -64,13 +94,8 @@ export async function registerLead(
     return { error: "Não foi possível concluir o cadastro. Tente novamente." };
   }
 
-  return grantAccess(Number(data), voltar);
+  return sendAccessCode(Number(data), email);
 }
-
-export type CodeResult =
-  | { error: string; codeToken?: undefined }
-  | { error?: undefined; codeToken: string; email: string }
-  | undefined;
 
 /**
  * "Já tenho cadastro", etapa 1: localiza o lead pelo email e envia um
@@ -103,25 +128,10 @@ export async function requestLoginCode(
     };
   }
 
-  const code = generateCode();
-  const codeToken = await createCodeToken(Number(data), code);
-  if (!codeToken) {
-    return {
-      error: "Login indisponível: ACCESS_TOKEN_SECRET não configurado.",
-    };
-  }
-
-  const { error: mailError } = await sendEmail(
-    email,
-    "Seu código de acesso DataFlex",
-    `<p>Seu código de acesso é:</p><p style="font-size:28px;font-weight:bold;letter-spacing:4px">${code}</p><p>Válido por 10 minutos.</p>`
-  );
-  if (mailError) return { error: mailError };
-
-  return { codeToken, email };
+  return sendAccessCode(Number(data), email);
 }
 
-/** "Já tenho cadastro", etapa 2: confere o código digitado e libera o acesso. */
+/** Etapa 2 (comum às duas telas): confere o código digitado e libera o acesso. */
 export async function verifyLoginCode(
   _prev: GateResult,
   formData: FormData

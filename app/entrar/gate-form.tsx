@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import {
   registerLead,
   requestLoginCode,
@@ -14,8 +14,13 @@ const inputClass =
 
 export function GateForm({ voltar }: { voltar: string }) {
   const [mode, setMode] = useState<"cadastro" | "login">("cadastro");
+  const [pendingCode, setPendingCode] = useState<{
+    codeToken: string;
+    email: string;
+  } | null>(null);
+
   const [regState, regAction, regPending] = useActionState<
-    GateResult,
+    CodeResult,
     FormData
   >(registerLead, undefined);
   const [codeState, codeAction, codePending] = useActionState<
@@ -27,12 +32,64 @@ export function GateForm({ voltar }: { voltar: string }) {
     FormData
   >(verifyLoginCode, undefined);
 
+  useEffect(() => {
+    if (regState?.codeToken) setPendingCode(regState);
+  }, [regState]);
+  useEffect(() => {
+    if (codeState?.codeToken) setPendingCode(codeState);
+  }, [codeState]);
+
   const tabClass = (active: boolean) =>
     `flex-1 rounded-df px-4 py-2 text-sm font-semibold transition ${
       active
         ? "bg-df-red text-white"
         : "border border-df-line text-df-muted hover:border-white/40"
     }`;
+
+  if (pendingCode) {
+    return (
+      <form action={verifyAction} className="mt-8 flex flex-col gap-4">
+        <input type="hidden" name="voltar" value={voltar} />
+        <input type="hidden" name="codeToken" value={pendingCode.codeToken} />
+        <p className="text-sm text-df-muted">
+          Enviamos um código de 6 dígitos para{" "}
+          <span className="text-white">{pendingCode.email}</span>. Confirme
+          abaixo para liberar seu acesso.
+        </p>
+        <label className="flex flex-col gap-1 text-sm">
+          Código de acesso
+          <input
+            name="code"
+            required
+            inputMode="numeric"
+            maxLength={6}
+            autoFocus
+            placeholder="000000"
+            className={`${inputClass} text-center text-lg tracking-[0.5em]`}
+          />
+        </label>
+        {verifyState?.error && (
+          <p className="rounded-df border border-df-red/50 bg-df-red/10 px-4 py-3 text-sm text-red-300">
+            {verifyState.error}
+          </p>
+        )}
+        <button
+          type="submit"
+          disabled={verifyPending}
+          className="mt-1 rounded-df bg-df-red px-4 py-3 font-semibold text-white hover:bg-df-red-hover disabled:opacity-60"
+        >
+          {verifyPending ? "Confirmando…" : "Confirmar código"}
+        </button>
+        <button
+          type="button"
+          onClick={() => setPendingCode(null)}
+          className="text-xs text-df-muted underline-offset-2 hover:text-white hover:underline"
+        >
+          Usar outro email
+        </button>
+      </form>
+    );
+  }
 
   return (
     <div className="mt-8">
@@ -59,7 +116,6 @@ export function GateForm({ voltar }: { voltar: string }) {
 
       {mode === "cadastro" ? (
         <form action={regAction} className="mt-6 flex flex-col gap-4">
-          <input type="hidden" name="voltar" value={voltar} />
           <label className="flex flex-col gap-1 text-sm">
             Nome completo
             <input name="name" required autoComplete="name" className={inputClass} />
@@ -102,40 +158,7 @@ export function GateForm({ voltar }: { voltar: string }) {
             disabled={regPending}
             className="mt-1 rounded-df bg-df-red px-4 py-3 font-semibold text-white hover:bg-df-red-hover disabled:opacity-60"
           >
-            {regPending ? "Liberando acesso…" : "Liberar meu acesso"}
-          </button>
-        </form>
-      ) : codeState?.codeToken ? (
-        <form action={verifyAction} className="mt-6 flex flex-col gap-4">
-          <input type="hidden" name="voltar" value={voltar} />
-          <input type="hidden" name="codeToken" value={codeState.codeToken} />
-          <p className="text-sm text-df-muted">
-            Enviamos um código de 6 dígitos para{" "}
-            <span className="text-white">{codeState.email}</span>.
-          </p>
-          <label className="flex flex-col gap-1 text-sm">
-            Código de acesso
-            <input
-              name="code"
-              required
-              inputMode="numeric"
-              maxLength={6}
-              autoFocus
-              placeholder="000000"
-              className={`${inputClass} text-center text-lg tracking-[0.5em]`}
-            />
-          </label>
-          {verifyState?.error && (
-            <p className="rounded-df border border-df-red/50 bg-df-red/10 px-4 py-3 text-sm text-red-300">
-              {verifyState.error}
-            </p>
-          )}
-          <button
-            type="submit"
-            disabled={verifyPending}
-            className="mt-1 rounded-df bg-df-red px-4 py-3 font-semibold text-white hover:bg-df-red-hover disabled:opacity-60"
-          >
-            {verifyPending ? "Confirmando…" : "Confirmar código"}
+            {regPending ? "Enviando código…" : "Continuar"}
           </button>
         </form>
       ) : (
