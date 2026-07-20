@@ -355,8 +355,8 @@ export default function Home() {
       <section className="grid border-t border-df-line lg:grid-cols-2">
         <div className="relative min-h-[320px] h-full">
           <Image
-            src="/img/produto-hero.webp"
-            alt="Conector do equipamento DataFlex by Tael"
+            src="/img/produto-topo.png"
+            alt="Equipamento DataFlex by Tael visto de cima"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"
