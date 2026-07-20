@@ -17,7 +17,7 @@ services:
       retries: 10
 
   rest:
-    image: postgrest/postgrest:v12.2.3
+    image: postgrest/postgrest:v14.15
     restart: unless-stopped
     depends_on:
       db:
@@ -61,7 +61,7 @@ services:
       - "3001:3000"
 
   meta:
-    image: supabase/postgres-meta:latest
+    image: supabase/postgres-meta:v0.96.6
     restart: unless-stopped
     depends_on:
       db:
