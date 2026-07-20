@@ -9,6 +9,8 @@ import {
   createAccessToken,
   verifyAccessToken,
 } from "@/lib/access-cookie";
+import { createCodeToken, generateCode, verifyCodeToken } from "@/lib/login-code";
+import { sendEmail } from "@/lib/brevo";
 
 export type GateResult = { error: string } | undefined;
 
@@ -65,13 +67,21 @@ export async function registerLead(
   return grantAccess(Number(data), voltar);
 }
 
-/** "Já tenho cadastro": localiza pelo email e libera de novo. */
-export async function loginLead(
-  _prev: GateResult,
+export type CodeResult =
+  | { error: string; codeToken?: undefined }
+  | { error?: undefined; codeToken: string; email: string }
+  | undefined;
+
+/**
+ * "Já tenho cadastro", etapa 1: localiza o lead pelo email e envia um
+ * código de 6 dígitos por email (Brevo). O código volta assinado num
+ * campo oculto — nada fica salvo no banco.
+ */
+export async function requestLoginCode(
+  _prev: CodeResult,
   formData: FormData
-): Promise<GateResult> {
+): Promise<CodeResult> {
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
-  const voltar = String(formData.get("voltar") ?? "") || "/treinamentos";
 
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
     return { error: "Informe um email válido." };
@@ -93,7 +103,37 @@ export async function loginLead(
     };
   }
 
-  return grantAccess(Number(data), voltar);
+  const code = generateCode();
+  const codeToken = await createCodeToken(Number(data), code);
+  if (!codeToken) {
+    return {
+      error: "Login indisponível: ACCESS_TOKEN_SECRET não configurado.",
+    };
+  }
+
+  const { error: mailError } = await sendEmail(
+    email,
+    "Seu código de acesso DataFlex",
+    `<p>Seu código de acesso é:</p><p style="font-size:28px;font-weight:bold;letter-spacing:4px">${code}</p><p>Válido por 10 minutos.</p>`
+  );
+  if (mailError) return { error: mailError };
+
+  return { codeToken, email };
+}
+
+/** "Já tenho cadastro", etapa 2: confere o código digitado e libera o acesso. */
+export async function verifyLoginCode(
+  _prev: GateResult,
+  formData: FormData
+): Promise<GateResult> {
+  const code = String(formData.get("code") ?? "");
+  const codeToken = String(formData.get("codeToken") ?? "");
+  const voltar = String(formData.get("voltar") ?? "") || "/treinamentos";
+
+  const leadId = await verifyCodeToken(codeToken, code);
+  if (!leadId) return { error: "Código inválido ou expirado." };
+
+  return grantAccess(leadId, voltar);
 }
 
 /** Sai da conta neste navegador. */

@@ -1,7 +1,13 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import { registerLead, loginLead, type GateResult } from "@/lib/gate-actions";
+import {
+  registerLead,
+  requestLoginCode,
+  verifyLoginCode,
+  type GateResult,
+  type CodeResult,
+} from "@/lib/gate-actions";
 
 const inputClass =
   "rounded-df border border-df-line bg-df-panel px-4 py-3 text-base outline-none focus:border-df-red";
@@ -12,10 +18,14 @@ export function GateForm({ voltar }: { voltar: string }) {
     GateResult,
     FormData
   >(registerLead, undefined);
-  const [logState, logAction, logPending] = useActionState<
+  const [codeState, codeAction, codePending] = useActionState<
+    CodeResult,
+    FormData
+  >(requestLoginCode, undefined);
+  const [verifyState, verifyAction, verifyPending] = useActionState<
     GateResult,
     FormData
-  >(loginLead, undefined);
+  >(verifyLoginCode, undefined);
 
   const tabClass = (active: boolean) =>
     `flex-1 rounded-df px-4 py-2 text-sm font-semibold transition ${
@@ -95,9 +105,41 @@ export function GateForm({ voltar }: { voltar: string }) {
             {regPending ? "Liberando acesso…" : "Liberar meu acesso"}
           </button>
         </form>
-      ) : (
-        <form action={logAction} className="mt-6 flex flex-col gap-4">
+      ) : codeState?.codeToken ? (
+        <form action={verifyAction} className="mt-6 flex flex-col gap-4">
           <input type="hidden" name="voltar" value={voltar} />
+          <input type="hidden" name="codeToken" value={codeState.codeToken} />
+          <p className="text-sm text-df-muted">
+            Enviamos um código de 6 dígitos para{" "}
+            <span className="text-white">{codeState.email}</span>.
+          </p>
+          <label className="flex flex-col gap-1 text-sm">
+            Código de acesso
+            <input
+              name="code"
+              required
+              inputMode="numeric"
+              maxLength={6}
+              autoFocus
+              placeholder="000000"
+              className={`${inputClass} text-center text-lg tracking-[0.5em]`}
+            />
+          </label>
+          {verifyState?.error && (
+            <p className="rounded-df border border-df-red/50 bg-df-red/10 px-4 py-3 text-sm text-red-300">
+              {verifyState.error}
+            </p>
+          )}
+          <button
+            type="submit"
+            disabled={verifyPending}
+            className="mt-1 rounded-df bg-df-red px-4 py-3 font-semibold text-white hover:bg-df-red-hover disabled:opacity-60"
+          >
+            {verifyPending ? "Confirmando…" : "Confirmar código"}
+          </button>
+        </form>
+      ) : (
+        <form action={codeAction} className="mt-6 flex flex-col gap-4">
           <label className="flex flex-col gap-1 text-sm">
             Email do cadastro
             <input
@@ -108,17 +150,17 @@ export function GateForm({ voltar }: { voltar: string }) {
               className={inputClass}
             />
           </label>
-          {logState?.error && (
+          {codeState?.error && (
             <p className="rounded-df border border-df-red/50 bg-df-red/10 px-4 py-3 text-sm text-red-300">
-              {logState.error}
+              {codeState.error}
             </p>
           )}
           <button
             type="submit"
-            disabled={logPending}
+            disabled={codePending}
             className="mt-1 rounded-df bg-df-red px-4 py-3 font-semibold text-white hover:bg-df-red-hover disabled:opacity-60"
           >
-            {logPending ? "Entrando…" : "Entrar"}
+            {codePending ? "Enviando código…" : "Enviar código de acesso"}
           </button>
         </form>
       )}
