@@ -52,9 +52,14 @@ services:
       - rest
     environment:
       STUDIO_PG_META_URL: http://meta:8080
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DEFAULT_ORGANIZATION_NAME: DataFlex
+      DEFAULT_PROJECT_NAME: DataFlex
       SUPABASE_URL: http://kong:8000
+      SUPABASE_PUBLIC_URL: http://49.12.74.23:8001
       SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
       SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}
+      AUTH_JWT_SECRET: ${JWT_SECRET}
     ports:
       - "3001:3000"
 
