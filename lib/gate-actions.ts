@@ -9,8 +9,6 @@ import {
   createAccessToken,
   verifyAccessToken,
 } from "@/lib/access-cookie";
-import { createCodeToken, generateCode, verifyCodeToken } from "@/lib/login-code";
-import { sendEmail } from "@/lib/brevo";
 
 export type GateResult = { error: string } | undefined;
 
@@ -29,46 +27,16 @@ async function grantAccess(leadId: number, voltar: string): Promise<never> {
   redirect(voltar.startsWith("/") ? voltar : "/treinamentos");
 }
 
-export type CodeResult =
-  | { error: string; codeToken?: undefined }
-  | { error?: undefined; codeToken: string; email: string }
-  | undefined;
-
-/** Gera o código, assina o token e envia por email. Comum às duas telas. */
-async function sendAccessCode(
-  leadId: number,
-  email: string
-): Promise<CodeResult> {
-  const code = generateCode();
-  const codeToken = await createCodeToken(leadId, code);
-  if (!codeToken) {
-    return {
-      error: "Login indisponível: ACCESS_TOKEN_SECRET não configurado.",
-    };
-  }
-
-  const { error: mailError } = await sendEmail(
-    email,
-    "Seu código de acesso DataFlex",
-    `<p>Seu código de acesso é:</p><p style="font-size:28px;font-weight:bold;letter-spacing:4px">${code}</p><p>Válido por 10 minutos.</p>`
-  );
-  if (mailError) return { error: mailError };
-
-  return { codeToken, email };
-}
-
-/**
- * Novo cadastro, etapa 1: salva o lead e envia o código de confirmação
- * por email. O acesso só é liberado depois que o código é confirmado.
- */
+/** Novo cadastro: salva o lead e libera o acesso na hora. */
 export async function registerLead(
-  _prev: CodeResult,
+  _prev: GateResult,
   formData: FormData
-): Promise<CodeResult> {
+): Promise<GateResult> {
   const name = String(formData.get("name") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const accepted = formData.get("privacy") === "on";
+  const voltar = String(formData.get("voltar") ?? "") || "/treinamentos";
 
   if (name.length < 2) return { error: "Informe seu nome completo." };
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
@@ -94,7 +62,7 @@ export async function registerLead(
     return { error: "Não foi possível concluir o cadastro. Tente novamente." };
   }
 
-  return sendAccessCode(Number(data), email);
+  return grantAccess(Number(data), voltar);
 }
 
 /** "Já tenho cadastro": localiza pelo email e libera o acesso na hora. */
@@ -126,21 +94,6 @@ export async function loginLead(
   }
 
   return grantAccess(Number(data), voltar);
-}
-
-/** Etapa 2 do cadastro novo: confere o código digitado e libera o acesso. */
-export async function verifyLoginCode(
-  _prev: GateResult,
-  formData: FormData
-): Promise<GateResult> {
-  const code = String(formData.get("code") ?? "");
-  const codeToken = String(formData.get("codeToken") ?? "");
-  const voltar = String(formData.get("voltar") ?? "") || "/treinamentos";
-
-  const leadId = await verifyCodeToken(codeToken, code);
-  if (!leadId) return { error: "Código inválido ou expirado." };
-
-  return grantAccess(leadId, voltar);
 }
 
 /** Sai da conta neste navegador. */
