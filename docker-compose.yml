@@ -39,9 +39,11 @@ services:
       SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}
     volumes:
       - ./supabase/kong.yml:/home/kong/kong.template.yml:ro
+    # A imagem do Kong nao tem envsubst; o eval/echo faz a mesma
+    # substituicao de variaveis (mesmo truque do compose oficial do Supabase).
     entrypoint: >
-      sh -c "envsubst < /home/kong/kong.template.yml > /home/kong/kong.yml &&
-             /docker-entrypoint.sh kong docker-start"
+      sh -c 'eval "echo \"$$(cat /home/kong/kong.template.yml)\"" > /home/kong/kong.yml &&
+             /docker-entrypoint.sh kong docker-start'
     ports:
       - "8001:8000"
 
