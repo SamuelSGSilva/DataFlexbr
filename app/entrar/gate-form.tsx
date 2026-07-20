@@ -3,7 +3,7 @@
 import { useActionState, useEffect, useState } from "react";
 import {
   registerLead,
-  requestLoginCode,
+  loginLead,
   verifyLoginCode,
   type GateResult,
   type CodeResult,
@@ -23,10 +23,10 @@ export function GateForm({ voltar }: { voltar: string }) {
     CodeResult,
     FormData
   >(registerLead, undefined);
-  const [codeState, codeAction, codePending] = useActionState<
-    CodeResult,
+  const [loginState, loginAction, loginPending] = useActionState<
+    GateResult,
     FormData
-  >(requestLoginCode, undefined);
+  >(loginLead, undefined);
   const [verifyState, verifyAction, verifyPending] = useActionState<
     GateResult,
     FormData
@@ -35,9 +35,6 @@ export function GateForm({ voltar }: { voltar: string }) {
   useEffect(() => {
     if (regState?.codeToken) setPendingCode(regState);
   }, [regState]);
-  useEffect(() => {
-    if (codeState?.codeToken) setPendingCode(codeState);
-  }, [codeState]);
 
   const tabClass = (active: boolean) =>
     `flex-1 rounded-df px-4 py-2 text-sm font-semibold transition ${
@@ -162,7 +159,8 @@ export function GateForm({ voltar }: { voltar: string }) {
           </button>
         </form>
       ) : (
-        <form action={codeAction} className="mt-6 flex flex-col gap-4">
+        <form action={loginAction} className="mt-6 flex flex-col gap-4">
+          <input type="hidden" name="voltar" value={voltar} />
           <label className="flex flex-col gap-1 text-sm">
             Email do cadastro
             <input
@@ -173,17 +171,17 @@ export function GateForm({ voltar }: { voltar: string }) {
               className={inputClass}
             />
           </label>
-          {codeState?.error && (
+          {loginState?.error && (
             <p className="rounded-df border border-df-red/50 bg-df-red/10 px-4 py-3 text-sm text-red-300">
-              {codeState.error}
+              {loginState.error}
             </p>
           )}
           <button
             type="submit"
-            disabled={codePending}
+            disabled={loginPending}
             className="mt-1 rounded-df bg-df-red px-4 py-3 font-semibold text-white hover:bg-df-red-hover disabled:opacity-60"
           >
-            {codePending ? "Enviando código…" : "Enviar código de acesso"}
+            {loginPending ? "Entrando…" : "Entrar"}
           </button>
         </form>
       )}

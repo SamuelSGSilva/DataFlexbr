@@ -97,16 +97,13 @@ export async function registerLead(
   return sendAccessCode(Number(data), email);
 }
 
-/**
- * "Já tenho cadastro", etapa 1: localiza o lead pelo email e envia um
- * código de 6 dígitos por email (Brevo). O código volta assinado num
- * campo oculto — nada fica salvo no banco.
- */
-export async function requestLoginCode(
-  _prev: CodeResult,
+/** "Já tenho cadastro": localiza pelo email e libera o acesso na hora. */
+export async function loginLead(
+  _prev: GateResult,
   formData: FormData
-): Promise<CodeResult> {
+): Promise<GateResult> {
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
+  const voltar = String(formData.get("voltar") ?? "") || "/treinamentos";
 
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
     return { error: "Informe um email válido." };
@@ -128,10 +125,10 @@ export async function requestLoginCode(
     };
   }
 
-  return sendAccessCode(Number(data), email);
+  return grantAccess(Number(data), voltar);
 }
 
-/** Etapa 2 (comum às duas telas): confere o código digitado e libera o acesso. */
+/** Etapa 2 do cadastro novo: confere o código digitado e libera o acesso. */
 export async function verifyLoginCode(
   _prev: GateResult,
   formData: FormData
