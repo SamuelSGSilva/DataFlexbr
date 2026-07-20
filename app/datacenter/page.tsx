@@ -3,8 +3,10 @@ import {
   DATACENTER_COOKIE,
   verifyDataCenterToken,
 } from "@/lib/datacenter-auth";
-import { logoutDataCenter } from "./actions";
+import { getDataCenterPosts } from "@/lib/datacenter-posts";
+import { logoutDataCenter, removeDataCenterPost } from "./actions";
 import { DataCenterLoginForm } from "./login-form";
+import { PostForm } from "./post-form";
 
 export const metadata = {
   title: "DataCenter — DataFlex",
@@ -34,6 +36,8 @@ export default async function DataCenterPage() {
     );
   }
 
+  const posts = await getDataCenterPosts();
+
   return (
     <main className="mx-auto w-full max-w-5xl px-6 py-16">
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -52,9 +56,56 @@ export default async function DataCenterPage() {
         </form>
       </div>
 
-      <div className="mt-10 rounded-df border border-df-line bg-df-panel px-6 py-10 text-center text-df-muted">
-        Em construção. Em breve esta área permitirá adicionar conteúdo ao
-        DataCenter.
+      <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
+        <PostForm />
+
+        <div className="flex flex-col gap-4">
+          {posts.length === 0 && (
+            <p className="rounded-df border border-df-line bg-df-panel px-6 py-10 text-center text-df-muted">
+              Nenhum item publicado ainda. Use o formulário ao lado para
+              adicionar o primeiro.
+            </p>
+          )}
+          {posts.map((post) => (
+            <article
+              key={post.id}
+              className="overflow-hidden rounded-df border border-df-line bg-df-panel"
+            >
+              {post.imageUrl && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={post.imageUrl}
+                  alt=""
+                  className="h-48 w-full object-cover"
+                />
+              )}
+              <div className="p-5">
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-heading text-lg uppercase tracking-tight">
+                    {post.title}
+                  </h3>
+                  <form action={removeDataCenterPost.bind(null, post.id)}>
+                    <button
+                      type="submit"
+                      aria-label="Excluir item"
+                      className="shrink-0 rounded-df border border-df-line px-3 py-1.5 text-xs text-df-muted transition hover:border-df-red hover:text-df-red"
+                    >
+                      Excluir
+                    </button>
+                  </form>
+                </div>
+                {post.body && (
+                  <p className="mt-2 whitespace-pre-line text-sm text-df-muted">
+                    {post.body}
+                  </p>
+                )}
+                <p className="mt-3 text-xs text-df-muted/60">
+                  {new Date(post.createdAt).toLocaleString("pt-BR")}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </main>
   );
