@@ -31,19 +31,12 @@ services:
     restart: unless-stopped
     depends_on:
       - rest
+    # Config declarativa inline (sem arquivo montado): o proprio compose
+    # interpola as chaves ${...} antes de entregar ao container.
     environment:
       KONG_DATABASE: "off"
-      KONG_DECLARATIVE_CONFIG: /home/kong/kong.yml
       KONG_PROXY_LISTEN: 0.0.0.0:8000
-      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
-      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}
-    volumes:
-      - ./supabase/kong.yml:/home/kong/kong.template.yml:ro
-    # A imagem do Kong nao tem envsubst; o eval/echo faz a mesma
-    # substituicao de variaveis (mesmo truque do compose oficial do Supabase).
-    entrypoint: >
-      sh -c 'eval "echo \"$$(cat /home/kong/kong.template.yml)\"" > /home/kong/kong.yml &&
-             /docker-entrypoint.sh kong docker-start'
+      KONG_DECLARATIVE_CONFIG_STRING: '{"_format_version":"2.1","services":[{"name":"rest-v1","url":"http://rest:3000/","routes":[{"name":"rest-v1-all","strip_path":true,"paths":["/rest/v1/"]}],"plugins":[{"name":"cors"},{"name":"key-auth","config":{"key_names":["apikey"],"hide_credentials":true}}]}],"consumers":[{"username":"anon","keyauth_credentials":[{"key":"${SUPABASE_ANON_KEY}"}]},{"username":"service_role","keyauth_credentials":[{"key":"${SUPABASE_SERVICE_KEY}"}]}]}'
     ports:
       - "8001:8000"
 
