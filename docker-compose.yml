@@ -78,6 +78,7 @@ services:
         condition: service_healthy
     environment:
       PG_META_DB_HOST: db
+      PG_META_DB_USER: postgres
       PG_META_DB_PASSWORD: ${POSTGRES_PASSWORD}
 
   web:
