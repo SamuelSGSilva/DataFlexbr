@@ -17,10 +17,6 @@ const GALLERY_IMAGES = [
     alt: "Equipamento DataFlex — vista de conectores",
   },
   {
-    src: "/img/produto-hero.webp",
-    alt: "Conector do equipamento DataFlex",
-  },
-  {
     src: "/img/produto-vertical.webp",
     alt: "Equipamento DataFlex — vista vertical",
   },
