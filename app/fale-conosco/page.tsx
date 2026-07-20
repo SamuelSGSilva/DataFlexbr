@@ -1,5 +1,4 @@
 import { FEATURE_ICONS } from "@/components/feature-icons";
-import { ContactForm } from "./contact-form";
 
 export const metadata = {
   title: "Fale conosco — DataFlex",
@@ -42,48 +41,32 @@ export default function FaleConoscoPage() {
         com a gente por qualquer um dos canais abaixo.
       </p>
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1.3fr]">
-        <div className="flex flex-col gap-4">
-          {CONTACT_CARDS.map((card) => (
-            <div
-              key={card.title}
-              className="rounded-df border border-df-line bg-df-panel p-6 transition hover:border-white/20"
-            >
-              <span className="flex h-10 w-10 items-center justify-center rounded-df bg-df-red/15 text-df-red">
-                {FEATURE_ICONS[card.icon]}
-              </span>
-              <h2 className="mt-4 text-xs font-semibold uppercase tracking-wide text-df-muted">
-                {card.title}
-              </h2>
-              {card.href ? (
-                <a
-                  href={card.href}
-                  target={card.external ? "_blank" : undefined}
-                  rel={card.external ? "noopener noreferrer" : undefined}
-                  className="mt-1 block font-medium text-white transition hover:text-df-red"
-                >
-                  {card.value}
-                </a>
-              ) : (
-                <p className="mt-1 font-medium text-white">{card.value}</p>
-              )}
-            </div>
-          ))}
-        </div>
-
-        <div className="rounded-df border border-df-line bg-df-panel p-6 md:p-8">
-          <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
-          <h2 className="mt-6 font-heading text-lg uppercase">
-            Mande uma mensagem
-          </h2>
-          <p className="mt-1 text-sm text-df-muted">
-            Preencha os campos abaixo — sua mensagem abre pronta no WhatsApp,
-            você só confirma o envio.
-          </p>
-          <div className="mt-6">
-            <ContactForm />
+      <div className="mt-10 grid gap-4 sm:grid-cols-3">
+        {CONTACT_CARDS.map((card) => (
+          <div
+            key={card.title}
+            className="rounded-df border border-df-line bg-df-panel p-6 transition hover:border-white/20"
+          >
+            <span className="flex h-10 w-10 items-center justify-center rounded-df bg-df-red/15 text-df-red">
+              {FEATURE_ICONS[card.icon]}
+            </span>
+            <h2 className="mt-4 text-xs font-semibold uppercase tracking-wide text-df-muted">
+              {card.title}
+            </h2>
+            {card.href ? (
+              <a
+                href={card.href}
+                target={card.external ? "_blank" : undefined}
+                rel={card.external ? "noopener noreferrer" : undefined}
+                className="mt-1 block font-medium text-white transition hover:text-df-red"
+              >
+                {card.value}
+              </a>
+            ) : (
+              <p className="mt-1 font-medium text-white">{card.value}</p>
+            )}
           </div>
-        </div>
+        ))}
       </div>
     </main>
   );
