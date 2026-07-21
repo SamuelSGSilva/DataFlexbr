@@ -40,7 +40,7 @@ export async function loginDataCenter(
     maxAge: DATACENTER_MAX_AGE,
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: process.env.COOKIE_SECURE === "true",
     path: "/",
   });
 

@@ -20,7 +20,11 @@ async function grantAccess(leadId: number, voltar: string): Promise<never> {
       maxAge: ACCESS_MAX_AGE,
       httpOnly: true,
       sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      // Só marca "secure" (exige HTTPS) quando explicitamente ligado.
+      // Em HTTP puro (acesso por IP:porta), secure:true faz o navegador
+      // descartar o cookie e o login "não gruda". Ligue COOKIE_SECURE=true
+      // quando o site estiver atrás de HTTPS.
+      secure: process.env.COOKIE_SECURE === "true",
       path: "/",
     });
   }
