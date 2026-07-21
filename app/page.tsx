@@ -834,7 +834,7 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
               href="#precos"
-              className="rounded-df bg-df-red px-6 py-3 text-sm font-medium text-white transition hover:bg-df-red-hover"
+              className="rounded-df bg-df-red px-8 py-4 text-base font-medium text-white transition hover:bg-df-red-hover"
             >
               Comprar agora
             </Link>
@@ -842,7 +842,7 @@ export default function Home() {
               href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-df border border-white/30 px-6 py-3 text-sm font-medium text-white transition hover:border-white/60"
+              className="rounded-df border border-white/30 px-8 py-4 text-base font-medium text-white transition hover:border-white/60"
             >
               Falar no WhatsApp
             </Link>
