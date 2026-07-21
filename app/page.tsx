@@ -217,7 +217,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="grid lg:grid-cols-2">
+      <section className="grid lg:grid-cols-[1.3fr_1fr]">
         <div className="flex flex-col justify-center bg-df-panel px-6 py-20 md:px-10 md:py-28 lg:py-32">
           <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
           <h1 className="mt-6 font-heading text-4xl uppercase leading-tight md:text-5xl">
