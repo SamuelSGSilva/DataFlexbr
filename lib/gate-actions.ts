@@ -9,6 +9,8 @@ import {
   createAccessToken,
   verifyAccessToken,
 } from "@/lib/access-cookie";
+import { createCodeToken, generateCode, verifyCodeToken } from "@/lib/login-code";
+import { sendWhatsAppMessage } from "@/lib/evolution";
 
 export type GateResult = { error: string } | undefined;
 
@@ -31,16 +33,24 @@ async function grantAccess(leadId: number, voltar: string): Promise<never> {
   redirect(voltar.startsWith("/") ? voltar : "/treinamentos");
 }
 
-/** Novo cadastro: salva o lead e libera o acesso na hora. */
+export type CodeResult =
+  | { error: string; codeToken?: undefined }
+  | { error?: undefined; codeToken: string; phone: string }
+  | undefined;
+
+/**
+ * Novo cadastro, etapa 1: salva o lead e envia o código de confirmação
+ * pelo WhatsApp (número informado no cadastro). O acesso só é liberado
+ * depois que o código é confirmado.
+ */
 export async function registerLead(
-  _prev: GateResult,
+  _prev: CodeResult,
   formData: FormData
-): Promise<GateResult> {
+): Promise<CodeResult> {
   const name = String(formData.get("name") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const accepted = formData.get("privacy") === "on";
-  const voltar = String(formData.get("voltar") ?? "") || "/treinamentos";
 
   if (name.length < 2) return { error: "Informe seu nome completo." };
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))
@@ -66,7 +76,36 @@ export async function registerLead(
     return { error: "Não foi possível concluir o cadastro. Tente novamente." };
   }
 
-  return grantAccess(Number(data), voltar);
+  const code = generateCode();
+  const codeToken = await createCodeToken(Number(data), code);
+  if (!codeToken) {
+    return {
+      error: "Login indisponível: ACCESS_TOKEN_SECRET não configurado.",
+    };
+  }
+
+  const { error: waError } = await sendWhatsAppMessage(
+    phone,
+    `Seu código de acesso DataFlex é: *${code}*\n\nVálido por 10 minutos.`
+  );
+  if (waError) return { error: waError };
+
+  return { codeToken, phone };
+}
+
+/** Etapa 2 do cadastro novo: confere o código digitado e libera o acesso. */
+export async function verifyRegistrationCode(
+  _prev: GateResult,
+  formData: FormData
+): Promise<GateResult> {
+  const code = String(formData.get("code") ?? "");
+  const codeToken = String(formData.get("codeToken") ?? "");
+  const voltar = String(formData.get("voltar") ?? "") || "/treinamentos";
+
+  const leadId = await verifyCodeToken(codeToken, code);
+  if (!leadId) return { error: "Código inválido ou expirado." };
+
+  return grantAccess(leadId, voltar);
 }
 
 /** "Já tenho cadastro": localiza pelo email e libera o acesso na hora. */

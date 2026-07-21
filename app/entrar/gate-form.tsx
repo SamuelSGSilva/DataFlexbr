@@ -1,7 +1,13 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import { registerLead, loginLead, type GateResult } from "@/lib/gate-actions";
+import {
+  registerLead,
+  verifyRegistrationCode,
+  loginLead,
+  type GateResult,
+  type CodeResult,
+} from "@/lib/gate-actions";
 
 const inputClass =
   "rounded-df border border-df-line bg-df-panel px-4 py-3 text-base outline-none focus:border-df-red";
@@ -9,9 +15,13 @@ const inputClass =
 export function GateForm({ voltar }: { voltar: string }) {
   const [mode, setMode] = useState<"cadastro" | "login">("cadastro");
   const [regState, regAction, regPending] = useActionState<
-    GateResult,
+    CodeResult,
     FormData
   >(registerLead, undefined);
+  const [verifyState, verifyAction, verifyPending] = useActionState<
+    GateResult,
+    FormData
+  >(verifyRegistrationCode, undefined);
   const [logState, logAction, logPending] = useActionState<
     GateResult,
     FormData
@@ -23,6 +33,44 @@ export function GateForm({ voltar }: { voltar: string }) {
         ? "bg-df-red text-white"
         : "border border-df-line text-df-muted hover:border-white/40"
     }`;
+
+  if (regState?.codeToken) {
+    return (
+      <form action={verifyAction} className="mt-8 flex flex-col gap-4">
+        <input type="hidden" name="voltar" value={voltar} />
+        <input type="hidden" name="codeToken" value={regState.codeToken} />
+        <p className="text-sm text-df-muted">
+          Enviamos um código de 6 dígitos pelo WhatsApp para{" "}
+          <span className="text-white">{regState.phone}</span>. Confirme
+          abaixo para liberar seu acesso.
+        </p>
+        <label className="flex flex-col gap-1 text-sm">
+          Código de acesso
+          <input
+            name="code"
+            required
+            inputMode="numeric"
+            maxLength={6}
+            autoFocus
+            placeholder="000000"
+            className={`${inputClass} text-center text-lg tracking-[0.5em]`}
+          />
+        </label>
+        {verifyState?.error && (
+          <p className="rounded-df border border-df-red/50 bg-df-red/10 px-4 py-3 text-sm text-red-300">
+            {verifyState.error}
+          </p>
+        )}
+        <button
+          type="submit"
+          disabled={verifyPending}
+          className="mt-1 rounded-df bg-df-red px-4 py-3 font-semibold text-white hover:bg-df-red-hover disabled:opacity-60"
+        >
+          {verifyPending ? "Confirmando…" : "Confirmar código"}
+        </button>
+      </form>
+    );
+  }
 
   return (
     <div className="mt-8">
@@ -49,7 +97,6 @@ export function GateForm({ voltar }: { voltar: string }) {
 
       {mode === "cadastro" ? (
         <form action={regAction} className="mt-6 flex flex-col gap-4">
-          <input type="hidden" name="voltar" value={voltar} />
           <label className="flex flex-col gap-1 text-sm">
             Nome completo
             <input name="name" required autoComplete="name" className={inputClass} />
@@ -92,7 +139,7 @@ export function GateForm({ voltar }: { voltar: string }) {
             disabled={regPending}
             className="mt-1 rounded-df bg-df-red px-4 py-3 font-semibold text-white hover:bg-df-red-hover disabled:opacity-60"
           >
-            {regPending ? "Liberando acesso…" : "Liberar meu acesso"}
+            {regPending ? "Enviando código…" : "Continuar"}
           </button>
         </form>
       ) : (
