@@ -50,13 +50,21 @@ export default async function TreinamentosPage() {
           {modules
             .filter((mod) => mod.lessons.length > 0)
             .map((mod, i) => (
-              <section
-                key={mod.slug}
-                id={mod.slug}
-                className={`scroll-mt-20 ${
-                  i > 0 ? "border-t border-df-line pt-14" : ""
-                }`}
-              >
+              <section key={mod.slug} id={mod.slug} className="scroll-mt-20">
+                {i > 0 && (
+                  <div
+                    aria-hidden="true"
+                    className="mb-14 flex items-center gap-4"
+                  >
+                    <span className="h-px flex-1 bg-gradient-to-r from-transparent to-df-line" />
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-1 w-1 rounded-full bg-df-red/40" />
+                      <span className="h-1.5 w-1.5 rotate-45 bg-df-red" />
+                      <span className="h-1 w-1 rounded-full bg-df-red/40" />
+                    </span>
+                    <span className="h-px flex-1 bg-gradient-to-l from-transparent to-df-line" />
+                  </div>
+                )}
                 <div className="mb-5 flex items-center gap-4 border-b border-df-line pb-5">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-df-red/15 font-heading text-lg text-df-red ring-1 ring-df-red/30">
                     {String(i + 1).padStart(2, "0")}
