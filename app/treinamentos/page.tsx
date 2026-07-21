@@ -17,7 +17,7 @@ export default async function TreinamentosPage() {
 
   const logoutButton = leadId && (
     <form action={signOutGate}>
-      <button className="rounded-df border border-white/30 bg-df-dark/60 px-4 py-2 text-sm text-white hover:border-white/60">
+      <button className="rounded-df border border-white/20 bg-df-dark/70 px-4 py-2 text-sm text-white backdrop-blur transition hover:border-white/50 hover:bg-df-dark/90">
         Sair
       </button>
     </form>

@@ -24,9 +24,14 @@ export function TrainingHero({
           : undefined,
       }}
     >
+      {onLogout && (
+        <div className="absolute right-6 top-4 z-10 md:right-10 md:top-6">
+          {onLogout}
+        </div>
+      )}
       <div className="bg-gradient-to-r from-df-dark via-df-dark/85 to-df-dark/30">
         <div className="bg-gradient-to-t from-df-dark via-df-dark/10 to-transparent px-6 py-20 md:px-10 md:py-28">
-          <div className="mx-auto flex w-full max-w-5xl items-start justify-between">
+          <div className="mx-auto w-full max-w-5xl">
             <div className="max-w-xl">
               <h1 className="font-heading text-4xl md:text-5xl">
                 Treinamentos DataFlex
@@ -55,8 +60,6 @@ export function TrainingHero({
                 Começar agora
               </a>
             </div>
-
-            {onLogout && <div className="shrink-0">{onLogout}</div>}
           </div>
         </div>
       </div>
