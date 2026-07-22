@@ -22,19 +22,9 @@ export default function FaleConoscoPage() {
         com a gente por qualquer um dos canais abaixo.
       </p>
 
-      {/* Vendedores */}
-      <div className="mt-16 border-t border-df-line pt-16">
-        <p className="text-xs font-medium uppercase tracking-wide text-df-red">
-          Conheça nossa equipe
-        </p>
-        <h2 className="mt-2 font-heading text-3xl uppercase tracking-tight md:text-4xl">
-          Fale direto com nossos consultores
-        </h2>
-        <p className="mt-3 max-w-2xl text-df-muted">
-          Clique no card do vendedor para conversar diretamente pelo WhatsApp.
-        </p>
-
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Card do vendedor centralizado */}
+      <div className="mt-16 flex justify-center">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-sm">
           <Link
             href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
