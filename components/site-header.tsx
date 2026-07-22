@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CartButton } from "@/components/cart-button";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { MobileNav } from "@/components/mobile-nav";
 
 const NAV_LINKS = [
@@ -39,7 +38,6 @@ export function SiteHeader() {
             ))}
           </nav>
           <CartButton />
-          <ThemeToggle />
           <MobileNav links={NAV_LINKS} />
         </div>
       </div>
