@@ -12,7 +12,7 @@ const LINKS = [
 export function SiteFooter() {
   return (
     <footer className="border-t border-df-line bg-df-panel">
-      <div className="mx-auto w-full max-w-4xl px-6 py-16 md:px-10">
+      <div className="mx-auto w-full max-w-6xl px-6 py-10 md:px-10">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <Image
@@ -73,7 +73,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-df-line pt-6 text-xs text-df-muted">
+        <div className="mt-8 border-t border-df-line pt-4 text-xs text-df-muted">
           © {new Date().getFullYear()} DataFlex by Tael. Todos os direitos
           reservados.
         </div>
