@@ -782,7 +782,12 @@ export default function Home() {
         <div className="relative mx-auto w-full max-w-6xl">
           {/* Header row */}
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-20">
-            {/* Left — sticky heading */}
+            {/* Left — accordion list */}
+            <div className="flex-1 min-w-0">
+              <FaqSection faqs={FAQS} />
+            </div>
+
+            {/* Right — sticky heading */}
             <div className="lg:w-80 lg:shrink-0 lg:sticky lg:top-24">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-df-red">
                 Perguntas frequentes
@@ -807,11 +812,6 @@ export default function Home() {
                   <p className="mt-0.5 text-[11px] uppercase tracking-wide text-df-muted">Transparência</p>
                 </div>
               </div>
-            </div>
-
-            {/* Right — accordion list */}
-            <div className="flex-1 min-w-0">
-              <FaqSection faqs={FAQS} />
             </div>
           </div>
         </div>
