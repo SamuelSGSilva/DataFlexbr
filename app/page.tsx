@@ -218,15 +218,15 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section className="grid min-h-[calc(100vh-64px)] lg:grid-cols-[1.3fr_1fr]">
-        <div className="flex flex-col justify-center bg-df-panel px-6 py-20 md:px-10 md:py-28 lg:py-32">
+        <div className="flex flex-col justify-center items-center bg-df-panel px-6 py-20 md:px-10 md:py-28 lg:py-32">
           <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
-          <h1 className="mt-6 font-heading text-4xl uppercase leading-tight md:text-5xl">
+          <h1 className="mt-6 font-heading text-4xl uppercase leading-tight md:text-5xl text-center">
             Tael DataFlex
           </h1>
-          <p className="mt-2 font-heading text-lg uppercase text-df-muted md:text-xl">
+          <p className="mt-2 font-heading text-lg uppercase text-df-muted md:text-xl text-center">
             Bem-vindo ao mundo Master do chiptuning.
           </p>
-          <p className="mt-6 max-w-md text-df-muted">
+          <p className="mt-6 max-w-md text-df-muted text-center">
             Slave é limitação. É Master. É original. É liberdade.
             <br />
             Você escolhe!
@@ -236,7 +236,7 @@ export default function Home() {
             A solução definitiva em reprogramação automotiva de alta
             performance.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
             <Link
               href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
