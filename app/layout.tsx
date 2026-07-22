@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Barlow, Barlow_Condensed } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
@@ -58,16 +59,23 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       className={`${barlow.variable} ${barlowCondensed.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-df-dark text-white">
-        <CartProvider>
-          <SiteHeader />
-          <div className="flex-1">{children}</div>
-          <SiteFooter />
-          <WhatsAppFloat />
-          <ScrollToTop />
-          <DevSignature />
-        </CartProvider>
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="dark"
+          enableSystem={false}
+        >
+          <CartProvider>
+            <SiteHeader />
+            <div className="flex-1">{children}</div>
+            <SiteFooter />
+            <WhatsAppFloat />
+            <ScrollToTop />
+            <DevSignature />
+          </CartProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

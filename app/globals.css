@@ -1,13 +1,24 @@
 @import "tailwindcss";
 
+/* ─── Tema Escuro (padrão) ─── */
 :root {
-  /* Cores extraídas do site atual (dataflexbr.com) */
   --df-dark: #18191c;
   --df-panel: #24262a;
   --df-line: #34363b;
   --df-red: #b20000;
   --df-red-hover: #8f0000;
   --df-text-muted: #a8a8a8;
+}
+
+/* ─── Tema Claro ─── */
+:root[data-theme="light"],
+html.light {
+  --df-dark: #f5f5f5;
+  --df-panel: #ffffff;
+  --df-line: #e0e0e0;
+  --df-red: #b20000;
+  --df-red-hover: #8f0000;
+  --df-text-muted: #666666;
 }
 
 @theme inline {
@@ -34,7 +45,20 @@ h3,
   font-weight: 700;
 }
 
-/* Barra de scroll fina e na cor da marca, para os carrosséis de aulas */
+/* Tema claro — ajustar textos que são fixos como "text-white" */
+html.light body,
+html.light .text-white {
+  color: #1a1a1a;
+}
+
+html.light h1,
+html.light h2,
+html.light h3,
+html.light .font-heading {
+  color: #1a1a1a;
+}
+
+/* Barra de scroll fina e na cor da marca */
 .df-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: var(--df-red) var(--df-panel);
@@ -58,7 +82,7 @@ h3,
   background: var(--df-red-hover);
 }
 
-/* Revelação ao rolar: o elemento sobe com um leve "bounce" (sobe e assenta) */
+/* Revelação ao rolar */
 .df-reveal {
   opacity: 0;
 }
