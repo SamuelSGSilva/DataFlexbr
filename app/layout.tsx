@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { DevSignature } from "@/components/dev-signature";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import { CartProvider } from "@/lib/cart-context";
 import "./globals.css";
 
@@ -64,6 +65,7 @@ export default function RootLayout({
           <div className="flex-1">{children}</div>
           <SiteFooter />
           <WhatsAppFloat />
+          <ScrollToTop />
           <DevSignature />
         </CartProvider>
       </body>
