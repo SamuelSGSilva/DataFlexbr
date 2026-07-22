@@ -35,7 +35,7 @@ export default function FaleConoscoPage() {
               src="/img/nicolas.webp"
               alt="Nicolas - Consultor DataFlex"
               fill
-              className="object-cover"
+              className="object-cover object-[top_35%]"
             />
           </div>
           <h3 className="mt-6 text-center font-heading text-xl uppercase text-white transition group-hover:text-df-red">
