@@ -7,6 +7,7 @@ import { WHATSAPP_NUMBER } from "@/lib/products";
 const NAV_LINKS = [
   { href: "/", label: "Início" },
   { href: "/quem-somos", label: "Quem somos" },
+  { href: "https://datacenter.dataflexbr.com", label: "DataCenter", external: true },
   { href: "/compatibilidade", label: "Tabela de aplicação" },
   { href: "/treinamentos", label: "Treinamentos" },
   { href: "/fale-conosco", label: "Fale conosco" },
@@ -28,15 +29,30 @@ export function SiteHeader() {
         </Link>
         <div className="flex items-center gap-4 md:gap-6">
           <nav className="hidden gap-6 text-xs font-medium uppercase tracking-wide text-df-muted md:flex">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="transition hover:text-white"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              if (link.external) {
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="transition hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
           <a
             href={`https://wa.me/${WHATSAPP_NUMBER}`}

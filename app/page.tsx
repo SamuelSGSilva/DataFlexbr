@@ -342,35 +342,42 @@ export default function Home() {
 
       {/* Kit incluído */}
       <section className="border-t border-df-line px-6 py-20 md:px-10">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2">
-          <Image
-            src="/img/maleta.webp"
-            alt="Maleta de transporte DataFlex"
-            width={1000}
-            height={1500}
-            className="h-auto w-full rounded-df border border-df-line lg:order-2"
-          />
-          <div className="lg:order-1">
+        <div className="mx-auto w-full max-w-6xl">
+          <div className="mb-12 text-center">
             <p className="text-xs font-medium uppercase tracking-wide text-df-red">
               O que está incluído
             </p>
-            <h2 className="mt-2 font-heading text-2xl uppercase md:text-3xl">
+            <h2 className="mt-2 font-heading text-3xl uppercase md:text-4xl lg:text-5xl">
               Pronto para trabalhar de imediato
             </h2>
-            <ul className="mt-6 flex flex-col gap-3">
+          </div>
+          <div className="grid gap-12 items-center lg:grid-cols-2">
+            <Image
+              src="/img/maleta.webp"
+              alt="Maleta de transporte DataFlex"
+              width={1000}
+              height={1500}
+              className="h-auto w-full rounded-df border border-df-line"
+            />
+            <div className="space-y-4">
               {INCLUDED.map((item) => (
-                <li key={item} className="flex gap-3 text-sm text-df-muted">
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="mt-0.5 h-4 w-4 shrink-0 text-df-red"
-                    fill="currentColor"
-                  >
-                    <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
-                  </svg>
-                  {item}
-                </li>
+                <div
+                  key={item}
+                  className="group flex gap-4 rounded-df border border-df-line bg-gradient-to-r from-df-dark to-df-panel p-4 transition hover:border-df-red/50 hover:shadow-lg hover:shadow-df-red/10"
+                >
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-df-red/20 text-df-red transition group-hover:bg-df-red/30">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-3.5 w-3.5"
+                      fill="currentColor"
+                    >
+                      <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                    </svg>
+                  </span>
+                  <span className="text-sm font-medium leading-relaxed text-white">{item}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -496,6 +503,9 @@ export default function Home() {
               <h3 className="mt-2 font-heading text-lg uppercase">
                 {master.name}
               </h3>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-df-red">
+                0 Slave
+              </p>
               <p className="mt-2 text-3xl font-semibold">
                 {formatPrice(master.price)}
               </p>
