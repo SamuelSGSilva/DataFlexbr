@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { CartButton } from "@/components/cart-button";
 import { MobileNav } from "@/components/mobile-nav";
-import { WHATSAPP_NUMBER } from "@/lib/products";
 
 const NAV_LINKS = [
   { href: "/", label: "Início" },
@@ -54,14 +53,6 @@ export function SiteHeader() {
               );
             })}
           </nav>
-          <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-df bg-df-red/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-df-red transition hover:bg-df-red hover:text-white lg:flex"
-          >
-            WhatsApp
-          </a>
           <CartButton />
           <MobileNav links={NAV_LINKS} />
         </div>

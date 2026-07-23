@@ -1,4 +1,6 @@
-import { ContactForm } from "./contact-form";
+import Image from "next/image";
+import Link from "next/link";
+import { WHATSAPP_NUMBER } from "@/lib/products";
 
 export const metadata = {
   title: "Fale conosco — DataFlex",
@@ -8,60 +10,42 @@ export const metadata = {
 
 export default function FaleConoscoPage() {
   return (
-    <main className="mx-auto w-full max-w-5xl px-6 py-16">
+    <main className="mx-auto w-full max-w-5xl px-6 py-24 flex flex-col items-center text-center">
       <p className="text-xs font-medium uppercase tracking-wide text-df-red">
         Fale conosco
       </p>
-      <h1 className="mt-2 font-heading text-3xl uppercase tracking-tight">
+      <h1 className="mt-2 font-heading text-3xl uppercase tracking-tight md:text-4xl">
         Nossa equipe está pronta para lhe atender
       </h1>
+      <p className="mt-3 max-w-2xl text-df-muted">
+        Dúvidas sobre compatibilidade, preços ou suporte técnico? Fale direto
+        com a gente pelo canal abaixo.
+      </p>
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1.3fr]">
-        <div className="flex flex-col gap-6">
-          <div className="rounded-df border border-df-line bg-df-panel p-6">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-df-muted">
-              Onde estamos
-            </h2>
-            <p className="mt-2">Foz do Iguaçu — Paraná, Brasil</p>
+      {/* Card do vendedor centralizado */}
+      <div className="mt-16 w-full max-w-sm">
+        <Link
+          href={`https://wa.me/${WHATSAPP_NUMBER}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex flex-col items-center rounded-df border border-df-line bg-df-panel p-8 transition hover:border-df-red hover:bg-df-red/5 shadow-xl"
+        >
+          <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-df-red/30 transition group-hover:border-df-red">
+            <Image
+              src="/img/nicolas.webp"
+              alt="Nicolas - Consultor DataFlex"
+              fill
+              className="object-cover object-[top_35%]"
+            />
           </div>
-
-          <div className="rounded-df border border-df-line bg-df-panel p-6">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-df-muted">
-              Email
-            </h2>
-            <a
-              href="mailto:taelauto@gmail.com"
-              className="mt-2 block text-df-red hover:underline"
-            >
-              taelauto@gmail.com
-            </a>
-          </div>
-
-          <div className="rounded-df border border-df-line bg-df-panel p-6">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-df-muted">
-              WhatsApp
-            </h2>
-            <a
-              href="https://wa.me/554599016090"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 block text-df-red hover:underline"
-            >
-              +55 (45) 9.901-6090
-            </a>
-          </div>
-        </div>
-
-        <div className="rounded-df border border-df-line bg-df-panel p-6 md:p-8">
-          <h2 className="font-heading text-lg uppercase">Mande uma mensagem</h2>
-          <p className="mt-1 text-sm text-df-muted">
-            Preencha os campos abaixo — sua mensagem abre pronta no WhatsApp,
-            você só confirma o envio.
+          <h3 className="mt-6 text-center font-heading text-xl uppercase text-white transition group-hover:text-df-red">
+            Nicolas
+          </h3>
+          <p className="mt-1 text-center text-sm text-df-muted">Consultor de Vendas</p>
+          <p className="mt-6 text-center text-xs font-bold uppercase tracking-widest text-df-red bg-df-red/10 px-4 py-2 rounded-full border border-df-red/20">
+            Clique para conversar
           </p>
-          <div className="mt-6">
-            <ContactForm />
-          </div>
-        </div>
+        </Link>
       </div>
     </main>
   );

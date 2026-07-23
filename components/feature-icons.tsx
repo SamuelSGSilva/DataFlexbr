@@ -83,6 +83,12 @@ export const FEATURE_ICONS = {
       <path d="M20 19a4 4 0 0 1-4 4h-2" />
     </svg>
   ),
+  mail: (
+    <svg {...common}>
+      <rect x="3" y="5" width="18" height="14" rx="1.5" />
+      <path d="m4 6.5 8 6.5 8-6.5" />
+    </svg>
+  ),
 } as const;
 
 export type FeatureIconName = keyof typeof FEATURE_ICONS;

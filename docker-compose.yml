@@ -1,0 +1,110 @@
+services:
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./supabase/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  rest:
+    image: postgrest/postgrest:v14.15
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PGRST_DB_URI: postgres://postgres:${POSTGRES_PASSWORD}@db:5432/postgres
+      PGRST_DB_SCHEMAS: public
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: ${JWT_SECRET}
+
+  kong:
+    image: kong:2.8.1
+    restart: unless-stopped
+    depends_on:
+      - rest
+    # Config declarativa inline (sem arquivo montado): o proprio compose
+    # interpola as chaves ${...} antes de entregar ao container.
+    environment:
+      KONG_DATABASE: "off"
+      KONG_PROXY_LISTEN: 0.0.0.0:8000
+      KONG_DECLARATIVE_CONFIG_STRING: '{"_format_version":"2.1","services":[{"name":"rest-v1","url":"http://rest:3000/","routes":[{"name":"rest-v1-all","strip_path":true,"paths":["/rest/v1/"]}],"plugins":[{"name":"cors"},{"name":"key-auth","config":{"key_names":["apikey"],"hide_credentials":true}}]}],"consumers":[{"username":"anon","keyauth_credentials":[{"key":"${SUPABASE_ANON_KEY}"}]},{"username":"service_role","keyauth_credentials":[{"key":"${SUPABASE_SERVICE_KEY}"}]}]}'
+    ports:
+      - "8001:8000"
+
+  studio:
+    image: supabase/studio:latest
+    restart: unless-stopped
+    depends_on:
+      - rest
+    environment:
+      STUDIO_PG_META_URL: http://meta:8080
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DEFAULT_ORGANIZATION_NAME: DataFlex
+      DEFAULT_PROJECT_NAME: DataFlex
+      SUPABASE_URL: http://kong:8000
+      SUPABASE_PUBLIC_URL: http://49.12.74.23:8001
+      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
+      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}
+      AUTH_JWT_SECRET: ${JWT_SECRET}
+    # O health check embutido da imagem testa 127.0.0.1, mas o app escuta
+    # no hostname do container -- substituimos por um que acerta o endereco.
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "node -e \"fetch('http://'+require('os').hostname()+':3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\"",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    ports:
+      - "3001:3000"
+
+  meta:
+    image: supabase/postgres-meta:v0.96.6
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PG_META_DB_HOST: db
+      PG_META_DB_USER: postgres
+      PG_META_DB_PASSWORD: ${POSTGRES_PASSWORD}
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_SUPABASE_URL: http://kong:8000
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
+    restart: unless-stopped
+    depends_on:
+      - kong
+    environment:
+      NEXT_PUBLIC_SUPABASE_URL: http://kong:8000
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
+      ACCESS_TOKEN_SECRET: ${ACCESS_TOKEN_SECRET}
+      DATACENTER_USER: ${DATACENTER_USER}
+      DATACENTER_PASSWORD: ${DATACENTER_PASSWORD}
+      EVOLUTION_API_URL: ${EVOLUTION_API_URL}
+      EVOLUTION_API_KEY: ${EVOLUTION_API_KEY}
+      EVOLUTION_INSTANCE: ${EVOLUTION_INSTANCE}
+      # Site em producao fica atras de HTTPS (Cloudflare) -- cookie de
+      # login marcado como secure.
+      COOKIE_SECURE: "true"
+    ports:
+      - "3002:3000"
+
+volumes:
+  db-data:

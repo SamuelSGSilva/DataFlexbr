@@ -33,7 +33,7 @@ function deburr(value: string): string {
 
 function CheckIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="3">
+    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="3">
       <path d="M20 6 9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -41,7 +41,7 @@ function CheckIcon() {
 
 function DashIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5">
       <path d="M5 12h14" strokeLinecap="round" />
     </svg>
   );
@@ -52,8 +52,8 @@ function ProtocolCell({ active }: { active: boolean }) {
     <span
       className={
         active
-          ? "inline-flex h-6 w-6 items-center justify-center rounded-full bg-green-950 text-green-400"
-          : "inline-flex h-6 w-6 items-center justify-center rounded-full text-df-muted/40"
+          ? "inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-400 ring-1 ring-emerald-500/30"
+          : "inline-flex h-6 w-6 items-center justify-center rounded-full text-df-muted/30"
       }
       title={active ? "Suportado" : "Não disponível"}
     >
@@ -125,6 +125,8 @@ export function VehicleSearch() {
     (currentPage - 1) * PER_PAGE,
     currentPage * PER_PAGE
   );
+  const rangeStart = filtered.length === 0 ? 0 : (currentPage - 1) * PER_PAGE + 1;
+  const rangeEnd = Math.min(currentPage * PER_PAGE, filtered.length);
 
   function toggleProtocol(key: "obd" | "bench" | "boot" | "crc") {
     setProtocols((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -140,8 +142,42 @@ export function VehicleSearch() {
 
   return (
     <div className="mt-8">
+      {/* Estatísticas rápidas */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="rounded-xl border border-df-line bg-df-panel px-4 py-3">
+          <p className="text-2xl font-extrabold tabular-nums text-white">
+            {vehicles ? vehicles.length.toLocaleString("pt-BR") : "—"}
+          </p>
+          <p className="mt-0.5 text-[11px] uppercase tracking-wide text-df-muted">
+            Veículos
+          </p>
+        </div>
+        <div className="rounded-xl border border-df-line bg-df-panel px-4 py-3">
+          <p className="text-2xl font-extrabold tabular-nums text-df-red">
+            {brands.length || "—"}
+          </p>
+          <p className="mt-0.5 text-[11px] uppercase tracking-wide text-df-muted">
+            Marcas
+          </p>
+        </div>
+        <div className="rounded-xl border border-df-line bg-df-panel px-4 py-3">
+          <p className="text-2xl font-extrabold tabular-nums text-white">
+            {filtered.length.toLocaleString("pt-BR")}
+          </p>
+          <p className="mt-0.5 text-[11px] uppercase tracking-wide text-df-muted">
+            Resultados
+          </p>
+        </div>
+        <div className="rounded-xl border border-df-line bg-df-panel px-4 py-3">
+          <p className="text-2xl font-extrabold text-emerald-400">4</p>
+          <p className="mt-0.5 text-[11px] uppercase tracking-wide text-df-muted">
+            Protocolos
+          </p>
+        </div>
+      </div>
+
       {/* Busca e filtros */}
-      <div className="rounded-df border border-df-line bg-df-panel p-5">
+      <div className="mt-4 rounded-df border border-df-line bg-df-panel p-5">
         <div className="flex flex-col gap-3 sm:flex-row">
           <div className="relative flex-1">
             <svg
@@ -159,13 +195,13 @@ export function VehicleSearch() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Busque por marca, modelo, ano ou ECU…"
-              className="w-full rounded-df border border-df-line bg-df-dark py-2.5 pl-10 pr-4 text-sm outline-none focus:border-df-red"
+              className="w-full rounded-df border border-df-line bg-df-dark py-2.5 pl-10 pr-4 text-sm outline-none transition focus:border-df-red"
             />
           </div>
           <select
             value={brand}
             onChange={(e) => setBrand(e.target.value)}
-            className="rounded-df border border-df-line bg-df-dark px-4 py-2.5 text-sm outline-none focus:border-df-red sm:w-56"
+            className="rounded-df border border-df-line bg-df-dark px-4 py-2.5 text-sm outline-none transition focus:border-df-red sm:w-56"
           >
             <option value="">
               Todas as marcas {vehicles ? `(${vehicles.length})` : ""}
@@ -179,16 +215,19 @@ export function VehicleSearch() {
         </div>
 
         <div className="mt-4 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-medium uppercase tracking-wide text-df-muted">
+            Protocolo:
+          </span>
           {PROTOCOL_LABELS.map(({ key, label }) => (
             <button
               key={key}
               type="button"
               aria-pressed={protocols[key]}
               onClick={() => toggleProtocol(key)}
-              className={`rounded-df border px-3 py-1.5 text-xs font-medium uppercase tracking-wide transition ${
+              className={`rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition ${
                 protocols[key]
                   ? "border-df-red bg-df-red text-white"
-                  : "border-df-line text-df-muted hover:border-white/40"
+                  : "border-df-line text-df-muted hover:border-white/40 hover:text-white"
               }`}
             >
               {label}
@@ -206,54 +245,55 @@ export function VehicleSearch() {
         </div>
       </div>
 
-      {/* Estatísticas */}
+      {/* Resumo dos resultados */}
       <p className="mt-4 text-sm text-df-muted">
         {vehicles === null ? (
           "Carregando lista de veículos…"
-        ) : filtered.length === vehicles.length ? (
-          <>
-            <span className="font-semibold text-white">
-              {vehicles.length.toLocaleString("pt-BR")}
-            </span>{" "}
-            veículos compatíveis
-          </>
+        ) : filtered.length === 0 ? (
+          "Nenhum veículo encontrado."
         ) : (
           <>
             Mostrando{" "}
             <span className="font-semibold text-white">
+              {rangeStart}–{rangeEnd}
+            </span>{" "}
+            de{" "}
+            <span className="font-semibold text-white">
               {filtered.length.toLocaleString("pt-BR")}
             </span>{" "}
-            de {vehicles.length.toLocaleString("pt-BR")} veículos
+            veículos
           </>
         )}
       </p>
 
       {/* Tabela */}
-      <div className="mt-3 overflow-x-auto rounded-df border border-df-line">
-        <table className="w-full min-w-[820px] border-collapse text-sm">
+      <div className="df-scrollbar mt-3 overflow-x-auto rounded-df border border-df-line">
+        <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
-            <tr className="border-b border-df-line bg-df-panel text-left text-xs uppercase tracking-wide text-df-muted">
-              <th className="px-4 py-3 font-medium">Marca</th>
-              <th className="px-4 py-3 font-medium">Modelo</th>
-              <th className="px-4 py-3 font-medium">Ano</th>
-              <th className="px-4 py-3 font-medium">ECU</th>
-              <th className="px-4 py-3 text-center font-medium">OBD</th>
-              <th className="px-4 py-3 text-center font-medium">Bench</th>
-              <th className="px-4 py-3 text-center font-medium">Boot</th>
-              <th className="px-4 py-3 font-medium">Extras</th>
+            <tr className="border-b border-df-line bg-df-dark text-left text-xs uppercase tracking-wide text-df-muted">
+              <th className="px-4 py-3 font-semibold">Marca</th>
+              <th className="px-4 py-3 font-semibold">Modelo</th>
+              <th className="px-4 py-3 font-semibold">Ano</th>
+              <th className="px-4 py-3 font-semibold">ECU</th>
+              <th className="px-4 py-3 font-semibold">Chip</th>
+              <th className="px-4 py-3 text-center font-semibold">OBD</th>
+              <th className="px-4 py-3 text-center font-semibold">Bench</th>
+              <th className="px-4 py-3 text-center font-semibold">Boot</th>
+              <th className="px-4 py-3 text-center font-semibold">Checksum</th>
+              <th className="px-4 py-3 font-semibold">Extras</th>
             </tr>
           </thead>
           <tbody>
             {vehicles === null && (
               <tr>
-                <td colSpan={8} className="px-4 py-10 text-center text-df-muted">
+                <td colSpan={10} className="px-4 py-10 text-center text-df-muted">
                   Carregando lista de veículos…
                 </td>
               </tr>
             )}
             {vehicles !== null && pageRows.length === 0 && (
               <tr>
-                <td colSpan={8} className="px-4 py-10 text-center text-df-muted">
+                <td colSpan={10} className="px-4 py-10 text-center text-df-muted">
                   Nenhum veículo encontrado. Ajuste a busca ou os filtros.
                 </td>
               </tr>
@@ -261,12 +301,15 @@ export function VehicleSearch() {
             {pageRows.map((v, i) => (
               <tr
                 key={`${v.brand}-${v.model}-${v.ecu}-${i}`}
-                className="border-b border-df-line last:border-0 odd:bg-df-panel/40"
+                className="border-b border-df-line last:border-0 odd:bg-df-panel/40 transition hover:bg-df-red/5"
               >
-                <td className="px-4 py-3 font-medium">{v.brand}</td>
+                <td className="px-4 py-3 font-semibold text-white">{v.brand}</td>
                 <td className="px-4 py-3">{v.model}</td>
                 <td className="px-4 py-3 tabular-nums text-df-muted">{v.year}</td>
                 <td className="px-4 py-3 text-df-muted">{v.ecu}</td>
+                <td className="px-4 py-3 text-df-muted">
+                  {v.chip || <span className="text-df-muted/50">—</span>}
+                </td>
                 <td className="px-4 py-3 text-center">
                   <ProtocolCell active={v.obd} />
                 </td>
@@ -276,13 +319,16 @@ export function VehicleSearch() {
                 <td className="px-4 py-3 text-center">
                   <ProtocolCell active={v.boot} />
                 </td>
+                <td className="px-4 py-3 text-center">
+                  <ProtocolCell active={v.crc} />
+                </td>
                 <td className="px-4 py-3">
                   {v.extras ? (
                     <div className="flex flex-wrap gap-1">
                       {v.extras.split(",").map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-df bg-df-panel px-2 py-0.5 text-xs text-df-muted"
+                          className="rounded-full bg-df-dark px-2 py-0.5 text-xs text-df-muted ring-1 ring-white/10"
                         >
                           {tag.trim()}
                         </span>
@@ -305,21 +351,27 @@ export function VehicleSearch() {
             type="button"
             disabled={currentPage <= 1}
             onClick={() => setPage((p) => p - 1)}
-            className="rounded-df border border-df-line px-4 py-2 text-df-muted transition hover:border-white/40 hover:text-white disabled:opacity-30"
+            className="flex items-center gap-1.5 rounded-df border border-df-line px-4 py-2 text-df-muted transition hover:border-white/40 hover:text-white disabled:opacity-30"
           >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="m15 19-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
             Anterior
           </button>
           <span className="text-df-muted">
-            Página <span className="text-white">{currentPage}</span> de{" "}
+            Página <span className="font-semibold text-white">{currentPage}</span> de{" "}
             {totalPages}
           </span>
           <button
             type="button"
             disabled={currentPage >= totalPages}
             onClick={() => setPage((p) => p + 1)}
-            className="rounded-df border border-df-line px-4 py-2 text-df-muted transition hover:border-white/40 hover:text-white disabled:opacity-30"
+            className="flex items-center gap-1.5 rounded-df border border-df-line px-4 py-2 text-df-muted transition hover:border-white/40 hover:text-white disabled:opacity-30"
           >
             Próxima
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="m9 5 7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </button>
         </div>
       )}

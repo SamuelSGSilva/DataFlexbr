@@ -17,7 +17,7 @@ export default async function TreinamentosPage() {
 
   const logoutButton = leadId && (
     <form action={signOutGate}>
-      <button className="rounded-df border border-white/30 bg-df-dark/60 px-4 py-2 text-sm text-white hover:border-white/60">
+      <button className="rounded-df border border-white/20 bg-df-dark/70 px-4 py-2 text-sm text-white backdrop-blur transition hover:border-white/50 hover:bg-df-dark/90">
         Sair
       </button>
     </form>
@@ -47,27 +47,48 @@ export default async function TreinamentosPage() {
         )}
 
         <div className="mt-10 flex flex-col gap-14">
-          {modules.map((mod) => (
-            <section key={mod.slug} id={mod.slug} className="scroll-mt-20">
-              <div className="mb-4 rounded-df border border-df-line bg-df-panel px-6 py-6">
-                <span className="inline-block rounded-df bg-df-red px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-white">
-                  Módulo
-                </span>
-                <h2 className="mt-3 font-heading text-xl uppercase tracking-tight">
-                  {mod.title}
-                </h2>
-                <p className="mt-1 text-sm text-df-muted">
-                  {mod.lessons.length}{" "}
-                  {mod.lessons.length === 1 ? "aula" : "aulas"}
-                </p>
-              </div>
-              <LessonCarousel>
-                {mod.lessons.map((lesson) => (
-                  <LessonCard key={lesson.slug} lesson={lesson} />
-                ))}
-              </LessonCarousel>
-            </section>
-          ))}
+          {modules
+            .filter((mod) => mod.lessons.length > 0)
+            .map((mod, i) => (
+              <section key={mod.slug} id={mod.slug} className="scroll-mt-20">
+                {i > 0 && (
+                  <div
+                    aria-hidden="true"
+                    className="mb-14 flex items-center gap-4"
+                  >
+                    <span className="h-px flex-1 bg-gradient-to-r from-transparent to-df-line" />
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-1 w-1 rounded-full bg-df-red/40" />
+                      <span className="h-1.5 w-1.5 rotate-45 bg-df-red" />
+                      <span className="h-1 w-1 rounded-full bg-df-red/40" />
+                    </span>
+                    <span className="h-px flex-1 bg-gradient-to-l from-transparent to-df-line" />
+                  </div>
+                )}
+                <div className="mb-5 flex items-center gap-4 border-b border-df-line pb-5">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-df-red/15 font-heading text-lg text-df-red ring-1 ring-df-red/30">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-wide text-df-muted">
+                      Módulo
+                    </p>
+                    <h2 className="font-heading text-xl uppercase tracking-tight">
+                      {mod.title}
+                    </h2>
+                  </div>
+                  <span className="ml-auto shrink-0 rounded-full border border-df-line px-3 py-1 text-xs font-medium text-df-muted">
+                    {mod.lessons.length}{" "}
+                    {mod.lessons.length === 1 ? "aula" : "aulas"}
+                  </span>
+                </div>
+                <LessonCarousel>
+                  {mod.lessons.map((lesson) => (
+                    <LessonCard key={lesson.slug} lesson={lesson} />
+                  ))}
+                </LessonCarousel>
+              </section>
+            ))}
         </div>
       </main>
     </>
