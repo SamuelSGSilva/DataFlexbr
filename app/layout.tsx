@@ -22,11 +22,11 @@ const barlowCondensed = Barlow_Condensed({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dataflexbr.com"),
-  title: "DataFlex by Tael — Programação Profissional de ECU e TCM",
+  title: "DataFlex by Tael",
   description:
     "Solução 100% Master em reprogramação automotiva de alta performance. Cobertura OBD, Bench e Boot focada no mercado brasileiro e Mercosul.",
   openGraph: {
-    title: "DataFlex by Tael — Programação Profissional de ECU e TCM",
+    title: "DataFlex by Tael",
     description: "Solução 100% Master em reprogramação automotiva de alta performance. Cobertura OBD, Bench e Boot focada no mercado brasileiro e Mercosul.",
     url: "https://dataflexbr.com",
     siteName: "DataFlex by Tael",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "DataFlex by Tael — Programação Profissional de ECU e TCM",
+    title: "DataFlex by Tael",
     description: "Solução 100% Master em reprogramação automotiva de alta performance.",
     images: ["/img/maleta-hero.webp"],
   },
