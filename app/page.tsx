@@ -218,15 +218,15 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section className="grid min-h-[calc(100vh-64px)] lg:grid-cols-[1.3fr_1fr]">
-        <div className="flex flex-col justify-center bg-df-panel px-6 py-20 md:px-10 md:py-28 lg:py-32">
+        <div className="flex flex-col justify-center items-center bg-df-panel px-6 py-20 md:px-10 md:py-28 lg:py-32">
           <span aria-hidden="true" className="h-1 w-16 bg-df-red" />
-          <h1 className="mt-6 font-heading text-4xl uppercase leading-tight md:text-5xl">
+          <h1 className="mt-6 font-heading text-4xl uppercase leading-tight md:text-5xl text-center">
             Tael DataFlex
           </h1>
-          <p className="mt-2 font-heading text-lg uppercase text-df-muted md:text-xl">
+          <p className="mt-2 font-heading text-lg uppercase text-df-muted md:text-xl text-center">
             Bem-vindo ao mundo Master do chiptuning.
           </p>
-          <p className="mt-6 max-w-md text-df-muted">
+          <p className="mt-6 max-w-md text-df-muted text-center">
             Slave é limitação. É Master. É original. É liberdade.
             <br />
             Você escolhe!
@@ -236,7 +236,7 @@ export default function Home() {
             A solução definitiva em reprogramação automotiva de alta
             performance.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
             <Link
               href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
@@ -782,7 +782,12 @@ export default function Home() {
         <div className="relative mx-auto w-full max-w-6xl">
           {/* Header row */}
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-20">
-            {/* Left — sticky heading */}
+            {/* Left — accordion list */}
+            <div className="flex-1 min-w-0">
+              <FaqSection faqs={FAQS} />
+            </div>
+
+            {/* Right — sticky heading */}
             <div className="lg:w-80 lg:shrink-0 lg:sticky lg:top-24">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-df-red">
                 Perguntas frequentes
@@ -807,11 +812,6 @@ export default function Home() {
                   <p className="mt-0.5 text-[11px] uppercase tracking-wide text-df-muted">Transparência</p>
                 </div>
               </div>
-            </div>
-
-            {/* Right — accordion list */}
-            <div className="flex-1 min-w-0">
-              <FaqSection faqs={FAQS} />
             </div>
           </div>
         </div>
