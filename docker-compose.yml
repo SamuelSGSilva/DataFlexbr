@@ -100,6 +100,9 @@ services:
       EVOLUTION_API_URL: ${EVOLUTION_API_URL}
       EVOLUTION_API_KEY: ${EVOLUTION_API_KEY}
       EVOLUTION_INSTANCE: ${EVOLUTION_INSTANCE}
+      # Site em producao fica atras de HTTPS (Cloudflare) -- cookie de
+      # login marcado como secure.
+      COOKIE_SECURE: "true"
     ports:
       - "3002:3000"
 
