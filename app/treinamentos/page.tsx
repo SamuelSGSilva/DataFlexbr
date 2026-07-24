@@ -3,6 +3,7 @@ import { getLeadSession, signOutGate } from "@/lib/gate-actions";
 import { LessonCard } from "./lesson-card";
 import { LessonCarousel } from "./lesson-carousel";
 import { TrainingHero } from "./training-hero";
+import { PreviewGate } from "@/components/preview-gate";
 
 export const metadata = {
   title: "Treinamentos — DataFlex",
@@ -13,7 +14,16 @@ export default async function TreinamentosPage() {
   const leadId = await getLeadSession();
   const modules = await getModules();
   const gateConfigured = Boolean(process.env.ACCESS_TOKEN_SECRET);
+  const gated = gateConfigured && !leadId;
   const featuredModule = modules[0];
+
+  // Sem cadastro, só a prévia (1 módulo, 2 aulas) chega ao HTML.
+  const withLessons = modules.filter((mod) => mod.lessons.length > 0);
+  const visibleModules = gated
+    ? withLessons
+        .slice(0, 1)
+        .map((mod) => ({ ...mod, lessons: mod.lessons.slice(0, 2) }))
+    : withLessons;
 
   const logoutButton = leadId && (
     <form action={signOutGate}>
@@ -46,10 +56,9 @@ export default async function TreinamentosPage() {
           </p>
         )}
 
+        <PreviewGate gated={gated} voltar="/treinamentos">
         <div className="mt-10 flex flex-col gap-14">
-          {modules
-            .filter((mod) => mod.lessons.length > 0)
-            .map((mod, i) => (
+          {visibleModules.map((mod, i) => (
               <section key={mod.slug} id={mod.slug} className="scroll-mt-20">
                 {i > 0 && (
                   <div
@@ -90,6 +99,7 @@ export default async function TreinamentosPage() {
               </section>
             ))}
         </div>
+        </PreviewGate>
       </main>
     </>
   );

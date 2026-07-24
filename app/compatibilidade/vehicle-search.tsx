@@ -75,7 +75,7 @@ export function VehicleSearch() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    fetch("/data/vehicles.json")
+    fetch("/api/vehicles")
       .then((r) => r.json())
       .then((data: { vehicles: Vehicle[] }) => setVehicles(data.vehicles))
       .catch(() => setVehicles([]));
@@ -177,7 +177,7 @@ export function VehicleSearch() {
       </div>
 
       {/* Busca e filtros */}
-      <div className="mt-4 rounded-df border border-df-line bg-df-panel p-5">
+      <div className="mt-4 rounded-df border border-df-line bg-[#1e1e1e] p-5">
         <div className="flex flex-col gap-3 sm:flex-row">
           <div className="relative flex-1">
             <svg
@@ -195,13 +195,13 @@ export function VehicleSearch() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Busque por marca, modelo, ano ou ECU…"
-              className="w-full rounded-df border border-df-line bg-df-dark py-2.5 pl-10 pr-4 text-sm outline-none transition focus:border-df-red"
+              className="w-full rounded-df border border-df-line bg-[#2a2a2a] py-2.5 pl-10 pr-4 text-sm outline-none transition focus:border-df-red focus:ring-1 focus:ring-df-red/40"
             />
           </div>
           <select
             value={brand}
             onChange={(e) => setBrand(e.target.value)}
-            className="rounded-df border border-df-line bg-df-dark px-4 py-2.5 text-sm outline-none transition focus:border-df-red sm:w-56"
+            className="rounded-df border border-df-line bg-[#2a2a2a] px-4 py-2.5 text-sm outline-none transition focus:border-df-red focus:ring-1 focus:ring-df-red/40 sm:w-56"
           >
             <option value="">
               Todas as marcas {vehicles ? `(${vehicles.length})` : ""}
