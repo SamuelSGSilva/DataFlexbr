@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
   // x-forwarded-host.
   experimental: {
     serverActions: {
-      allowedOrigins: ["dataflexbr.com", "www.dataflexbr.com"],
+      allowedOrigins: ["dataflexbr.com", "*.dataflexbr.com"],
     },
   },
   images: {
