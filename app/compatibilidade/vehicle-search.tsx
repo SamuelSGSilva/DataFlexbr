@@ -75,7 +75,7 @@ export function VehicleSearch() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    fetch("/data/vehicles.json")
+    fetch("/api/vehicles")
       .then((r) => r.json())
       .then((data: { vehicles: Vehicle[] }) => setVehicles(data.vehicles))
       .catch(() => setVehicles([]));

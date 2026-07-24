@@ -17,6 +17,14 @@ export default async function TreinamentosPage() {
   const gated = gateConfigured && !leadId;
   const featuredModule = modules[0];
 
+  // Sem cadastro, só a prévia (1 módulo, 2 aulas) chega ao HTML.
+  const withLessons = modules.filter((mod) => mod.lessons.length > 0);
+  const visibleModules = gated
+    ? withLessons
+        .slice(0, 1)
+        .map((mod) => ({ ...mod, lessons: mod.lessons.slice(0, 2) }))
+    : withLessons;
+
   const logoutButton = leadId && (
     <form action={signOutGate}>
       <button className="rounded-df border border-white/20 bg-df-dark/70 px-4 py-2 text-sm text-white backdrop-blur transition hover:border-white/50 hover:bg-df-dark/90">
@@ -50,9 +58,7 @@ export default async function TreinamentosPage() {
 
         <PreviewGate gated={gated} voltar="/treinamentos">
         <div className="mt-10 flex flex-col gap-14">
-          {modules
-            .filter((mod) => mod.lessons.length > 0)
-            .map((mod, i) => (
+          {visibleModules.map((mod, i) => (
               <section key={mod.slug} id={mod.slug} className="scroll-mt-20">
                 {i > 0 && (
                   <div
