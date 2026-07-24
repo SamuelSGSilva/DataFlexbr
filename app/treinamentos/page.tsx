@@ -3,6 +3,7 @@ import { getLeadSession, signOutGate } from "@/lib/gate-actions";
 import { LessonCard } from "./lesson-card";
 import { LessonCarousel } from "./lesson-carousel";
 import { TrainingHero } from "./training-hero";
+import { PreviewGate } from "@/components/preview-gate";
 
 export const metadata = {
   title: "Treinamentos — DataFlex",
@@ -13,6 +14,7 @@ export default async function TreinamentosPage() {
   const leadId = await getLeadSession();
   const modules = await getModules();
   const gateConfigured = Boolean(process.env.ACCESS_TOKEN_SECRET);
+  const gated = gateConfigured && !leadId;
   const featuredModule = modules[0];
 
   const logoutButton = leadId && (
@@ -46,6 +48,7 @@ export default async function TreinamentosPage() {
           </p>
         )}
 
+        <PreviewGate gated={gated} voltar="/treinamentos">
         <div className="mt-10 flex flex-col gap-14">
           {modules
             .filter((mod) => mod.lessons.length > 0)
@@ -90,6 +93,7 @@ export default async function TreinamentosPage() {
               </section>
             ))}
         </div>
+        </PreviewGate>
       </main>
     </>
   );

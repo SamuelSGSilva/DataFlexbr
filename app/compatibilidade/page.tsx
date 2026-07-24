@@ -1,3 +1,5 @@
+import { getLeadSession } from "@/lib/gate-actions";
+import { PreviewGate } from "@/components/preview-gate";
 import { VehicleSearch } from "./vehicle-search";
 
 export const metadata = {
@@ -6,7 +8,10 @@ export const metadata = {
     "Consulte os veículos compatíveis com o DataFlex by Tael: marca, modelo, ECU e modos suportados (OBD, Bench, Boot).",
 };
 
-export default function CompatibilidadePage() {
+export default async function CompatibilidadePage() {
+  const leadId = await getLeadSession();
+  const gated = Boolean(process.env.ACCESS_TOKEN_SECRET) && !leadId;
+
   return (
     <main className="mx-auto w-full max-w-6xl px-6 py-16">
       <p className="text-xs font-medium uppercase tracking-wide text-df-red">
@@ -20,7 +25,9 @@ export default function CompatibilidadePage() {
         hora, com os modos de comunicação suportados por cada sistema.
       </p>
 
-      <VehicleSearch />
+      <PreviewGate gated={gated} voltar="/compatibilidade">
+        <VehicleSearch />
+      </PreviewGate>
     </main>
   );
 }
