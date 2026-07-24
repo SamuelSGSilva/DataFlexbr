@@ -7,7 +7,7 @@ import { WHATSAPP_NUMBER } from "@/lib/products";
 export function MobileNav({
   links,
 }: {
-  links: { href: string; label: string }[];
+  links: { href: string; label: string; external?: boolean }[];
 }) {
   const [open, setOpen] = useState(false);
 
@@ -34,17 +34,34 @@ export function MobileNav({
       {open && (
         <nav className="absolute inset-x-0 top-16 border-b border-df-line bg-df-dark px-6 py-4">
           <ul className="flex flex-col gap-1">
-            {links.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-df px-3 py-3 text-sm font-medium uppercase tracking-wide text-df-muted transition hover:bg-df-panel hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {links.map((link) => {
+              if (link.external) {
+                return (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setOpen(false)}
+                      className="block rounded-df px-3 py-3 text-sm font-medium uppercase tracking-wide text-df-muted transition hover:bg-df-panel hover:text-white"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              }
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="block rounded-df px-3 py-3 text-sm font-medium uppercase tracking-wide text-df-muted transition hover:bg-df-panel hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
             <li>
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
