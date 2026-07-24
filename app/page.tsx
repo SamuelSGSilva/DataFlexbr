@@ -781,7 +781,7 @@ export default function Home() {
 
         <div className="relative mx-auto w-full max-w-6xl">
           {/* Header row */}
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-20">
+          <div className="flex flex-col gap-10 lg:flex-row-reverse lg:items-start lg:gap-20">
             {/* Left — sticky heading */}
             <div className="lg:w-80 lg:shrink-0 lg:sticky lg:top-24">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-df-red">
