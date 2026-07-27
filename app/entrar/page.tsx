@@ -13,7 +13,7 @@ export default async function EntrarPage(props: PageProps<"/entrar">) {
     typeof searchParams.voltar === "string" ? searchParams.voltar : "";
 
   return (
-    <main className="mx-auto flex min-h-[70vh] w-full max-w-md flex-col justify-center px-6 py-16">
+    <main className="mx-auto flex min-h-[50vh] w-full max-w-md flex-col justify-center px-6 py-8 md:py-12">
       <h1 className="font-heading text-3xl uppercase tracking-tight">
         Acesso exclusivo DataFlex
       </h1>
