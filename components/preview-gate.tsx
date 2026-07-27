@@ -3,9 +3,9 @@
 import { GateForm } from "@/app/entrar/gate-form";
 
 /**
- * Deixa o visitante ver um trechinho do conteúdo dentro de um contêiner de
- * altura FIXA com overflow-hidden — o corte é físico (em px), então nada
- * vaza para o rodapé nem aparece com zoom out, diferente de usar vh/%.
+ * Deixa o visitante ver um trecho do conteúdo e cobre o restante com um
+ * overlay (full-width) que traz o card de cadastro. Como o overlay cobre
+ * tudo abaixo de ~20% da prévia, o zoom não revela o resto da tabela.
  */
 export function PreviewGate({
   gated,
@@ -19,14 +19,17 @@ export function PreviewGate({
   if (!gated) return <>{children}</>;
 
   return (
-    <div className="relative h-[560px] overflow-hidden">
-      {/* Prévia (só o topo fica visível, o resto é cortado de verdade) */}
-      <div className="pointer-events-none select-none" aria-hidden="true">
+    <div className="relative">
+      {/* Prévia (só um pedaço fica visível no topo) */}
+      <div
+        className="pointer-events-none max-h-[60vh] select-none overflow-hidden"
+        aria-hidden="true"
+      >
         {children}
       </div>
 
-      {/* Cobertura full-width com o card de cadastro */}
-      <div className="absolute inset-x-0 bottom-0 top-[180px] flex items-start justify-center bg-gradient-to-b from-transparent to-df-dark to-25% px-4">
+      {/* Cobertura full-width a partir de ~20%, com o card de cadastro */}
+      <div className="absolute inset-x-0 bottom-0 top-[20%] flex items-start justify-center bg-gradient-to-b from-transparent to-df-dark to-25% px-4">
         <div className="mt-[6vh] w-full max-w-md rounded-df border border-df-line bg-df-panel p-6 shadow-2xl shadow-black/50">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-df-red">
             Conteúdo exclusivo
