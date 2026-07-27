@@ -19,15 +19,15 @@ export function PreviewGate({
   if (!gated) return <>{children}</>;
 
   return (
-    <div className="relative h-[620px] overflow-hidden rounded-df border border-df-line">
+    <div className="relative h-[560px] overflow-hidden">
       {/* Prévia (só o topo fica visível, o resto é cortado de verdade) */}
       <div className="pointer-events-none select-none" aria-hidden="true">
         {children}
       </div>
 
-      {/* Cobertura sólida com o card de cadastro */}
-      <div className="absolute inset-x-0 bottom-0 top-[160px] flex items-start justify-center bg-gradient-to-b from-transparent via-df-dark/95 to-df-dark px-4 pt-8">
-        <div className="w-full max-w-md rounded-df border border-df-line bg-df-panel p-6 shadow-2xl shadow-black/50">
+      {/* Cobertura full-width com o card de cadastro */}
+      <div className="absolute inset-x-0 bottom-0 top-[180px] flex items-start justify-center bg-gradient-to-b from-transparent to-df-dark to-25% px-4">
+        <div className="mt-[6vh] w-full max-w-md rounded-df border border-df-line bg-df-panel p-6 shadow-2xl shadow-black/50">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-df-red">
             Conteúdo exclusivo
           </p>
