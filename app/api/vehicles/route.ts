@@ -17,10 +17,12 @@ export async function GET() {
     return NextResponse.json({ vehicles: all });
   }
 
-  // Sem cadastro: manda só a prévia (o resto nem sai do servidor).
+  // Sem cadastro: manda só a prévia (o resto nem sai do servidor),
+  // mas os totais (veículos/marcas) sempre são os reais.
   return NextResponse.json({
     vehicles: all.slice(0, PREVIEW_COUNT),
     total: all.length,
+    totalBrands: new Set(all.map((v) => v.brand)).size,
     preview: true,
   });
 }

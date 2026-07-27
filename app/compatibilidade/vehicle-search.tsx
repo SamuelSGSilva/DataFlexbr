@@ -64,6 +64,9 @@ function ProtocolCell({ active }: { active: boolean }) {
 
 export function VehicleSearch() {
   const [vehicles, setVehicles] = useState<Vehicle[] | null>(null);
+  const [realTotals, setRealTotals] = useState<{ total: number; totalBrands: number } | null>(
+    null
+  );
   const [query, setQuery] = useState("");
   const [brand, setBrand] = useState("");
   const [protocols, setProtocols] = useState({
@@ -77,7 +80,18 @@ export function VehicleSearch() {
   useEffect(() => {
     fetch("/api/vehicles")
       .then((r) => r.json())
-      .then((data: { vehicles: Vehicle[] }) => setVehicles(data.vehicles))
+      .then(
+        (data: {
+          vehicles: Vehicle[];
+          total?: number;
+          totalBrands?: number;
+        }) => {
+          setVehicles(data.vehicles);
+          if (data.total != null && data.totalBrands != null) {
+            setRealTotals({ total: data.total, totalBrands: data.totalBrands });
+          }
+        }
+      )
       .catch(() => setVehicles([]));
   }, []);
 
@@ -146,7 +160,11 @@ export function VehicleSearch() {
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div className="rounded-xl border border-df-line bg-df-panel px-4 py-3">
           <p className="text-2xl font-extrabold tabular-nums text-white">
-            {vehicles ? vehicles.length.toLocaleString("pt-BR") : "—"}
+            {realTotals
+              ? realTotals.total.toLocaleString("pt-BR")
+              : vehicles
+                ? vehicles.length.toLocaleString("pt-BR")
+                : "—"}
           </p>
           <p className="mt-0.5 text-[11px] uppercase tracking-wide text-df-muted">
             Veículos
@@ -154,7 +172,7 @@ export function VehicleSearch() {
         </div>
         <div className="rounded-xl border border-df-line bg-df-panel px-4 py-3">
           <p className="text-2xl font-extrabold tabular-nums text-df-red">
-            {brands.length || "—"}
+            {realTotals ? realTotals.totalBrands : brands.length || "—"}
           </p>
           <p className="mt-0.5 text-[11px] uppercase tracking-wide text-df-muted">
             Marcas
