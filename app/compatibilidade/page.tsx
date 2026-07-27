@@ -14,18 +14,18 @@ export default async function CompatibilidadePage() {
 
   return (
     <main className="mx-auto w-full max-w-6xl px-6 py-16">
-      <p className="text-xs font-medium uppercase tracking-wide text-df-red">
-        Tabela de aplicação
-      </p>
-      <h1 className="mt-2 font-heading text-3xl uppercase tracking-tight">
-        Veja se o seu carro é compatível
-      </h1>
-      <p className="mt-3 max-w-2xl text-df-muted">
-        Busque por marca, modelo, ano ou ECU. Os resultados aparecem na
-        hora, com os modos de comunicação suportados por cada sistema.
-      </p>
-
       <PreviewGate gated={gated} voltar="/compatibilidade">
+        <p className="text-xs font-medium uppercase tracking-wide text-df-red">
+          Tabela de aplicação
+        </p>
+        <h1 className="mt-2 font-heading text-3xl uppercase tracking-tight">
+          Veja se o seu carro é compatível
+        </h1>
+        <p className="mt-3 max-w-2xl text-df-muted">
+          Busque por marca, modelo, ano ou ECU. Os resultados aparecem na
+          hora, com os modos de comunicação suportados por cada sistema.
+        </p>
+
         <VehicleSearch />
       </PreviewGate>
     </main>
