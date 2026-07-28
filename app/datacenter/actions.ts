@@ -13,6 +13,7 @@ import {
 import {
   createDataCenterPost,
   deleteDataCenterPost,
+  updateDataCenterPost,
 } from "@/lib/datacenter-posts";
 
 export type LoginResult = { error: string } | undefined;
@@ -73,6 +74,26 @@ export async function addDataCenterPost(
   if (!title) return { error: "Informe um título." };
 
   const { error } = await createDataCenterPost(title, body, imageUrl);
+  if (error) return { error };
+
+  revalidatePath("/datacenter");
+  return undefined;
+}
+
+export async function editDataCenterPost(
+  id: number,
+  _prev: PostResult,
+  formData: FormData
+): Promise<PostResult> {
+  if (!(await requireSession())) return { error: "Sessão expirada." };
+
+  const title = String(formData.get("title") ?? "").trim();
+  const body = String(formData.get("body") ?? "").trim();
+  const imageUrl = String(formData.get("imageUrl") ?? "").trim();
+
+  if (!title) return { error: "Informe um título." };
+
+  const { error } = await updateDataCenterPost(id, title, body, imageUrl);
   if (error) return { error };
 
   revalidatePath("/datacenter");

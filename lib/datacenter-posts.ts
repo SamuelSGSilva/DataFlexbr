@@ -46,6 +46,24 @@ export async function createDataCenterPost(
   return {};
 }
 
+export async function updateDataCenterPost(
+  id: number,
+  title: string,
+  body: string,
+  imageUrl: string
+): Promise<{ error?: string }> {
+  const supabase = await createClient();
+  if (!supabase) return { error: "Supabase não configurado." };
+
+  const { error } = await supabase
+    .from("datacenter_posts")
+    .update({ title, body, image_url: imageUrl || null })
+    .eq("id", id);
+
+  if (error) return { error: "Não foi possível salvar. Tente novamente." };
+  return {};
+}
+
 export async function deleteDataCenterPost(id: number): Promise<void> {
   const supabase = await createClient();
   if (!supabase) return;

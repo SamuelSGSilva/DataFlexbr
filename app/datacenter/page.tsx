@@ -4,9 +4,10 @@ import {
   verifyDataCenterToken,
 } from "@/lib/datacenter-auth";
 import { getDataCenterPosts } from "@/lib/datacenter-posts";
-import { logoutDataCenter, removeDataCenterPost } from "./actions";
+import { logoutDataCenter } from "./actions";
 import { DataCenterLoginForm } from "./login-form";
 import { PostForm } from "./post-form";
+import { PostItem } from "./post-item";
 
 export const metadata = {
   title: "DataCenter — DataFlex",
@@ -67,43 +68,7 @@ export default async function DataCenterPage() {
             </p>
           )}
           {posts.map((post) => (
-            <article
-              key={post.id}
-              className="overflow-hidden rounded-df border border-df-line bg-df-panel"
-            >
-              {post.imageUrl && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={post.imageUrl}
-                  alt=""
-                  className="h-48 w-full object-cover"
-                />
-              )}
-              <div className="p-5">
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-heading text-lg uppercase tracking-tight">
-                    {post.title}
-                  </h3>
-                  <form action={removeDataCenterPost.bind(null, post.id)}>
-                    <button
-                      type="submit"
-                      aria-label="Excluir item"
-                      className="shrink-0 rounded-df border border-df-line px-3 py-1.5 text-xs text-df-muted transition hover:border-df-red hover:text-df-red"
-                    >
-                      Excluir
-                    </button>
-                  </form>
-                </div>
-                {post.body && (
-                  <p className="mt-2 whitespace-pre-line text-sm text-df-muted">
-                    {post.body}
-                  </p>
-                )}
-                <p className="mt-3 text-xs text-df-muted/60">
-                  {new Date(post.createdAt).toLocaleString("pt-BR")}
-                </p>
-              </div>
-            </article>
+            <PostItem key={post.id} post={post} />
           ))}
         </div>
       </div>
