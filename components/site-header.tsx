@@ -3,10 +3,9 @@ import Link from "next/link";
 import { CartButton } from "@/components/cart-button";
 import { MobileNav } from "@/components/mobile-nav";
 
-const NAV_LINKS = [
+const NAV_LINKS: { href: string; label: string; external?: boolean }[] = [
   { href: "/", label: "Início" },
   { href: "/quem-somos", label: "Quem somos" },
-  { href: "https://datacenter.dataflexbr.com", label: "DataCenter", external: true },
   { href: "/compatibilidade", label: "Tabela de aplicação" },
   { href: "/treinamentos", label: "Treinamentos" },
   { href: "/fale-conosco", label: "Fale conosco" },
