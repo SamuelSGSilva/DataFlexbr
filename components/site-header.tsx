@@ -8,7 +8,7 @@ const NAV_LINKS: { href: string; label: string; external?: boolean }[] = [
   { href: "/quem-somos", label: "Quem somos" },
   { href: "/compatibilidade", label: "Tabela de aplicação" },
   { href: "/treinamentos", label: "Treinamentos" },
-  { href: "/fale-conosco", label: "Fale conosco" },
+  { href: "https://datacenter.dataflexbr.com/#/login?redirect=/home", label: "Datacenter", external: true },
 ];
 
 export function SiteHeader() {
