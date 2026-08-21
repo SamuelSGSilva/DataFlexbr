@@ -1,0 +1,47 @@
+{
+  "name": "DataFlex - Sincronizar FormulaFlash",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Executar manualmente",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [260, 220]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "cronExpression", "expression": "0 7 * * *" }]
+        }
+      },
+      "id": "daily-trigger",
+      "name": "Todos os dias às 07h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [260, 380]
+    },
+    {
+      "parameters": {
+        "command": "node /data/formulaflash-sync/sync-formulaflash.mjs"
+      },
+      "id": "execute-sync",
+      "name": "Conferir e atualizar PR",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [560, 300]
+    }
+  ],
+  "connections": {
+    "Executar manualmente": { "main": [[{ "node": "Conferir e atualizar PR", "type": "main", "index": 0 }]] },
+    "Todos os dias às 07h": { "main": [[{ "node": "Conferir e atualizar PR", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": {
+    "timezone": "America/Sao_Paulo",
+    "executionOrder": "v1"
+  },
+  "versionId": "7a64155f-1a42-47af-b0ce-5db17a8f4c20",
+  "meta": { "templateCredsSetupCompleted": true },
+  "tags": []
+}
