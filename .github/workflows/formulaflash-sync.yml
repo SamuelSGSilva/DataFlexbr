@@ -1,0 +1,29 @@
+name: FormulaFlash Sync
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: formulaflash-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Conferir lista cumulativa e atualizar PR
+        run: node automation/n8n/sync-formulaflash.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_BASE_BRANCH: main
+          GITHUB_SYNC_BRANCH: automation/formulaflash-sync
+          VEHICLES_PATH: data/vehicles.json
