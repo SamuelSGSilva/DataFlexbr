@@ -1,5 +1,5 @@
 {
-  "name": "DataFlex - Sincronizar FormulaFlash",
+  "name": "DataFlex - Sincronizar FormulaFlash (Cloud)",
   "nodes": [
     {
       "parameters": {},
@@ -7,7 +7,7 @@
       "name": "Executar manualmente",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
-      "position": [260, 220]
+      "position": [300, 220]
     },
     {
       "parameters": {
@@ -19,29 +19,44 @@
       "name": "Todos os dias às 07h",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [260, 380]
+      "position": [300, 380]
     },
     {
       "parameters": {
-        "command": "node /data/formulaflash-sync/sync-formulaflash.mjs"
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "githubApi",
+        "requestMethod": "POST",
+        "url": "https://api.github.com/repos/SamuelSGSilva/DataFlexbr/actions/workflows/formulaflash-sync.yml/dispatches",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github+json" },
+            { "name": "X-GitHub-Api-Version", "value": "2022-11-28" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{\"ref\":\"main\"}",
+        "options": {}
       },
-      "id": "execute-sync",
-      "name": "Conferir e atualizar PR",
-      "type": "n8n-nodes-base.executeCommand",
-      "typeVersion": 1,
-      "position": [560, 300]
+      "id": "dispatch-action",
+      "name": "Iniciar conferência no GitHub",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [610, 300]
     }
   ],
   "connections": {
-    "Executar manualmente": { "main": [[{ "node": "Conferir e atualizar PR", "type": "main", "index": 0 }]] },
-    "Todos os dias às 07h": { "main": [[{ "node": "Conferir e atualizar PR", "type": "main", "index": 0 }]] }
+    "Executar manualmente": { "main": [[{ "node": "Iniciar conferência no GitHub", "type": "main", "index": 0 }]] },
+    "Todos os dias às 07h": { "main": [[{ "node": "Iniciar conferência no GitHub", "type": "main", "index": 0 }]] }
   },
   "active": false,
   "settings": {
     "timezone": "America/Sao_Paulo",
     "executionOrder": "v1"
   },
-  "versionId": "7a64155f-1a42-47af-b0ce-5db17a8f4c20",
-  "meta": { "templateCredsSetupCompleted": true },
+  "versionId": "c8a34fee-b0cd-40e0-8fcc-26ef50e284e7",
+  "meta": { "templateCredsSetupCompleted": false },
   "tags": []
 }
