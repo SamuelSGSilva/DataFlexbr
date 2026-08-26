@@ -1,0 +1,77 @@
+name: Deploy DataFlex Production
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/vehicles.json"
+  workflow_dispatch:
+
+concurrency:
+  group: dataflex-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Rebuild e deploy
+    runs-on:
+      - self-hosted
+      - linux
+      - dataflex-production
+    timeout-minutes: 20
+
+    steps:
+      - name: Validar configuracao do servidor
+        shell: bash
+        env:
+          DEPLOY_DIR: ${{ vars.DATAFLEX_DEPLOY_DIR }}
+        run: |
+          set -euo pipefail
+          if [ -z "$DEPLOY_DIR" ]; then
+            echo "Configure a variavel DATAFLEX_DEPLOY_DIR no GitHub antes do primeiro deploy."
+            exit 1
+          fi
+          test -d "$DEPLOY_DIR/.git"
+          test -f "$DEPLOY_DIR/docker-compose.yml"
+          test -f "$DEPLOY_DIR/.env"
+          docker version >/dev/null
+          docker compose version >/dev/null
+
+      - name: Atualizar codigo da main
+        shell: bash
+        env:
+          DEPLOY_DIR: ${{ vars.DATAFLEX_DEPLOY_DIR }}
+        run: |
+          set -euo pipefail
+          cd "$DEPLOY_DIR"
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+
+      - name: Rebuild da aplicacao web
+        shell: bash
+        env:
+          DEPLOY_DIR: ${{ vars.DATAFLEX_DEPLOY_DIR }}
+        run: |
+          set -euo pipefail
+          cd "$DEPLOY_DIR"
+          docker compose build web
+
+      - name: Publicar nova versao
+        shell: bash
+        env:
+          DEPLOY_DIR: ${{ vars.DATAFLEX_DEPLOY_DIR }}
+        run: |
+          set -euo pipefail
+          cd "$DEPLOY_DIR"
+          docker compose up -d --no-deps web
+
+      - name: Verificar container
+        shell: bash
+        env:
+          DEPLOY_DIR: ${{ vars.DATAFLEX_DEPLOY_DIR }}
+        run: |
+          set -euo pipefail
+          cd "$DEPLOY_DIR"
+          docker compose ps web
