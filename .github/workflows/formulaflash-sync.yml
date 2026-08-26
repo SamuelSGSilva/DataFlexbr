@@ -5,7 +5,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
   group: formulaflash-sync
@@ -19,11 +18,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Conferir lista cumulativa e atualizar PR
+      - name: Validar FormulaFlash e atualizar aplicações na main
         run: node automation/n8n/sync-formulaflash.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_BASE_BRANCH: main
-          GITHUB_SYNC_BRANCH: automation/formulaflash-sync
           VEHICLES_PATH: data/vehicles.json
